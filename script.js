@@ -68,11 +68,15 @@ document.getElementById("guess").addEventListener("input", (e) => {
 
   renderGrid();
 
-  if (found.length === animatronics.length) {
-    document.getElementById("results").textContent = "¡Completado!";
+  const total = animatronics.length;
+  const count = found.length;
+
+  if (count === total) {
+    document.getElementById("results").textContent = `${count} de ${total} — ¡Completado! 🎉`;
   } else {
-    document.getElementById("results").textContent = `Has encontrado ${found.length} de ${animatronics.length}`;
+    document.getElementById("results").textContent = `${count} de ${total} encontrados`;
   }
+
 
 });
 
