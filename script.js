@@ -70,7 +70,10 @@ document.getElementById("guess").addEventListener("input", (e) => {
 
   if (found.length === animatronics.length) {
     document.getElementById("results").textContent = "¡Completado!";
+  } else {
+    document.getElementById("results").textContent = `Has encontrado ${found.length} de ${animatronics.length}`;
   }
+
 });
 
 renderGrid();
