@@ -23,6 +23,8 @@ const animatronics = [
 
 const found = [];
 
+const correctSound = new Audio("sounds/correct.mp3");
+
 function renderGrid() {
   const grid = document.getElementById("grid");
   grid.innerHTML = "";
@@ -54,8 +56,11 @@ document.getElementById("guess").addEventListener("input", (e) => {
   animatronics.forEach(anim => {
     if (input === anim.name && !found.includes(anim.name)) {
       found.push(anim.name);
+      correctSound.currentTime = 0; // reinicia si se repite rápido
+      correctSound.play(); // 🔊 REPRODUCIR
       e.target.value = "";
     }
+
   });
 
   document.getElementById("results").textContent =
