@@ -31,3 +31,37 @@ input {
   background-color: #333;
   border-radius: 8px;
 }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  margin: 20px;
+}
+
+.card {
+  text-align: center;
+  background-color: #222;
+  padding: 10px;
+  border-radius: 10px;
+  width: 120px;
+}
+
+.card img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.name-hidden {
+  visibility: hidden;
+  margin-top: 8px;
+  color: #ccc;
+}
+
+.name-visible {
+  visibility: visible;
+  color: white;
+}
