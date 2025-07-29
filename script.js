@@ -102,14 +102,16 @@ function renderGrid() {
     const img = document.createElement("img");
     const isFound = found.includes(anim.name);
     img.src = isFound ? anim.img : "img/question.png";
-    if (isFound && anim.name === lastCorrect) {
-      img.classList.add("revealed");
-    }
 
+    if (isFound && anim.name === lastCorrect) {
+      img.classList.remove("revealed");    
+      void img.offsetWidth;                 
+      img.classList.add("revealed");         
+    }
 
     const label = document.createElement("div");
     label.textContent = capitalize(anim.name);
-    label.className = found.includes(anim.name) ? "name-visible" : "name-hidden";
+    label.className = isFound ? "name-visible" : "name-hidden";
 
     card.appendChild(img);
     card.appendChild(label);
@@ -139,6 +141,7 @@ document.getElementById("guess").addEventListener("input", (e) => {
   animatronics.forEach(anim => {
     if (input === anim.name && !found.includes(anim.name)) {
       found.push(anim.name);
+      lastCorrect = anim.name;
       correctSound.currentTime = 0;
       correctSound.play();
       e.target.value = "";
