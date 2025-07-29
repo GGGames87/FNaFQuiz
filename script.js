@@ -12,11 +12,9 @@ document.getElementById("create-room")?.addEventListener("click", () => {
 });
 
 
-// 🔁 Firebase imports (fuera de condiciones)
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 import { getDatabase, ref, update, onValue } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
 
-// 🔍 Leer el room ID desde la URL (#ID)
 function getRoomIdFromURL() {
   return window.location.hash ? window.location.hash.substring(1).toUpperCase() : null;
 }
@@ -25,7 +23,6 @@ const roomId = getRoomIdFromURL();
 const isMultiplayer = !!roomId;
 let username = "Jugador";
 
-// ✅ Configuración Firebase
 let db, foundRef, playersRef;
 
 if (isMultiplayer) {
@@ -49,7 +46,6 @@ if (isMultiplayer) {
   foundRef = ref(db, `rooms/${roomId}/found`);
   playersRef = ref(db, `rooms/${roomId}/players`);
 
-  // Escuchar aciertos globales
   onValue(foundRef, (snapshot) => {
     const data = snapshot.val() || {};
     found.length = 0;
@@ -65,7 +61,6 @@ if (isMultiplayer) {
     updateResults();
   });
 
-  // Escuchar ranking
   onValue(playersRef, (snapshot) => {
     const data = snapshot.val() || {};
     const sorted = Object.entries(data)
