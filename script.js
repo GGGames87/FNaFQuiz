@@ -129,15 +129,23 @@ document.getElementById("guess").addEventListener("input", (e) => {
       e.target.value = "";
 
       // 🔁 Guardar progreso del jugador
+      let personalCount = 0;
+      for (const name in data) {
+        if (!found.includes(name)) found.push(name);
+        if (data[name] === username) personalCount++;
+      }
+
       const userRef = ref(db, `rooms/${roomId}/players/${username}`);
       update(userRef, {
-        count: found.length
+        count: personalCount
       });
+
 
       // ✅ Añadir animatrónico a la lista compartida
       update(foundRef, {
-        [anim.name]: true
+        [anim.name]: username
       });
+
     }
   });
 
