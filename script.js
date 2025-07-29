@@ -1,30 +1,51 @@
+// ✅ Importaciones Firebase (versión módulo)
+import { ref, update, onValue } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
+
+// ✅ Obtener ID de sala desde la URL
+function getRoomIdFromURL() {
+  const path = window.location.pathname;
+  const match = path.match(/\/([A-Z0-9]{6})$/);
+  return match ? match[1] : null;
+}
+
+const roomId = getRoomIdFromURL();
+
+if (!roomId) {
+  alert("Debes entrar con una URL de sala válida (como /ABC123)");
+  throw new Error("No hay sala");
+}
+
+// ✅ Pedir nombre al jugador
+let username = prompt("Introduce tu nombre de jugador:");
+username = username?.trim().substring(0, 20) || "Anónimo";
+
+// ✅ Configuración del juego
 const animatronics = [
-  {
-    name: "freddy",
-    img: "img/freddy.png"
-  },
-  {
-    name: "bonnie",
-    img: "img/bonnie.png"
-  },
-  {
-    name: "chica",
-    img: "img/chica.png"
-  },
-  {
-    name: "foxy",
-    img: "img/foxy.png"
-  },
-  {
-    name: "golden freddy",
-    img: "img/goldenfreddy.png"
-  }
+  { name: "freddy", img: "img/freddy.png" },
+  { name: "bonnie", img: "img/bonnie.png" },
+  { name: "chica", img: "img/chica.png" },
+  { name: "foxy", img: "img/foxy.png" },
+  { name: "golden freddy", img: "img/goldenfreddy.png" }
 ];
 
 const found = [];
-
 const correctSound = new Audio("sounds/correct.mp3");
 
+// ✅ Referencia a sala en Firebase
+const foundRef = ref(db, `rooms/${roomId}/found`);
+
+// ✅ Escuchar nombres acertados en tiempo real
+onValue(foundRef, (snapshot) => {
+  const data = snapshot.val() || {};
+  found.length = 0;
+  for (const name in data) {
+    if (!found.includes(name)) found.push(name);
+  }
+  renderGrid();
+  updateResults();
+});
+
+// ✅ Mostrar animatrónicos
 function renderGrid() {
   const grid = document.getElementById("grid");
   grid.innerHTML = "";
@@ -46,10 +67,25 @@ function renderGrid() {
   });
 }
 
+// ✅ Capitalizar nombres
 function capitalize(text) {
   return text.split(" ").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
 }
 
+// ✅ Actualizar contador
+function updateResults() {
+  const total = animatronics.length;
+  const count = found.length;
+  const results = document.getElementById("results");
+
+  if (count === total) {
+    results.textContent = `${count} de ${total} — ¡Completado! 🎉`;
+  } else {
+    results.textContent = `${count} de ${total} encontrados`;
+  }
+}
+
+// ✅ Entrada de texto del jugador
 document.getElementById("guess").addEventListener("input", (e) => {
   const input = e.target.value.trim().toLowerCase();
 
@@ -59,25 +95,24 @@ document.getElementById("guess").addEventListener("input", (e) => {
       correctSound.currentTime = 0;
       correctSound.play();
       e.target.value = "";
-    }
 
+      // 🔁 Guardar progreso del jugador
+      const userRef = ref(db, `rooms/${roomId}/players/${username}`);
+      update(userRef, {
+        count: found.length
+      });
+
+      // ✅ Añadir animatrónico a la lista compartida
+      update(foundRef, {
+        [anim.name]: true
+      });
+    }
   });
 
-  document.getElementById("results").textContent =
-    `Has encontrado ${found.length} de ${animatronics.length}`;
-
+  updateResults();
   renderGrid();
-
-  const total = animatronics.length;
-  const count = found.length;
-
-  if (count === total) {
-    document.getElementById("results").textContent = `${count} de ${total} — ¡Completado! 🎉`;
-  } else {
-    document.getElementById("results").textContent = `${count} de ${total} encontrados`;
-  }
-
-
 });
 
+// ✅ Render inicial
 renderGrid();
+updateResults();
