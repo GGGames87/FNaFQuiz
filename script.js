@@ -1,6 +1,22 @@
 // ✅ Importaciones Firebase (versión módulo)
 import { ref, update, onValue } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
 
+const playersRef = ref(db, `rooms/${roomId}/players`);
+onValue(playersRef, (snapshot) => {
+  const data = snapshot.val() || {};
+  const sorted = Object.entries(data)
+    .sort((a, b) => b[1].count - a[1].count);
+
+  const ranking = sorted.map(([name, val]) => 
+    `<div>${name}: ${val.count}</div>`
+  ).join("");
+
+  document.getElementById("ranking").innerHTML = `
+    <h3>Ranking:</h3>${ranking}
+  `;
+});
+
+
 // ✅ Obtener ID de sala desde la URL
 function getRoomIdFromURL() {
   const path = window.location.pathname;
