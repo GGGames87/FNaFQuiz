@@ -104,9 +104,9 @@ function renderGrid() {
     img.src = isFound ? anim.img : "img/question.png";
 
     if (isFound && anim.name === lastCorrect) {
-      img.classList.remove("revealed"); // Reinicia
-      void img.offsetWidth;             // Fuerza reflow
-      img.classList.add("revealed");    // Aplica animación
+      img.classList.remove("revealed");
+      void img.offsetWidth;   
+      img.classList.add("revealed"); 
     }
 
     const label = document.createElement("div");
