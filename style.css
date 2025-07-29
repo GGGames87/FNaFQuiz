@@ -65,3 +65,25 @@ input {
   visibility: visible;
   color: white;
 }
+
+#ranking {
+  margin-top: 10px;
+  font-size: 16px;
+  padding: 10px;
+  background-color: #1c1c1c;
+  border-radius: 8px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#ranking h3 {
+  margin-bottom: 8px;
+  color: #ffd700;
+}
+
+#ranking div {
+  padding: 4px 0;
+  border-bottom: 1px solid #333;
+}
+
