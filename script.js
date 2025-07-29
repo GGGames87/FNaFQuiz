@@ -56,8 +56,8 @@ document.getElementById("guess").addEventListener("input", (e) => {
   animatronics.forEach(anim => {
     if (input === anim.name && !found.includes(anim.name)) {
       found.push(anim.name);
-      correctSound.currentTime = 0; // reinicia si se repite rápido
-      correctSound.play(); // 🔊 REPRODUCIR
+      correctSound.currentTime = 0;
+      correctSound.play();
       e.target.value = "";
     }
 
