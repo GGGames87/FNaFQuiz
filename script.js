@@ -107,7 +107,10 @@ function renderGrid() {
     const img = document.createElement("img");
     const isFound = found.includes(anim.name);
     img.src = isFound ? anim.img : "img/question.png";
-    if (isFound) img.classList.add("revealed");
+    if (isFound && anim.name === lastCorrect) {
+      img.classList.add("revealed");
+    }
+
 
     const label = document.createElement("div");
     label.textContent = capitalize(anim.name);
@@ -131,8 +134,13 @@ function updateResults() {
   }
 }
 
+let lastCorrect = null;
+
+
 document.getElementById("guess").addEventListener("input", (e) => {
   const input = e.target.value.trim().toLowerCase();
+  lastCorrect = anim.name;
+
 
   animatronics.forEach(anim => {
     if (input === anim.name && !found.includes(anim.name)) {
