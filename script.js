@@ -1,3 +1,23 @@
+// ✅ Firebase setup completo
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import { getDatabase, ref, update, onValue } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
+
+// ✅ Configuración de tu Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyASXBFvzjCcp21g5NcI1PqYbX7rFN1UVIs",
+  authDomain: "fnafquiz1.firebaseapp.com",
+  databaseURL: "https://fnafquiz1-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "fnafquiz1",
+  storageBucket: "fnafquiz1.firebasestorage.app",
+  messagingSenderId: "812258358214",
+  appId: "1:812258358214:web:9466fc6efa4e0009d538c7",
+  measurementId: "G-9BHX9G7GT1"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+
 // ✅ Importaciones Firebase (versión módulo)
 import { ref, update, onValue } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
 
