@@ -42,6 +42,11 @@ function getRoomIdFromURL() {
 const roomId = getRoomIdFromURL();
 const isMultiplayer = !!roomId;
 
+if (isMultiplayer) {
+  document.getElementById("ranking").style.display = "block";
+}
+
+
 
 // ✅ Pedir nombre al jugador
 let username = prompt("Introduce tu nombre de jugador:");
