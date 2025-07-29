@@ -2,7 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 import { getDatabase, ref, update, onValue } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
 
-// ✅ Configuración de tu Firebase
+// ✅ Configuración de Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyASXBFvzjCcp21g5NcI1PqYbX7rFN1UVIs",
   authDomain: "fnafquiz1.firebaseapp.com",
@@ -17,37 +17,17 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-
-// ✅ Importaciones Firebase (versión módulo)
-import { ref, update, onValue } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
-
-const playersRef = ref(db, `rooms/${roomId}/players`);
-onValue(playersRef, (snapshot) => {
-  const data = snapshot.val() || {};
-  const sorted = Object.entries(data)
-    .sort((a, b) => b[1].count - a[1].count);
-
-  const ranking = sorted.map(([name, val]) => 
-    `<div>${name}: ${val.count}</div>`
-  ).join("");
-
-  document.getElementById("ranking").innerHTML = `
-    <h3>Ranking:</h3>${ranking}
-  `;
-});
-
-
+// ✅ Obtener ID de sala desde el hash (#ABC123)
 function getRoomIdFromURL() {
-  const hash = window.location.hash; // Ej: #ABC123
+  const hash = window.location.hash;
   const match = hash.match(/^#([A-Z0-9]{6})$/i);
   return match ? match[1].toUpperCase() : null;
 }
 
-
 const roomId = getRoomIdFromURL();
 
 if (!roomId) {
-  alert("Debes entrar con una URL de sala válida (como /ABC123)");
+  alert("Debes entrar con una URL de sala válida (como #ABC123)");
   throw new Error("No hay sala");
 }
 
@@ -67,10 +47,26 @@ const animatronics = [
 const found = [];
 const correctSound = new Audio("sounds/correct.mp3");
 
-// ✅ Referencia a sala en Firebase
+// ✅ Referencias Firebase
 const foundRef = ref(db, `rooms/${roomId}/found`);
+const playersRef = ref(db, `rooms/${roomId}/players`);
 
-// ✅ Escuchar nombres acertados en tiempo real
+// ✅ Ranking en tiempo real
+onValue(playersRef, (snapshot) => {
+  const data = snapshot.val() || {};
+  const sorted = Object.entries(data)
+    .sort((a, b) => b[1].count - a[1].count);
+
+  const ranking = sorted.map(([name, val]) =>
+    `<div>${name}: ${val.count}</div>`
+  ).join("");
+
+  document.getElementById("ranking").innerHTML = `
+    <h3>Ranking:</h3>${ranking}
+  `;
+});
+
+// ✅ Nombres acertados en tiempo real
 onValue(foundRef, (snapshot) => {
   const data = snapshot.val() || {};
   found.length = 0;
