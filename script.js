@@ -1,3 +1,4 @@
+
 function generateRoomId() {
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   let id = "";
@@ -11,7 +12,6 @@ document.getElementById("create-room")?.addEventListener("click", () => {
   window.location.reload();
 });
 
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 import { getDatabase, ref, update, onValue } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
 
@@ -24,6 +24,9 @@ const isMultiplayer = !!roomId;
 let username = "Jugador";
 
 let db, foundRef, playersRef;
+
+const foundFnaf1 = [];
+const foundFnaf2 = [];
 
 if (isMultiplayer) {
   document.getElementById("ranking").style.display = "block";
@@ -48,30 +51,29 @@ if (isMultiplayer) {
 
   onValue(foundRef, (snapshot) => {
     const data = snapshot.val() || {};
-    found.length = 0;
+    foundFnaf1.length = 0;
+    foundFnaf2.length = 0;
     let personalCount = 0;
-    for (const name in data) {
-      found.push(name);
-      if (data[name] === username) personalCount++;
+
+    for (const key in data) {
+      const [game, name] = key.split("-");
+      if (game === "fnaf1") foundFnaf1.push(name);
+      else if (game === "fnaf2") foundFnaf2.push(name);
+
+      if (data[key] === username) personalCount++;
     }
-    update(ref(db, `rooms/${roomId}/players/${username}`), {
-      count: personalCount
-    });
-    renderGrid();
+
+    update(ref(db, `rooms/${roomId}/players/${username}`), { count: personalCount });
+    renderGrids();
     updateResults();
   });
 
   onValue(playersRef, (snapshot) => {
     const data = snapshot.val() || {};
-    const sorted = Object.entries(data)
-      .sort((a, b) => b[1].count - a[1].count);
-
-    const ranking = sorted.map(([name, val]) =>
-      `<div>${name}: ${val.count}</div>`).join("");
-
+    const sorted = Object.entries(data).sort((a, b) => b[1].count - a[1].count);
+    const ranking = sorted.map(([name, val]) => `<div>${name}: ${val.count}</div>`).join("");
     document.getElementById("ranking").innerHTML = `<h3>Ranking:</h3>${ranking}`;
   });
-
 } else {
   document.getElementById("ranking").style.display = "none";
 }
@@ -94,54 +96,28 @@ const fnaf2Animatronics = [
   { name: "mangle", img: "img/mangle.png", aliases: ["mangle"] }
 ];
 
-
-const found = [];
 const correctSound = new Audio("sounds/correct.mp3");
+let lastCorrect = null;
 
 function capitalize(text) {
   return text.split(" ").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
 }
 
-function renderGrid() {
-  const grid = document.getElementById("grid");
+function renderGrid(animList, foundList, containerId) {
+  const grid = document.getElementById(containerId);
   grid.innerHTML = "";
 
-  animatronics.forEach(anim => {
+  animList.forEach(anim => {
     const card = document.createElement("div");
     card.className = "card";
 
     const img = document.createElement("img");
-    const isFound = found.includes(anim.name);
+    const isFound = foundList.includes(anim.name);
     img.src = isFound ? anim.img : "img/question.png";
 
     if (isFound && anim.name === lastCorrect) {
       img.classList.remove("revealed");
-      void img.offsetWidth;   
-      img.classList.add("revealed"); 
-    }
-
-    const label = document.createElement("div");
-    label.textContent = capitalize(anim.name);
-    label.className = isFound ? "name-visible" : "name-hidden";
-
-    card.appendChild(img);
-    card.appendChild(label);
-    grid.appendChild(card);
-  });
-}
-
-function renderGridFnaf2() {
-  const grid = document.getElementById("grid-fnaf2");
-  grid.innerHTML = "";
-
-  fnaf2Animatronics.forEach(anim => {
-    const card = document.createElement("div");
-    card.className = "card";
-
-    const img = document.createElement("img");
-    const isFound = found.includes(anim.name);
-    img.src = isFound ? anim.img : "img/question.png";
-    if (isFound && anim.name === lastCorrect) {
+      void img.offsetWidth;
       img.classList.add("revealed");
     }
 
@@ -155,51 +131,58 @@ function renderGridFnaf2() {
   });
 }
 
-
-
-function updateResults() {
-  const total = animatronics.length;
-  const count = found.length;
-  const results = document.getElementById("results");
-
-  if (count === total) {
-    results.textContent = `${count} de ${total} — ¡Completado! 🎉`;
-  } else {
-    results.textContent = `${count} de ${total} encontrados`;
-  }
+function renderGrids() {
+  renderGrid(animatronics, foundFnaf1, "grid");
+  renderGrid(fnaf2Animatronics, foundFnaf2, "grid-fnaf2");
 }
 
-let lastCorrect = null;
+function updateResults() {
+  const total = animatronics.length + fnaf2Animatronics.length;
+  const count = foundFnaf1.length + foundFnaf2.length;
+  const results = document.getElementById("results");
 
+  results.textContent = count === total
+    ? `${count} de ${total} — ¡Completado! 🎉`
+    : `${count} de ${total} encontrados`;
+}
+
+const allAnimatronics = [
+  ...animatronics.map(a => ({ ...a, game: "fnaf1", aliases: [a.name] })),
+  ...fnaf2Animatronics.map(a => ({ ...a, game: "fnaf2" }))
+];
 
 document.getElementById("guess").addEventListener("input", (e) => {
-  const input = e.target.value.trim().toLowerCase();
+  const input = e.target.value.trim().toLowerCase().replace(/\s+/g, "");
 
+  for (const anim of allAnimatronics) {
+    const aliases = anim.aliases.map(a => a.toLowerCase().replace(/\s+/g, ""));
+    if (aliases.includes(input)) {
+      const alreadyFound = anim.game === "fnaf1"
+        ? foundFnaf1.includes(anim.name)
+        : foundFnaf2.includes(anim.name);
 
-[...animatronics, ...fnaf2Animatronics].forEach(anim => {
-  const normalizedInput = input.replace(/\s+/g, "").toLowerCase();
-  const isMatch = anim.aliases?.some(alias => normalizedInput === alias.replace(/\s+/g, "").toLowerCase());
+      if (alreadyFound) break;
 
-  if (isMatch && !found.includes(anim.name)) {
-    found.push(anim.name);
-    lastCorrect = anim.name;
-    correctSound.currentTime = 0;
-    correctSound.play();
-    e.target.value = "";
+      if (anim.game === "fnaf1") foundFnaf1.push(anim.name);
+      else foundFnaf2.push(anim.name);
 
-    if (isMultiplayer) {
-      update(ref(db, `rooms/${roomId}/found`), {
-        [anim.name]: username
-      });
+      lastCorrect = anim.name;
+      correctSound.currentTime = 0;
+      correctSound.play();
+      e.target.value = "";
+
+      if (isMultiplayer) {
+        update(ref(db, `rooms/${roomId}/found`), {
+          [`${anim.game}-${anim.name}`]: username
+        });
+      }
+
+      renderGrids();
+      updateResults();
+      break;
     }
-
-    renderGrid();
-    renderGridFnaf2();
-    updateResults();
   }
 });
 
-
-renderGrid();
+renderGrids();
 updateResults();
-renderGridFnaf2();
