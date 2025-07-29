@@ -91,13 +91,18 @@ input {
   animation: popIn 0.4s ease-out;
 }
 
-@keyframes popIn {
+@keyframes pop {
   0% {
-    transform: scale(0.5);
-    opacity: 0;
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
   }
   100% {
     transform: scale(1);
-    opacity: 1;
   }
+}
+
+.revealed {
+  animation: pop 0.3s ease;
 }
