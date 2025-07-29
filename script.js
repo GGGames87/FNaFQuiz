@@ -37,12 +37,12 @@ onValue(playersRef, (snapshot) => {
 });
 
 
-// ✅ Obtener ID de sala desde la URL
 function getRoomIdFromURL() {
-  const path = window.location.pathname;
-  const match = path.match(/\/([A-Z0-9]{6})$/);
-  return match ? match[1] : null;
+  const hash = window.location.hash; // Ej: #ABC123
+  const match = hash.match(/^#([A-Z0-9]{6})$/i);
+  return match ? match[1].toUpperCase() : null;
 }
+
 
 const roomId = getRoomIdFromURL();
 
