@@ -130,6 +130,32 @@ function renderGrid() {
   });
 }
 
+function renderGridFnaf2() {
+  const grid = document.getElementById("grid-fnaf2");
+  grid.innerHTML = "";
+
+  fnaf2Animatronics.forEach(anim => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    const img = document.createElement("img");
+    const isFound = found.includes(anim.name);
+    img.src = isFound ? anim.img : "img/question.png";
+    if (isFound && anim.name === lastCorrect) {
+      img.classList.add("revealed");
+    }
+
+    const label = document.createElement("div");
+    label.textContent = capitalize(anim.name);
+    label.className = isFound ? "name-visible" : "name-hidden";
+
+    card.appendChild(img);
+    card.appendChild(label);
+    grid.appendChild(card);
+  });
+}
+
+
 
 function updateResults() {
   const total = animatronics.length;
@@ -150,29 +176,30 @@ document.getElementById("guess").addEventListener("input", (e) => {
   const input = e.target.value.trim().toLowerCase();
 
 
-  animatronics.forEach(anim => {
-    const normalizedInput = input.replace(/\s+/g, "");
-    const normalizedName = anim.name.replace(/\s+/g, "");
+[...animatronics, ...fnaf2Animatronics].forEach(anim => {
+  const normalizedInput = input.replace(/\s+/g, "").toLowerCase();
+  const isMatch = anim.aliases?.some(alias => normalizedInput === alias.replace(/\s+/g, "").toLowerCase());
 
-    if (normalizedInput === normalizedName && !found.includes(anim.name)) {
+  if (isMatch && !found.includes(anim.name)) {
+    found.push(anim.name);
+    lastCorrect = anim.name;
+    correctSound.currentTime = 0;
+    correctSound.play();
+    e.target.value = "";
 
-      found.push(anim.name);
-      lastCorrect = anim.name;
-      correctSound.currentTime = 0;
-      correctSound.play();
-      e.target.value = "";
-
-      if (isMultiplayer) {
-        update(ref(db, `rooms/${roomId}/found`), {
-          [anim.name]: username
-        });
-      }
-
-      renderGrid();
-      updateResults();
+    if (isMultiplayer) {
+      update(ref(db, `rooms/${roomId}/found`), {
+        [anim.name]: username
+      });
     }
-  });
+
+    renderGrid();
+    renderGridFnaf2();
+    updateResults();
+  }
 });
+
 
 renderGrid();
 updateResults();
+renderGridFnaf2();
