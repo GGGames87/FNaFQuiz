@@ -134,7 +134,28 @@ let lastCorrect = null;
 
 document.getElementById("guess").addEventListener("input", (e) => {
   const input = e.target.value.trim().toLowerCase();
-  lastCorrect = anim.name;
+
+  animatronics.forEach(anim => {
+    if (input === anim.name && !found.includes(anim.name)) {
+      found.push(anim.name);
+      lastCorrect = anim.name; // ✅ Solo si es correcto
+
+      correctSound.currentTime = 0;
+      correctSound.play();
+      e.target.value = "";
+
+      if (isMultiplayer) {
+        update(ref(db, `rooms/${roomId}/found`), {
+          [anim.name]: username
+        });
+      }
+
+      renderGrid();
+      updateResults();
+    }
+  });
+});
+
 
 
   animatronics.forEach(anim => {
