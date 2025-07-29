@@ -104,9 +104,9 @@ function renderGrid() {
     img.src = isFound ? anim.img : "img/question.png";
 
     if (isFound && anim.name === lastCorrect) {
-      img.classList.remove("revealed");    
-      void img.offsetWidth;                 
-      img.classList.add("revealed");         
+      img.classList.remove("revealed"); // Reinicia
+      void img.offsetWidth;             // Fuerza reflow
+      img.classList.add("revealed");    // Aplica animación
     }
 
     const label = document.createElement("div");
@@ -118,6 +118,7 @@ function renderGrid() {
     grid.appendChild(card);
   });
 }
+
 
 function updateResults() {
   const total = animatronics.length;
