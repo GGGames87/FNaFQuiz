@@ -105,7 +105,9 @@ function renderGrid() {
     card.className = "card";
 
     const img = document.createElement("img");
-    img.src = found.includes(anim.name) ? anim.img : "img/question.png";
+    const isFound = found.includes(anim.name);
+    img.src = isFound ? anim.img : "img/question.png";
+    if (isFound) img.classList.add("revealed");
 
     const label = document.createElement("div");
     label.textContent = capitalize(anim.name);
