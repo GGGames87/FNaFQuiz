@@ -1,3 +1,17 @@
+function generateRoomId() {
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  let id = "";
+  for (let i = 0; i < 6; i++) id += chars.charAt(Math.floor(Math.random() * chars.length));
+  return id;
+}
+
+document.getElementById("create-room")?.addEventListener("click", () => {
+  const newRoomId = generateRoomId();
+  window.location.hash = newRoomId;
+  window.location.reload();
+});
+
+
 // ✅ Firebase setup completo
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 import { getDatabase, ref, update, onValue } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
@@ -24,12 +38,10 @@ function getRoomIdFromURL() {
   return match ? match[1].toUpperCase() : null;
 }
 
-const roomId = getRoomIdFromURL();
 
-if (!roomId) {
-  alert("Debes entrar con una URL de sala válida (como #ABC123)");
-  throw new Error("No hay sala");
-}
+const roomId = getRoomIdFromURL();
+const isMultiplayer = !!roomId;
+
 
 // ✅ Pedir nombre al jugador
 let username = prompt("Introduce tu nombre de jugador:");
