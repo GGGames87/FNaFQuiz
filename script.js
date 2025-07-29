@@ -138,7 +138,7 @@ document.getElementById("guess").addEventListener("input", (e) => {
   animatronics.forEach(anim => {
     if (input === anim.name && !found.includes(anim.name)) {
       found.push(anim.name);
-      lastCorrect = anim.name; // ✅ Solo si es correcto
+      lastCorrect = anim.name; 
 
       correctSound.currentTime = 0;
       correctSound.play();
