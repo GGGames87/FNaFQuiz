@@ -84,6 +84,17 @@ const animatronics = [
   { name: "golden freddy", img: "img/goldenfreddy.png" }
 ];
 
+const fnaf2Animatronics = [
+  { name: "jj", img: "img/jj.png", aliases: ["jj", "balloon girl"] },
+  { name: "bb", img: "img/bb.png", aliases: ["bb", "balloon boy"] },
+  { name: "puppet", img: "img/puppet.png", aliases: ["puppet", "marionette", "the puppet", "the marionette"] },
+  { name: "toy freddy", img: "img/toyfreddy.png", aliases: ["toy freddy"] },
+  { name: "toy bonnie", img: "img/toybonnie.png", aliases: ["toy bonnie"] },
+  { name: "toy chica", img: "img/toychica.png", aliases: ["toy chica"] },
+  { name: "mangle", img: "img/mangle.png", aliases: ["mangle"] }
+];
+
+
 const found = [];
 const correctSound = new Audio("sounds/correct.mp3");
 
