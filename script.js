@@ -140,7 +140,11 @@ document.getElementById("guess").addEventListener("input", (e) => {
 
 
   animatronics.forEach(anim => {
-    if (input === anim.name && !found.includes(anim.name)) {
+    const normalizedInput = input.replace(/\s+/g, "");
+    const normalizedName = anim.name.replace(/\s+/g, "");
+
+    if (normalizedInput === normalizedName && !found.includes(anim.name)) {
+
       found.push(anim.name);
       lastCorrect = anim.name;
       correctSound.currentTime = 0;
