@@ -92,10 +92,10 @@ input {
 }
 
 .revealed {
-  animation: pop 0.3s ease;
+  animation: popin 0.4s ease;
 }
 
-@keyframes pop {
+@keyframes popin {
   0% {
     transform: scale(1);
   }
