@@ -7,45 +7,44 @@
   <title>FNaF Quiz</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
-  import { getDatabase, ref, set, onValue, update } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyASXBFvzjCcp21g5NcI1PqYbX7rFN1UVIs",
-    authDomain: "fnafquiz1.firebaseapp.com",
-    databaseURL: "https://fnafquiz1-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "fnafquiz1",
-    storageBucket: "fnafquiz1.firebasestorage.app",
-    messagingSenderId: "812258358214",
-    appId: "1:812258358214:web:9466fc6efa4e0009d538c7",
-    measurementId: "G-9BHX9G7GT1"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-  const db = getDatabase(app);
-
-  const testRef = ref(db, 'test');
-  set(testRef, {
-    status: "conexion exitosa",
-    timestamp: Date.now()
-  });
-</script>
-
-  
 <body>
   <h1>¿Cuántos animatrónicos de FNaF 1 puedes nombrar?</h1>
   <input type="text" id="guess" placeholder="Escribe un nombre..." autofocus />
   <div id="results"></div>
 
   <h2>FNaF 1</h2>
-  <div id="grid" class="grid">
- 
-  </div>
+  <div id="grid" class="grid"></div>
 
+  <!-- Script principal del juego -->
   <script src="script.js"></script>
+
+  <!-- Firebase y conexión de prueba -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
+    import { getDatabase, ref, set, onValue, update } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyASXBFvzjCcp21g5NcI1PqYbX7rFN1UVIs",
+      authDomain: "fnafquiz1.firebaseapp.com",
+      databaseURL: "https://fnafquiz1-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "fnafquiz1",
+      storageBucket: "fnafquiz1.firebasestorage.app",
+      messagingSenderId: "812258358214",
+      appId: "1:812258358214:web:9466fc6efa4e0009d538c7",
+      measurementId: "G-9BHX9G7GT1"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getDatabase(app);
+
+    // Prueba: enviar mensaje de conexión
+    const testRef = ref(db, 'test');
+    set(testRef, {
+      status: "conexion exitosa",
+      timestamp: Date.now()
+    });
+  </script>
 </body>
 </html>
