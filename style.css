@@ -91,15 +91,17 @@ input {
   filter: grayscale(100%) brightness(0.6) contrast(0);
 }
 
-#side-buttons {
-  position: absolute;
-  top: 50px;
-  left: 70px; 
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 10;
+@media (max-width: 600px) {
+  #side-buttons {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 10px;
+    gap: 10px;
+  }
 }
+
 
 
 #side-buttons button {
