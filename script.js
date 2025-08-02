@@ -127,11 +127,12 @@ function renderGrid(animList, foundList, containerId) {
     }
 
 
-    if (isFound && anim.name === lastCorrect) {
+    if (isFound && anim.name === lastCorrect && !showSilhouettes) {
       img.classList.remove("revealed");
       void img.offsetWidth;
       img.classList.add("revealed");
     }
+
 
     const label = document.createElement("div");
     label.textContent = capitalize(anim.name);
