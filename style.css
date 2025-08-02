@@ -93,8 +93,8 @@ input {
 
 #side-buttons {
   position: absolute;
-  top: 20px;
-  left: 20px; 
+  top: 50px;
+  left: 50px; 
   display: flex;
   flex-direction: column;
   gap: 10px;
