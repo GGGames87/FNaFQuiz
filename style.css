@@ -88,9 +88,9 @@ input {
 }
 
 .silhouette {
-  filter: grayscale(100%) brightness(0.5);
-  opacity: 0.6;
+  filter: grayscale(100%) brightness(0.6) contrast(0);
 }
+
 
 .card img.revealed {
   animation: popin 0.4s ease-out;
