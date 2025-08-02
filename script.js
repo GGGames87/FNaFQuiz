@@ -121,6 +121,8 @@ function renderGrid(animList, foundList, containerId) {
     card.className = "card";
 
     const img = document.createElement("img");
+    img.draggable = false;
+
     const isFound = foundList.includes(anim.name);
     
     img.classList.remove("silhouette");
@@ -208,6 +210,13 @@ document.getElementById("guess").addEventListener("input", (e) => {
     }
   }
 });
+
+document.addEventListener("contextmenu", e => {
+  if (e.target.tagName === "IMG") {
+    e.preventDefault();
+  }
+});
+
 
 renderGrids();
 updateResults();
