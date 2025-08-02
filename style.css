@@ -91,6 +91,31 @@ input {
   filter: grayscale(100%) brightness(0.6) contrast(0);
 }
 
+#side-buttons {
+  position: fixed;
+  top: 100px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 999;
+}
+
+#side-buttons button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+#side-buttons button:hover {
+  background-color: #444;
+}
+
 
 .card img.revealed {
   animation: popin 0.4s ease-out;
