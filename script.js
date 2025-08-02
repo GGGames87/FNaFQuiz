@@ -1,5 +1,8 @@
 let showSilhouettes = false;
 
+let lastCorrect = null;
+
+
 function generateRoomId() {
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   let id = "";
@@ -147,11 +150,6 @@ function renderGrid(animList, foundList, containerId) {
     card.appendChild(label);
     grid.appendChild(card);
   });
-}
-
-function renderGrids() {
-  renderGrid(animatronics, foundFnaf1, "grid");
-  renderGrid(fnaf2Animatronics, foundFnaf2, "grid-fnaf2");
 }
 
 function updateResults() {
