@@ -98,7 +98,12 @@ const fnaf2Animatronics = [
 ];
 
 const correctSound = new Audio("sounds/correct.mp3");
-let lastCorrect = null;
+function renderGrids() {
+  renderGrid(animatronics, foundFnaf1, "grid");
+  renderGrid(fnaf2Animatronics, foundFnaf2, "grid-fnaf2");
+  lastCorrect = null; // ← Añade esta línea aquí
+}
+
 
 function capitalize(text) {
   return text.split(" ").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
