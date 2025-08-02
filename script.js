@@ -223,3 +223,8 @@ document.addEventListener("contextmenu", e => {
 
 renderGrids();
 updateResults();
+
+[...animatronics, ...fnaf2Animatronics].forEach(anim => {
+  const img = new Image();
+  img.src = anim.img;
+});
