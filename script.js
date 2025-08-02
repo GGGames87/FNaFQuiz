@@ -137,11 +137,14 @@ function renderGrid(animList, foundList, containerId) {
     }
 
 
-    if (isFound && anim.name === lastCorrect && !showSilhouettes) {
-      img.classList.remove("revealed");
-      void img.offsetWidth;
-      img.classList.add("revealed");
+    if (isFound && anim.name === lastCorrect) {
+      if (!img.classList.contains("silhouette")) {
+        img.classList.remove("revealed");
+        void img.offsetWidth;
+        img.classList.add("revealed");
+      }
     }
+
 
 
     const label = document.createElement("div");
