@@ -104,8 +104,8 @@ const correctSound = new Audio("sounds/correct.mp3");
 function renderGrids() {
   renderGrid(animatronics, foundFnaf1, "grid");
   renderGrid(fnaf2Animatronics, foundFnaf2, "grid-fnaf2");
-  lastCorrect = null; // ← Añade esta línea aquí
 }
+lastCorrect = null;
 
 
 function capitalize(text) {
@@ -201,7 +201,9 @@ document.getElementById("guess").addEventListener("input", (e) => {
       }
 
       renderGrids();
+      setTimeout(() => lastCorrect = null, 100); // Espera pequeña para que la animación tenga tiempo
       updateResults();
+
       break;
     }
   }
