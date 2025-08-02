@@ -33,12 +33,13 @@ input {
 }
 
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
-  justify-items: center;
   margin: 20px;
 }
+
 
 .card {
   text-align: center;
