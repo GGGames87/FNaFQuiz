@@ -91,17 +91,21 @@ input {
   filter: grayscale(100%) brightness(0.6) contrast(0);
 }
 
-@media (max-width: 600px) {
-  #side-buttons {
-    position: static;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-bottom: 10px;
-    gap: 40px;
-  }
+#side-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 40px; /* <-- mueve esto aquí */
+  margin-bottom: 10px;
 }
 
+@media (max-width: 600px) {
+  #side-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* menos espacio en vertical en móviles */
+  }
+}
 
 
 #side-buttons button {
