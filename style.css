@@ -94,12 +94,13 @@ input {
 #side-buttons {
   position: absolute;
   top: 20px;
-  left: 20px;
+  left: 20px; 
   display: flex;
   flex-direction: column;
   gap: 10px;
   z-index: 10;
 }
+
 
 #side-buttons button {
   background-color: #333;
