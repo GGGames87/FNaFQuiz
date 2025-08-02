@@ -1,3 +1,4 @@
+let showSilhouettes = false;
 
 function generateRoomId() {
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -113,7 +114,18 @@ function renderGrid(animList, foundList, containerId) {
 
     const img = document.createElement("img");
     const isFound = foundList.includes(anim.name);
-    img.src = isFound ? anim.img : "img/question.png";
+    
+    img.classList.remove("silhouette");
+
+    if (isFound) {
+      img.src = anim.img;
+    } else if (showSilhouettes) {
+      img.src = anim.img;
+      img.classList.add("silhouette");
+    } else {
+      img.src = "img/question.png";
+    }
+
 
     if (isFound && anim.name === lastCorrect) {
       img.classList.remove("revealed");
@@ -145,6 +157,13 @@ function updateResults() {
     ? `${count} de ${total} — ¡Completado! 🎉`
     : `${count} de ${total} encontrados`;
 }
+
+document.getElementById("toggle-silhouettes").addEventListener("click", () => {
+  showSilhouettes = !showSilhouettes;
+  renderGrids();
+});
+
+
 
 const allAnimatronics = [
   ...animatronics.map(a => ({ ...a, game: "fnaf1", aliases: [a.name] })),
