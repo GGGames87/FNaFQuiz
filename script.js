@@ -1,6 +1,5 @@
 let showSilhouettes = false;
 
-let lastCorrect = null;
 
 
 function generateRoomId() {
