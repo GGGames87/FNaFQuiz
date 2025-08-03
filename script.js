@@ -34,7 +34,7 @@ const foundFnaf2 = [];
 
 if (isMultiplayer) {
   document.getElementById("ranking").style.display = "block";
-  username = prompt("Introduce tu nombre de jugador:")?.trim().substring(0, 20) || "Anónimo";
+  username = prompt("Type your name to make a temporary room, then send the link to a friend!")?.trim().substring(0, 20) || "Anonym";
 
   const firebaseConfig = {
     apiKey: "AIzaSyASXBFvzjCcp21g5NcI1PqYbX7rFN1UVIs",
@@ -163,8 +163,8 @@ function updateResults() {
   const results = document.getElementById("results");
 
   results.textContent = count === total
-    ? `${count} de ${total} — ¡Completado! 🎉`
-    : `${count} de ${total} encontrados`;
+    ? `${count} de ${total} — ¡Completed! 🎉`
+    : `${count} / ${total} found`;
 }
 
 document.getElementById("toggle-silhouettes").addEventListener("click", () => {
@@ -206,7 +206,7 @@ document.getElementById("guess").addEventListener("input", (e) => {
       }
 
       renderGrids();
-      setTimeout(() => lastCorrect = null, 100); // Espera pequeña para que la animación tenga tiempo
+      setTimeout(() => lastCorrect = null, 100);
       updateResults();
 
       break;
