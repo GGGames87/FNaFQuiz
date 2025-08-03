@@ -92,7 +92,7 @@ const animatronics = [
   { name: "foxy", img: "img/foxy.png" },
   { name: "golden freddy", img: "img/goldenfreddy.png" },
   { name: "endo-01", img: "img/endo01.png", aliases: ["endo-01", "endo 01", "endo1", "endo-1"], displayName: "Endo-01" },
-  { name: "mr. cupcake", img: "img/mrcupcake.png", aliases: ["cupcake", "mr. cupcake", "mr cupcake"], displayName: "Mr. Cupcake" },
+  { name: "mr. cupcake", img: "img/mrcupcake.png", aliases: ["cupcake", "mr. cupcake", "mr cupcake", "mrcupcake"], displayName: "Mr. Cupcake" },
   { name: "phone guy", img: "img/phoneguy.png", aliases: ["ralph", "phone guy"], displayName: "Phone Guy" },
 ];
 
@@ -209,14 +209,19 @@ const allAnimatronics = [
   }))
 ];
 
+function normalize(text) {
+  return text.toLowerCase().replace(/[\s\.\-_'"]/g, "");
+}
+
 
 document.getElementById("guess").addEventListener("input", (e) => {
-  const input = e.target.value.trim().toLowerCase().replace(/\s+/g, "");
+  const input = normalize(e.target.value);
+
 
   for (const anim of allAnimatronics) {
     const normalizedInput = input;
-    const normalizedAliases = (anim.aliases || [anim.name]).map(a =>
-      a.trim().toLowerCase().replace(/\s+/g, "")
+    const normalizedAliases = (anim.aliases || [anim.name]).map(normalize);
+
     );
 
     if (normalizedAliases.includes(normalizedInput)) {
