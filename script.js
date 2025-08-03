@@ -221,6 +221,10 @@ document.addEventListener("contextmenu", e => {
   }
 });
 
+function toggleSection(header) {
+  header.classList.toggle("collapsed");
+}
+
 
 renderGrids();
 updateResults();
