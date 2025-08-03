@@ -73,7 +73,7 @@ input {
   height: 80px;
   object-fit: cover;
   border-radius: 6px;
-  image-rendering: pixelated;
+  image-rendering: auto;
 }
 
 
