@@ -247,6 +247,15 @@ function toggleSection(header) {
 renderGrids();
 updateResults();
 
+
+grid.querySelectorAll(".card div").forEach(label => {
+  const maxWidth = label.parentElement.offsetWidth;
+  while (label.scrollWidth > maxWidth && parseInt(window.getComputedStyle(label).fontSize) > 10) {
+    label.style.fontSize = (parseInt(window.getComputedStyle(label).fontSize) - 1) + "px";
+  }
+});
+
+
 [...animatronics, ...fnaf2Animatronics].forEach(anim => {
   const img = new Image();
   img.src = anim.img;
