@@ -273,14 +273,18 @@ setTimeout(() => {
   document.querySelectorAll(".card div").forEach(label => {
     let fontSize = 14;
     label.style.fontSize = fontSize + "px";
-    const parentWidth = label.parentElement.clientWidth;
-    
-    while ((label.scrollWidth > parentWidth || label.scrollHeight > 40) && fontSize > 8) {
+    const parent = label.parentElement;
+
+    while (
+      (label.scrollWidth > parent.clientWidth || label.scrollHeight > 40) &&
+      fontSize > 6
+    ) {
       fontSize--;
       label.style.fontSize = fontSize + "px";
     }
   });
-}, 10);
+}, 0);
+
 
 
 
