@@ -165,18 +165,18 @@ body::before {
 
 @keyframes flickerBG {
   0%   { opacity: 1; }
-  3%   { opacity: 0.95; }
+  3%   { opacity: 0.85; }
   6%   { opacity: 1; }
   10%  { opacity: 0.9; }
-  14%  { opacity: 0.97; }
-  19%  { opacity: 0.93; }
+  14%  { opacity: 0.95; }
+  19%  { opacity: 0.87; }
   25%  { opacity: 1; }
-  37%  { opacity: 0.94; }
+  37%  { opacity: 0.93; }
   45%  { opacity: 1; }
-  52%  { opacity: 0.91; }
+  52%  { opacity: 0.85; }
   60%  { opacity: 0.99; }
   70%  { opacity: 1; }
-  85%  { opacity: 0.96; }
+  85%  { opacity: 0.94; }
   100% { opacity: 1; }
 }
 
