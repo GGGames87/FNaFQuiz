@@ -253,14 +253,20 @@ body::before {
 }
 
 .card div {
-  font-size: 16px;
-  padding-top: 6px;
+  font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   max-width: 100%;
+  display: block;
   text-align: center;
-  word-break: break-word;
-  white-space: normal;
-  overflow: visible;
+  padding: 4px 2px;
 }
+
+.card div {
+  font-size: clamp(10px, 1.2vw, 16px);
+}
+
 
 
 
