@@ -87,7 +87,7 @@ const animatronics = [
   { name: "bonnie", img: "img/bonnie.png" },
   { name: "chica", img: "img/chica.png" },
   { name: "foxy", img: "img/foxy.png" },
-  { name: "golden freddy", img: "img/goldenfreddy.png" }
+  { name: "golden freddy", img: "img/goldenfreddy.png" },
   { name: "Endo-01", img: "img/endo01.png", aliases: ["endo-01", "endo 01", "endo1", "endo-1"] },
   { name: "Mr. Cupcake", img: "img/mrcupcake.png", aliases: ["cupcake", "mr. cupcake", "mr cupcake"] },
   { name: "Phone Guy", img: "img/phoneguy.png", aliases: ["ralph", "phone guy"] },
@@ -101,7 +101,7 @@ const fnaf2Animatronics = [
   { name: "toy freddy", img: "img/toyfreddy.png", aliases: ["toy freddy"], displayName: "Toy Freddy" },
   { name: "toy bonnie", img: "img/toybonnie.png", aliases: ["toy bonnie"], displayName: "Toy Bonnie" },
   { name: "toy chica", img: "img/toychica.png", aliases: ["toy chica"], displayName: "Toy Chica" },
-  { name: "mangle", img: "img/mangle.png", aliases: ["mangle"], displayName: "Mangle" } 
+  { name: "mangle", img: "img/mangle.png", aliases: ["mangle"], displayName: "Mangle" } ,
   { name: "Toy Cupcake", img: "img/toycupcake.png", aliases: ["toy cupcake", "toy mr cupcake"] },
   { name: "Endo-02", img: "img/endo02.png", aliases: ["endo-02", "endo 02", "endo2", "endo-2"] },
   { name: "Withered Freddy", img: "img/wfreddy.png", aliases: ["withered freddy", "w freddy"] },
@@ -114,7 +114,8 @@ const fnaf2Animatronics = [
   { name: "Paperpals", img: "img/paperpals.png", aliases: ["paperpals"] },
   { name: "Fritz Smith", img: "img/FritzSmith.png", aliases: ["fritz smith"] },
   { name: "Jeremy Fitzgerald", img: "img/JeremyFitzgerald.png", aliases: ["jeremy fitzgerald"] },
-  { name: "William Afton", img: "img/william.png", aliases: ["william", "purple guy", "vincent"] }
+  { name: "William Afton", img: "img/william.png", aliases: ["william", "purple guy", "vincent"] },
+  
 ];
 
 
