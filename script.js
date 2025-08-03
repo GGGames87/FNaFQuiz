@@ -249,11 +249,14 @@ updateResults();
 
 
 grid.querySelectorAll(".card div").forEach(label => {
-  const maxWidth = label.parentElement.offsetWidth;
-  while (label.scrollWidth > maxWidth && parseInt(window.getComputedStyle(label).fontSize) > 10) {
-    label.style.fontSize = (parseInt(window.getComputedStyle(label).fontSize) - 1) + "px";
+  let fontSize = 16;
+  label.style.fontSize = fontSize + "px";
+  while (label.scrollHeight > 40 && fontSize > 10) {
+    fontSize--;
+    label.style.fontSize = fontSize + "px";
   }
 });
+
 
 
 [...animatronics, ...fnaf2Animatronics].forEach(anim => {
