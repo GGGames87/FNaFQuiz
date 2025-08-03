@@ -255,14 +255,24 @@ renderGrids();
 updateResults();
 
 
-grid.querySelectorAll(".card div").forEach(label => {
-  let fontSize = 16;
-  label.style.fontSize = fontSize + "px";
-  while (label.scrollHeight > 40 && fontSize > 10) {
-    fontSize--;
+function autoResizeText() {
+  const labels = document.querySelectorAll(".card div");
+
+  labels.forEach(label => {
+    let fontSize = 14;
     label.style.fontSize = fontSize + "px";
-  }
-});
+    label.style.whiteSpace = "nowrap";
+
+    // Reset scroll check
+    while (label.scrollWidth > label.offsetWidth && fontSize > 6) {
+      fontSize--;
+      label.style.fontSize = fontSize + "px";
+    }
+  });
+}
+
+setTimeout(autoResizeText, 50);
+
 
 
 
