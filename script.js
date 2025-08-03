@@ -3,6 +3,12 @@ let showSilhouettes = false;
 let lastCorrect = null;
 
 
+function normalizeKey(text) {
+  return text.toLowerCase().replace(/[\s\.\-_'"]/g, "");
+}
+
+
+
 function generateRoomId() {
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   let id = "";
@@ -61,7 +67,8 @@ if (isMultiplayer) {
 
     for (const key in data) {
       const game = key.startsWith("fnaf1-") ? "fnaf1" : "fnaf2";
-      const name = key.replace(`${game}-`, "");
+      const name = normalizeKey(key.replace(`${game}-`, ""));
+
 
   
       if (game === "fnaf1") foundFnaf1.push(name);
@@ -146,7 +153,8 @@ function renderGrid(animList, foundList, containerId) {
     const img = document.createElement("img");
     img.draggable = false;
 
-    const isFound = foundList.includes(anim.name);
+    const isFound = foundList.includes(normalizeKey(anim.name));
+
     
     img.classList.remove("silhouette");
 
@@ -231,8 +239,10 @@ document.getElementById("guess").addEventListener("input", (e) => {
 
     if (alreadyFound) break;
 
-    if (anim.game === "fnaf1") foundFnaf1.push(anim.name);
-    else foundFnaf2.push(anim.name);
+    const normalizedName = normalizeKey(anim.name);
+    if (anim.game === "fnaf1") foundFnaf1.push(normalizedName);
+    else foundFnaf2.push(normalizedName);
+
 
     lastCorrect = anim.name;
     correctSound.currentTime = 0;
@@ -241,8 +251,9 @@ document.getElementById("guess").addEventListener("input", (e) => {
 
     if (isMultiplayer) {
       update(ref(db, `rooms/${roomId}/found`), {
-        [`${anim.game}-${anim.name}`]: username
+        [`${anim.game}-${normalizeKey(anim.name)}`]: username
       });
+
     }
 
     renderGrids();
