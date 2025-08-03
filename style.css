@@ -1,9 +1,16 @@
 body {
   font-family: sans-serif;
   text-align: center;
-  background-color: #111;
   color: white;
+  background-color: #111;
+  background-image: url("img/fondo.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
+
+
 
 input {
   padding: 10px;
