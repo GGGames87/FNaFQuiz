@@ -103,7 +103,7 @@ const fnaf2Animatronics = [
   { name: "toy chica", img: "img/toychica.png", aliases: ["toy chica"], displayName: "Toy Chica" },
   { name: "mangle", img: "img/mangle.png", aliases: ["mangle"], displayName: "Mangle" } ,
   { name: "Toy Cupcake", img: "img/toycupcake.png", aliases: ["toy cupcake", "toy mr cupcake"] },
-  { name: "Endo-02", img: "img/endo02.png", aliases: ["endo-02", "endo 02", "endo2", "endo-2"], displayName: "Endo-02" },
+  { name: "endo-02", img: "img/endo02.png", aliases: ["endo-02", "endo 02", "endo2", "endo-2"], displayName: "Endo-02" },
   { name: "Withered Freddy", img: "img/wfreddy.png", aliases: ["withered freddy", "w freddy"] },
   { name: "Withered Bonnie", img: "img/wbonnie.png", aliases: ["withered bonnie", "w bonnie"] },
   { name: "Withered Chica", img: "img/wchica.png", aliases: ["withered chica", "w chica"] },
