@@ -266,9 +266,9 @@ updateResults();
 
 setTimeout(() => {
   document.querySelectorAll(".card div").forEach(label => {
-    let fontSize = 16;
+    let fontSize = 14;
     label.style.fontSize = fontSize + "px";
-    while (label.scrollWidth > label.clientWidth && fontSize > 8) {
+    while (label.scrollHeight > 40 && fontSize > 8) {
       fontSize--;
       label.style.fontSize = fontSize + "px";
     }
