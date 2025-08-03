@@ -197,9 +197,18 @@ document.getElementById("toggle-silhouettes").addEventListener("click", () => {
 
 
 const allAnimatronics = [
-  ...animatronics.map(a => ({ ...a, game: "fnaf1", aliases: [a.name] })),
-  ...fnaf2Animatronics.map(a => ({ ...a, game: "fnaf2" }))
+  ...animatronics.map(a => ({
+    ...a,
+    game: "fnaf1",
+    aliases: a.aliases || [a.name]
+  })),
+  ...fnaf2Animatronics.map(a => ({
+    ...a,
+    game: "fnaf2",
+    aliases: a.aliases || [a.name]
+  }))
 ];
+
 
 document.getElementById("guess").addEventListener("input", (e) => {
   const input = e.target.value.trim().toLowerCase().replace(/\s+/g, "");
@@ -255,23 +264,17 @@ renderGrids();
 updateResults();
 
 
-function autoResizeText() {
-  const labels = document.querySelectorAll(".card div");
-
-  labels.forEach(label => {
-    let fontSize = 14;
+setTimeout(() => {
+  document.querySelectorAll(".card div").forEach(label => {
+    let fontSize = 16;
     label.style.fontSize = fontSize + "px";
-    label.style.whiteSpace = "nowrap";
-
-    // Reset scroll check
-    while (label.scrollWidth > label.offsetWidth && fontSize > 6) {
+    while (label.scrollWidth > label.clientWidth && fontSize > 8) {
       fontSize--;
       label.style.fontSize = fontSize + "px";
     }
   });
-}
+}, 10);
 
-setTimeout(autoResizeText, 50);
 
 
 
