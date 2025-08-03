@@ -256,12 +256,14 @@ body::before {
 
 
 .card div {
-  font-size: clamp(10px, 1.5vw, 16px);
+  font-size: clamp(8px, 1vw, 12px);
   white-space: normal;
   overflow-wrap: break-word;
   word-break: break-word;
   text-align: center;
+  line-height: 1.1;
 }
+
 
 
 
