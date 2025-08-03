@@ -60,8 +60,9 @@ if (isMultiplayer) {
     let personalCount = 0;
 
     for (const key in data) {
-      const [game, ...nameParts] = key.split("-");
-      const name = nameParts.join("-");
+      const game = key.startsWith("fnaf1-") ? "fnaf1" : "fnaf2";
+      const name = key.replace(`${game}-`, "");
+
   
       if (game === "fnaf1") foundFnaf1.push(name);
       else if (game === "fnaf2") foundFnaf2.push(name);
@@ -272,12 +273,15 @@ setTimeout(() => {
   document.querySelectorAll(".card div").forEach(label => {
     let fontSize = 14;
     label.style.fontSize = fontSize + "px";
-    while (label.scrollHeight > 40 && fontSize > 8) {
+    const parentWidth = label.parentElement.clientWidth;
+    
+    while ((label.scrollWidth > parentWidth || label.scrollHeight > 40) && fontSize > 8) {
       fontSize--;
       label.style.fontSize = fontSize + "px";
     }
   });
 }, 10);
+
 
 
 
