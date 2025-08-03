@@ -60,12 +60,15 @@ if (isMultiplayer) {
     let personalCount = 0;
 
     for (const key in data) {
-      const [game, name] = key.split("-");
+      const [game, ...nameParts] = key.split("-");
+      const name = nameParts.join("-");
+  
       if (game === "fnaf1") foundFnaf1.push(name);
       else if (game === "fnaf2") foundFnaf2.push(name);
 
       if (data[key] === username) personalCount++;
     }
+
 
     update(ref(db, `rooms/${roomId}/players/${username}`), { count: personalCount });
     renderGrids();
