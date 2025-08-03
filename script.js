@@ -88,11 +88,11 @@ const animatronics = [
   { name: "chica", img: "img/chica.png" },
   { name: "foxy", img: "img/foxy.png" },
   { name: "golden freddy", img: "img/goldenfreddy.png" },
-  { name: "Endo-01", img: "img/endo01.png", aliases: ["endo-01", "endo 01", "endo1", "endo-1"] },
-  { name: "Mr. Cupcake", img: "img/mrcupcake.png", aliases: ["cupcake", "mr. cupcake", "mr cupcake"] },
-  { name: "Phone Guy", img: "img/phoneguy.png", aliases: ["ralph", "phone guy"] },
-
+  { name: "endo-01", img: "img/endo01.png", aliases: ["endo-01", "endo 01", "endo1", "endo-1"], displayName: "Endo-01" },
+  { name: "mr. cupcake", img: "img/mrcupcake.png", aliases: ["cupcake", "mr. cupcake", "mr cupcake"], displayName: "Mr. Cupcake" },
+  { name: "phone guy", img: "img/phoneguy.png", aliases: ["ralph", "phone guy"], displayName: "Phone Guy" },
 ];
+
 
 const fnaf2Animatronics = [
   { name: "jj", img: "img/jj.png", aliases: ["jj", "balloon girl"], displayName: "JJ" },
@@ -103,7 +103,7 @@ const fnaf2Animatronics = [
   { name: "toy chica", img: "img/toychica.png", aliases: ["toy chica"], displayName: "Toy Chica" },
   { name: "mangle", img: "img/mangle.png", aliases: ["mangle"], displayName: "Mangle" } ,
   { name: "Toy Cupcake", img: "img/toycupcake.png", aliases: ["toy cupcake", "toy mr cupcake"] },
-  { name: "Endo-02", img: "img/endo02.png", aliases: ["endo-02", "endo 02", "endo2", "endo-2"] },
+  { name: "Endo-02", img: "img/endo02.png", aliases: ["endo-02", "endo 02", "endo2", "endo-2"], displayName: "Endo-02" },
   { name: "Withered Freddy", img: "img/wfreddy.png", aliases: ["withered freddy", "w freddy"] },
   { name: "Withered Bonnie", img: "img/wbonnie.png", aliases: ["withered bonnie", "w bonnie"] },
   { name: "Withered Chica", img: "img/wchica.png", aliases: ["withered chica", "w chica"] },
