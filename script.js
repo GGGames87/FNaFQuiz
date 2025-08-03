@@ -205,35 +205,39 @@ document.getElementById("guess").addEventListener("input", (e) => {
   const input = e.target.value.trim().toLowerCase().replace(/\s+/g, "");
 
   for (const anim of allAnimatronics) {
-    const aliases = anim.aliases.map(a => a.toLowerCase().replace(/\s+/g, ""));
-    if (aliases.includes(input)) {
-      const alreadyFound = anim.game === "fnaf1"
-        ? foundFnaf1.includes(anim.name)
-        : foundFnaf2.includes(anim.name);
+    const normalizedInput = input;
+    const normalizedAliases = (anim.aliases || [anim.name]).map(a =>
+      a.trim().toLowerCase().replace(/\s+/g, "")
+    );
 
-      if (alreadyFound) break;
+    if (normalizedAliases.includes(normalizedInput)) {
+     const alreadyFound = anim.game === "fnaf1"
+      ? foundFnaf1.includes(anim.name)
+      : foundFnaf2.includes(anim.name);
 
-      if (anim.game === "fnaf1") foundFnaf1.push(anim.name);
-      else foundFnaf2.push(anim.name);
+    if (alreadyFound) break;
 
-      lastCorrect = anim.name;
-      correctSound.currentTime = 0;
-      correctSound.play();
-      e.target.value = "";
+    if (anim.game === "fnaf1") foundFnaf1.push(anim.name);
+    else foundFnaf2.push(anim.name);
 
-      if (isMultiplayer) {
-        update(ref(db, `rooms/${roomId}/found`), {
-          [`${anim.game}-${anim.name}`]: username
-        });
-      }
+    lastCorrect = anim.name;
+    correctSound.currentTime = 0;
+    correctSound.play();
+    e.target.value = "";
 
-      renderGrids();
-      setTimeout(() => lastCorrect = null, 100);
-      updateResults();
-
-      break;
+    if (isMultiplayer) {
+      update(ref(db, `rooms/${roomId}/found`), {
+        [`${anim.game}-${anim.name}`]: username
+      });
     }
+
+    renderGrids();
+    setTimeout(() => lastCorrect = null, 100);
+    updateResults();
+    break;
   }
+}
+
 });
 
 document.addEventListener("contextmenu", e => {
