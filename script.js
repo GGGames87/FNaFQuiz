@@ -222,7 +222,6 @@ document.getElementById("guess").addEventListener("input", (e) => {
     const normalizedInput = input;
     const normalizedAliases = (anim.aliases || [anim.name]).map(normalize);
 
-    );
 
     if (normalizedAliases.includes(normalizedInput)) {
      const alreadyFound = anim.game === "fnaf1"
