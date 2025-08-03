@@ -91,14 +91,15 @@ const animatronics = [
 ];
 
 const fnaf2Animatronics = [
-  { name: "jj", img: "img/jj.png", aliases: ["jj", "balloon girl"] },
-  { name: "bb", img: "img/bb.png", aliases: ["bb", "balloon boy"] },
-  { name: "puppet", img: "img/puppet.png", aliases: ["puppet", "marionette", "the puppet", "the marionette"] },
-  { name: "toy freddy", img: "img/toyfreddy.png", aliases: ["toy freddy"] },
-  { name: "toy bonnie", img: "img/toybonnie.png", aliases: ["toy bonnie"] },
-  { name: "toy chica", img: "img/toychica.png", aliases: ["toy chica"] },
-  { name: "mangle", img: "img/mangle.png", aliases: ["mangle"] }
+  { name: "jj", img: "img/jj.png", aliases: ["jj", "balloon girl"], displayName: "JJ" },
+  { name: "bb", img: "img/bb.png", aliases: ["bb", "balloon boy"], displayName: "Balloon Boy" },
+  { name: "puppet", img: "img/puppet.png", aliases: ["puppet", "marionette", "the puppet", "the marionette"], displayName: "The Puppet" },
+  { name: "toy freddy", img: "img/toyfreddy.png", aliases: ["toy freddy"], displayName: "Toy Freddy" },
+  { name: "toy bonnie", img: "img/toybonnie.png", aliases: ["toy bonnie"], displayName: "Toy Bonnie" },
+  { name: "toy chica", img: "img/toychica.png", aliases: ["toy chica"], displayName: "Toy Chica" },
+  { name: "mangle", img: "img/mangle.png", aliases: ["mangle"], displayName: "Mangle" } 
 ];
+
 
 const correctSound = new Audio("sounds/correct.mp3");
 function renderGrids() {
@@ -148,7 +149,7 @@ function renderGrid(animList, foundList, containerId) {
 
 
     const label = document.createElement("div");
-    label.textContent = capitalize(anim.name);
+    label.textContent = anim.displayName || capitalize(anim.name);
     label.className = isFound ? "name-visible" : "name-hidden";
 
     card.appendChild(img);
