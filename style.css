@@ -256,7 +256,7 @@ body::before {
 
 
 .card div {
-  font-size: clamp(8px, 1vw, 12px);
+  font-size: clamp(10px, 1.5vw, 12px);
   white-space: normal;
   overflow-wrap: break-word;
   word-break: break-word;
