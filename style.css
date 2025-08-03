@@ -254,14 +254,15 @@ body::before {
 
 
 .card div {
-  font-size: 14px;
-  word-break: break-word;
-  white-space: normal;
+  display: block;
+  font-size: 14px; /* tamaño base */
+  max-width: 100%;
   overflow-wrap: break-word;
+  word-break: break-word;
   text-align: center;
   line-height: 1.1;
-  max-width: 100%;
 }
+
 
 
 
