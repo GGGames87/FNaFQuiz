@@ -88,6 +88,10 @@ const animatronics = [
   { name: "chica", img: "img/chica.png" },
   { name: "foxy", img: "img/foxy.png" },
   { name: "golden freddy", img: "img/goldenfreddy.png" }
+  { name: "Endo-01", img: "img/endo01.png", aliases: ["endo-01", "endo 01", "endo1", "endo-1"] },
+  { name: "Mr. Cupcake", img: "img/mrcupcake.png", aliases: ["cupcake", "mr. cupcake", "mr cupcake"] },
+  { name: "Phone Guy", img: "img/phoneguy.png", aliases: ["ralph", "phone guy"] },
+
 ];
 
 const fnaf2Animatronics = [
@@ -98,6 +102,19 @@ const fnaf2Animatronics = [
   { name: "toy bonnie", img: "img/toybonnie.png", aliases: ["toy bonnie"], displayName: "Toy Bonnie" },
   { name: "toy chica", img: "img/toychica.png", aliases: ["toy chica"], displayName: "Toy Chica" },
   { name: "mangle", img: "img/mangle.png", aliases: ["mangle"], displayName: "Mangle" } 
+  { name: "Toy Cupcake", img: "img/toycupcake.png", aliases: ["toy cupcake", "toy mr cupcake"] },
+  { name: "Endo-02", img: "img/endo02.png", aliases: ["endo-02", "endo 02", "endo2", "endo-2"] },
+  { name: "Withered Freddy", img: "img/wfreddy.png", aliases: ["withered freddy", "w freddy"] },
+  { name: "Withered Bonnie", img: "img/wbonnie.png", aliases: ["withered bonnie", "w bonnie"] },
+  { name: "Withered Chica", img: "img/wchica.png", aliases: ["withered chica", "w chica"] },
+  { name: "Withered Foxy", img: "img/wfoxy.png", aliases: ["withered foxy", "w foxy"] },
+  { name: "Withered Golden Freddy", img: "img/wgolden.png", aliases: ["withered golden freddy", "w golden freddy", "w g freddy"] },
+  { name: "RWQFSFASXC", img: "img/shadowbonnie.png", aliases: ["rwqfsfasxc", "shadow bonnie", "rxq"] },
+  { name: "Shadow Freddy", img: "img/shadowfreddy.png", aliases: ["shadow freddy", "purple freddy"] },
+  { name: "Paperpals", img: "img/paperpals.png", aliases: ["paperpals"] },
+  { name: "Fritz Smith", img: "img/FritzSmith.png", aliases: ["fritz smith"] },
+  { name: "Jeremy Fitzgerald", img: "img/JeremyFitzgerald.png", aliases: ["jeremy fitzgerald"] },
+  { name: "William Afton", img: "img/william.png", aliases: ["william", "purple guy", "vincent"] }
 ];
 
 
