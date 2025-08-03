@@ -232,6 +232,25 @@ body::before {
 }
 
 
+#input-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 20px auto;
+  width: fit-content;
+  flex-wrap: wrap;
+}
+
+#input-wrapper input {
+  margin: 0;
+}
+
+#results {
+  font-size: 18px;
+  white-space: nowrap;
+  color: #ccc;
+}
 
 
 
