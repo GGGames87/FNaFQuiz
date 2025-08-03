@@ -253,25 +253,15 @@ body::before {
 }
 
 
-
-
 .card div {
-  display: block;
+  font-size: 14px;
+  word-break: break-word;
+  white-space: normal;
+  overflow-wrap: break-word;
+  text-align: center;
+  line-height: 1.1;
   max-width: 100%;
-  font-size: 16px;
-  white-space: nowrap;
-  overflow: visible;
-  text-overflow: unset;
-  padding: 0 2px;
-  transform-origin: center;
-
-  word-break: keep-all;
 }
-
-
-
-
-
 
 
 
