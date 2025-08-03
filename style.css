@@ -255,13 +255,14 @@ body::before {
 
 .card div {
   display: block;
-  font-size: 14px; /* tamaño base */
   max-width: 100%;
-  overflow-wrap: break-word;
-  word-break: break-word;
   text-align: center;
+  word-break: break-word;
   line-height: 1.1;
+  font-size: 14px;
+  padding: 0 2px;
 }
+
 
 
 
