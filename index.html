@@ -6,20 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FNaF Quiz</title>
   <link rel="stylesheet" href="style.css" />
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9BHX9G7GT1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-9BHX9G7GT1');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9BHX9G7GT1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-9BHX9G7GT1');
+  </script>
 </head>
 <body>
-<br><br>
- 
-  
+  <br><br>
+
   <h1>How many FNaF characters can you name?</h1>
- 
 
   <div id="side-buttons">
     <button id="create-room">🎮 Play online</button>
@@ -28,19 +26,35 @@
 
   <input type="text" id="guess" placeholder="Guess here..." autofocus />
 
-
   <div id="results"></div>
   <div id="ranking" style="display: none;"></div>
 
-<br>
-  <h2>FNaF 1</h2>
-  <div id="grid" class="grid"></div>
 
-  <h2>FNaF 2</h2>
-  <div id="grid-fnaf2" class="grid"></div>
+  
+  <div class="game-section">
+    <div class="game-header" onclick="toggleSection(this)">
+      <span>FNaF 1</span>
+      <span class="arrow">▼</span>
+    </div>
+    <div id="grid" class="grid"></div>
+  </div>
 
+  <div class="game-section">
+    <div class="game-header" onclick="toggleSection(this)">
+      <span>FNaF 2</span>
+      <span class="arrow">▼</span>
+    </div>
+    <div id="grid-fnaf2" class="grid"></div>
+  </div>
 
   <script type="module" src="script.js"></script>
-</body>
 
+
+  
+  <script>
+    window.toggleSection = function(header) {
+      header.classList.toggle("collapsed");
+    };
+  </script>
+</body>
 </html>
