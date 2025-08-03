@@ -256,14 +256,12 @@ body::before {
   font-size: 16px;
   padding-top: 6px;
   max-width: 100%;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  word-break: break-word;
   text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  word-break: break-word;
+  white-space: normal;
+  overflow: visible;
 }
+
 
 
 .card img.revealed {
