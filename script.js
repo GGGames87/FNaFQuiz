@@ -18,10 +18,11 @@ function generateRoomId() {
 
 document.getElementById("create-room")?.addEventListener("click", () => {
   const newRoomId = generateRoomId();
+  localStorage.setItem("justCreatedRoom", newRoomId);
   window.location.hash = newRoomId;
-  localStorage.setItem("justCreatedRoom", "1"); 
   window.location.reload();
 });
+
 
 
 
@@ -59,11 +60,13 @@ if (isMultiplayer) {
   const app = initializeApp(firebaseConfig);
   db = getDatabase(app);
 
-  if (localStorage.getItem("justCreatedRoom")) {
+const createdId = localStorage.getItem("justCreatedRoom");
+if (createdId && createdId === roomId) {
   const now = new Date().toISOString();
   update(ref(db, `rooms/${roomId}`), { createdAt: now });
   localStorage.removeItem("justCreatedRoom");
 }
+
 
 
   foundRef = ref(db, `rooms/${roomId}/found`);
