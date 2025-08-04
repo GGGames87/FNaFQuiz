@@ -41,6 +41,8 @@ let db, foundRef, playersRef;
 
 const foundFnaf1 = [];
 const foundFnaf2 = [];
+const foundFnaf3 = [];
+
 
 if (isMultiplayer) {
   document.getElementById("ranking").style.display = "block";
@@ -76,25 +78,30 @@ if (createdId && createdId === roomId) {
     const data = snapshot.val() || {};
     foundFnaf1.length = 0;
     foundFnaf2.length = 0;
+    foundFnaf3.length = 0;
     let personalCount = 0;
 
     for (const key in data) {
-      const game = key.startsWith("fnaf1-") ? "fnaf1" : "fnaf2";
+      let game;
+      if (key.startsWith("fnaf1-")) game = "fnaf1";
+      else if (key.startsWith("fnaf2-")) game = "fnaf2";
+      else if (key.startsWith("fnaf3-")) game = "fnaf3";
+
+      if (!game) continue; // clave no válida
+
       const name = normalizeKey(key.replace(`${game}-`, ""));
-
-
-  
       if (game === "fnaf1") foundFnaf1.push(name);
       else if (game === "fnaf2") foundFnaf2.push(name);
+      else if (game === "fnaf3") foundFnaf3.push(name);
 
       if (data[key] === username) personalCount++;
     }
-
 
     update(ref(db, `rooms/${roomId}/players/${username}`), { count: personalCount });
     renderGrids();
     updateResults();
   });
+
 
   onValue(playersRef, (snapshot) => {
     const data = snapshot.val() || {};
@@ -143,11 +150,31 @@ const fnaf2Animatronics = [
 ];
 
 
+const fnaf3Animatronics = [
+  { name: "springtrap", img: "img/springtrap.png", aliases: ["springtrap"], displayName: "Springtrap" },
+  { name: "phantom freddy", img: "img/pfreddy.png", aliases: ["phantom freddy", "pfreddy"], displayName: "Phantom Freddy" },
+  { name: "phantom chica", img: "img/pchica.png", aliases: ["pchica", "phantom chica"], displayName: "Phantom Chica" },
+  { name: "phantom foxy", img: "img/pfoxy.png", aliases: ["pfoxy", "phantom foxy"], displayName: "Phantom Foxy" },
+  { name: "phantom mangle", img: "img/pmangle.png", aliases: ["pmangle", "phantom mangle"], displayName: "Phantom Mangle" },
+  { name: "phantom balloon boy", img: "img/pbb.png", aliases: ["pbb", "pballoonboy", "phantom balloon boy"], displayName: "Phantom Balloon Boy" },
+  { name: "phantom puppet", img: "img/ppuppet.png", aliases: ["ppuppet", "phantom puppet", "phantom marionette"], displayName: "Phantom Puppet" },
+  { name: "shadow cupcake", img: "img/shadowcupcake.png", aliases: ["phantom cupcake", "pcupcake", "shadow cupcake"], displayName: "Shadow Cupcake" },
+  { name: "golden cupcake", img: "img/goldencupcake.png", aliases: ["golden cupcake"], displayName: "Golden Cupcake" },
+  { name: "phone dude", img: "img/phonedude.png", aliases: ["phone dude", "fnaf 3 phone guy"], displayName: "Phone Dude" },
+  { name: "shadow balloon boy", img: "img/shadowbb.png", aliases: ["shadowbb", "shadow balloon boy"], displayName: "Shadow Balloon Boy" },
+  { name: "shadow puppet", img: "img/shadowpuppet.png", aliases: ["shadow puppet", "shadow marionette"], displayName: "Shadow Puppet" }
+];
+
+
+
 const correctSound = new Audio("sounds/correct.mp3");
 function renderGrids() {
   renderGrid(animatronics, foundFnaf1, "grid");
   renderGrid(fnaf2Animatronics, foundFnaf2, "grid-fnaf2");
+  renderGrid(fnaf3Animatronics, foundFnaf3, "grid-fnaf3");
 }
+
+
 lastCorrect = null;
 
 
@@ -201,9 +228,10 @@ function renderGrid(animList, foundList, containerId) {
   });
 }
 
+
 function updateResults() {
-  const total = animatronics.length + fnaf2Animatronics.length;
-  const count = foundFnaf1.length + foundFnaf2.length;
+  const total = animatronics.length + fnaf2Animatronics.length + fnaf3Animatronics.length;
+  const count = foundFnaf1.length + foundFnaf2.length + foundFnaf3.length;
   const results = document.getElementById("results");
 
   results.textContent = count === total
@@ -228,8 +256,14 @@ const allAnimatronics = [
     ...a,
     game: "fnaf2",
     aliases: a.aliases || [a.name]
+  })),
+  ...fnaf3Animatronics.map(a => ({
+    ...a,
+    game: "fnaf3",
+    aliases: a.aliases || [a.name]
   }))
 ];
+
 
 function normalize(text) {
   return text.toLowerCase().replace(/[\s\.\-_'"]/g, "");
@@ -315,7 +349,8 @@ setTimeout(() => {
 
 
 
-[...animatronics, ...fnaf2Animatronics].forEach(anim => {
+[...animatronics, ...fnaf2Animatronics, ...fnaf3Animatronics].forEach(anim => {
   const img = new Image();
   img.src = anim.img;
 });
+
