@@ -281,14 +281,18 @@ document.getElementById("guess").addEventListener("input", (e) => {
 
     if (normalizedAliases.includes(normalizedInput)) {
       const normalizedName = normalizeKey(anim.name);
-      const alreadyFound = anim.game === "fnaf1"
-        ? foundFnaf1.includes(normalizedName)
-        : foundFnaf2.includes(normalizedName);
+      let alreadyFound = false;
+      if (anim.game === "fnaf1") alreadyFound = foundFnaf1.includes(normalizedName);
+      else if (anim.game === "fnaf2") alreadyFound = foundFnaf2.includes(normalizedName);
+      else if (anim.game === "fnaf3") alreadyFound = foundFnaf3.includes(normalizedName);
+
 
       if (alreadyFound) break;
 
       if (anim.game === "fnaf1") foundFnaf1.push(normalizedName);
-      else foundFnaf2.push(normalizedName);
+      else if (anim.game === "fnaf2") foundFnaf2.push(normalizedName);
+      else if (anim.game === "fnaf3") foundFnaf3.push(normalizedName);
+
 
 
       lastCorrect = anim.name;
