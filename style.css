@@ -239,20 +239,17 @@ body::before {
   gap: 12px;
   margin: 20px auto;
   width: fit-content;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 
-
-#guess {
-  padding: 10px;
-  font-size: 16px;
-  width: 300px;
+#input-wrapper input {
+  margin: 0;
 }
 
 #results {
-  font-size: 16px;
-  color: #ccc;
+  font-size: 18px;
   white-space: nowrap;
+  color: #ccc;
 }
 
 
