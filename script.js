@@ -16,22 +16,13 @@ function generateRoomId() {
   return id;
 }
 
-document.getElementById("create-room")?.addEventListener("click", async () => {
+document.getElementById("create-room")?.addEventListener("click", () => {
   const newRoomId = generateRoomId();
-
-  // Solo si estás en Firebase
-  if (!window.location.hash) {
-    const now = new Date().toISOString(); // formato legible tipo 2025-08-02T21:34:00Z
-
-    const creationRef = ref(getDatabase(), `rooms/${newRoomId}/createdAt`);
-    await update(creationRef, {
-      timestamp: now
-    });
-  }
-
   window.location.hash = newRoomId;
+  localStorage.setItem("justCreatedRoom", "1"); 
   window.location.reload();
 });
+
 
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
@@ -67,6 +58,13 @@ if (isMultiplayer) {
 
   const app = initializeApp(firebaseConfig);
   db = getDatabase(app);
+
+  if (localStorage.getItem("justCreatedRoom")) {
+  const now = new Date().toISOString();
+  update(ref(db, `rooms/${roomId}`), { createdAt: now });
+  localStorage.removeItem("justCreatedRoom");
+}
+
 
   foundRef = ref(db, `rooms/${roomId}/found`);
   playersRef = ref(db, `rooms/${roomId}/players`);
