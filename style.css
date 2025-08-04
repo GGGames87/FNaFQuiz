@@ -289,6 +289,27 @@ body::before {
 }
 
 
+#footer {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 20px 10px;
+  color: #ccc;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 60px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#footer a {
+  color: #ffd700;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#footer a:hover {
+  text-decoration: underline;
+}
+
+
 
 .card img.revealed {
   animation: popin 0.4s ease-out;
