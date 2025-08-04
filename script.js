@@ -16,11 +16,23 @@ function generateRoomId() {
   return id;
 }
 
-document.getElementById("create-room")?.addEventListener("click", () => {
+document.getElementById("create-room")?.addEventListener("click", async () => {
   const newRoomId = generateRoomId();
+
+  // Solo si estás en Firebase
+  if (!window.location.hash) {
+    const now = new Date().toISOString(); // formato legible tipo 2025-08-02T21:34:00Z
+
+    const creationRef = ref(getDatabase(), `rooms/${newRoomId}/createdAt`);
+    await update(creationRef, {
+      timestamp: now
+    });
+  }
+
   window.location.hash = newRoomId;
   window.location.reload();
 });
+
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 import { getDatabase, ref, update, onValue } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
