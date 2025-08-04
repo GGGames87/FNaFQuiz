@@ -156,7 +156,7 @@ const fnaf3Animatronics = [
   { name: "phantom chica", img: "img/pchica.png", aliases: ["pchica", "phantom chica"], displayName: "Phantom Chica" },
   { name: "phantom foxy", img: "img/pfoxy.png", aliases: ["pfoxy", "phantom foxy"], displayName: "Phantom Foxy" },
   { name: "phantom mangle", img: "img/pmangle.png", aliases: ["pmangle", "phantom mangle"], displayName: "Phantom Mangle" },
-  { name: "phantom balloon boy", img: "img/pbb.png", aliases: ["pbb", "pballoonboy", "phantom balloon boy"], displayName: "Phantom Balloon Boy" },
+  { name: "phantom balloon boy", img: "img/pbb.png", aliases: ["pbb", "pballoonboy", "phantom bb", "phantom balloon boy"], displayName: "Phantom Balloon Boy" },
   { name: "phantom puppet", img: "img/ppuppet.png", aliases: ["ppuppet", "phantom puppet", "phantom marionette"], displayName: "Phantom Puppet" },
   { name: "shadow cupcake", img: "img/shadowcupcake.png", aliases: ["phantom cupcake", "pcupcake", "shadow cupcake"], displayName: "Shadow Cupcake" },
   { name: "golden cupcake", img: "img/goldencupcake.png", aliases: ["golden cupcake"], displayName: "Golden Cupcake" },
