@@ -235,11 +235,12 @@ body::before {
 #input-wrapper {
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 12px;
   margin: 20px auto;
-  width: fit-content;
-  flex-wrap: wrap;
+}
+
+.input-group {
+  position: relative;
+  display: inline-block;
 }
 
 #input-wrapper input {
@@ -247,9 +248,20 @@ body::before {
 }
 
 #results {
-  font-size: 18px;
-  white-space: nowrap;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
   color: #ccc;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+#guess {
+  padding: 10px;
+  font-size: 16px;
+  width: 300px;
 }
 
 
