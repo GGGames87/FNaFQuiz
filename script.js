@@ -160,7 +160,7 @@ const fnaf3Animatronics = [
   { name: "phantom puppet", img: "img/ppuppet.png", aliases: ["ppuppet", "phantom puppet", "phantom marionette"], displayName: "Phantom Puppet" },
   { name: "shadow cupcake", img: "img/shadowcupcake.png", aliases: ["phantom cupcake", "pcupcake", "shadow cupcake"], displayName: "Shadow Cupcake" },
   { name: "golden cupcake", img: "img/goldencupcake.png", aliases: ["golden cupcake"], displayName: "Golden Cupcake" },
-  { name: "phone dude", img: "img/phonedude.png", aliases: ["phone dude", "fnaf 3 phone guy"], displayName: "Phone Dude" },
+  { name: "phone dude", img: "img/phonedude.png", aliases: ["phone dude", "duane", "fnaf 3 phone guy"], displayName: "Phone Dude" },
   { name: "shadow balloon boy", img: "img/shadowbb.png", aliases: ["shadowbb", "shadow balloon boy"], displayName: "Shadow Balloon Boy" },
   { name: "shadow puppet", img: "img/shadowpuppet.png", aliases: ["shadow puppet", "shadow marionette"], displayName: "Shadow Puppet" }
 ];
