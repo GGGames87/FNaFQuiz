@@ -348,6 +348,43 @@ setTimeout(() => {
 }, 0);
 
 
+const pressedKeys = new Set();
+
+document.addEventListener("keydown", (e) => {
+  pressedKeys.add(e.key.toLowerCase());
+
+  if (
+    pressedKeys.has("s") &&
+    pressedKeys.has("c") &&
+    pressedKeys.has("o") &&
+    pressedKeys.has("t")
+  ) {
+    allAnimatronics.forEach(anim => {
+      const normalizedName = normalizeKey(anim.name);
+      if (anim.game === "fnaf1" && !foundFnaf1.includes(normalizedName)) {
+        foundFnaf1.push(normalizedName);
+      } else if (anim.game === "fnaf2" && !foundFnaf2.includes(normalizedName)) {
+        foundFnaf2.push(normalizedName);
+      } else if (anim.game === "fnaf3" && !foundFnaf3.includes(normalizedName)) {
+        foundFnaf3.push(normalizedName);
+      }
+
+      if (isMultiplayer) {
+        update(ref(db, `rooms/${roomId}/found`), {
+          [`${anim.game}-${normalizedName}`]: username
+        });
+      }
+    });
+
+    renderGrids();
+    updateResults();
+    console.log("🔓 SCOT cheat activated: All characters revealed.");
+  }
+});
+
+document.addEventListener("keyup", (e) => {
+  pressedKeys.delete(e.key.toLowerCase());
+});
 
 
 
