@@ -122,6 +122,7 @@ const animatronics = [
   { name: "endo-01", img: "img/endo01.png", aliases: ["endo-01", "endo 01", "endo1", "endo-1"], displayName: "Endo-01" },
   { name: "mr. cupcake", img: "img/mrcupcake.png", aliases: ["cupcake", "mr. cupcake", "mr cupcake", "mrcupcake"], displayName: "Mr. Cupcake" },
   { name: "phone guy", img: "img/phoneguy.png", aliases: ["ralph", "phone guy"], displayName: "Phone Guy" },
+  { name: "mike schmidt", img: "img/mikeschmidt.png", aliases: ["mike schmidt"], displayName: "Mike Schmidt" },
 ];
 
 
@@ -162,7 +163,12 @@ const fnaf3Animatronics = [
   { name: "golden cupcake", img: "img/goldencupcake.png", aliases: ["golden cupcake"], displayName: "Golden Cupcake" },
   { name: "phone dude", img: "img/phonedude.png", aliases: ["phone dude", "duane", "fnaf 3 phone guy"], displayName: "Phone Dude" },
   { name: "shadow balloon boy", img: "img/shadowbb.png", aliases: ["shadowbb", "shadow balloon boy"], displayName: "Shadow Balloon Boy" },
-  { name: "shadow puppet", img: "img/shadowpuppet.png", aliases: ["shadow puppet", "shadow marionette"], displayName: "Shadow Puppet" }
+  { name: "shadow puppet", img: "img/shadowpuppet.png", aliases: ["shadow puppet", "shadow marionette"], displayName: "Shadow Puppet" },
+  { name: "gabriel", img: "img/gabriel.png", aliases: ["gabriel", "freddy soul"], displayName: "Gabriel" },
+  { name: "jeremy", img: "img/jeremy.png", aliases: ["jeremy", "bonnie soul"], displayName: "Jeremy" },
+  { name: "susie", img: "img/susie.png", aliases: ["susie", "chica soul"], displayName: "Susie" },
+  { name: "fritz", img: "img/fritz.png", aliases: ["fritz", "foxy soul"], displayName: "Fritz" },
+  { name: "cassidy", img: "img/cassidy.png", aliases: ["cassidy", "golden freddy soul"], displayName: "Cassidy" },
 ];
 
 
