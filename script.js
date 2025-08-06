@@ -122,7 +122,7 @@ const animatronics = [
   { name: "endo-01", img: "img/endo01.png", aliases: ["endo-01", "endo 01", "endo1", "endo-1"], displayName: "Endo-01" },
   { name: "mr. cupcake", img: "img/mrcupcake.png", aliases: ["cupcake", "mr. cupcake", "mr cupcake", "mrcupcake"], displayName: "Mr. Cupcake" },
   { name: "phone guy", img: "img/phoneguy.png", aliases: ["ralph", "phone guy"], displayName: "Phone Guy" },
-  { name: "mike schmidt", img: "img/mikeschmidt.png", aliases: ["mike schmidt"], displayName: ""Mike Schmidt"" },
+  { name: "mike schmidt", img: "img/mikeschmidt.png", aliases: ["mike schmidt"], displayName: "\"Mike Schmidt\"" },
 ];
 
 
