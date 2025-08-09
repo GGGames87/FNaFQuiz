@@ -1,6 +1,6 @@
 function setLang(lang) {
   const footer = document.getElementById("footer-text");
-  const linksBtn = document.querySelector('.buttons a[href="https://bio.link/gggames"]');
+  const linksBtn = document.querySelector('.center-stage a[href="https://bio.link/gggames"]');
 
   if (lang === "en") {
     footer.textContent = "Official website of GG Games";
@@ -20,11 +20,7 @@ function initLang() {
   setLang(userLang.startsWith("en") ? "en" : "es");
 }
 
-document.addEventListener("click", (e) => {
-  const el = e.target.closest('.lang-switch a[data-lang]');
-  if (!el) return;
-  e.preventDefault();
-  setLang(el.getAttribute("data-lang"));
-});
+document.getElementById("lang-en")?.addEventListener("click", () => setLang("en"));
+document.getElementById("lang-es")?.addEventListener("click", () => setLang("es"));
 
 initLang();
