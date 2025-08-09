@@ -1,76 +1,90 @@
+
+:root {
+  --bg: #f4f4f4;
+  --text: #111;
+  --btn-bg: #222;
+  --btn-bg-hover: #444;
+  --btn-text: #fff;
+  --footer-bg: #222;
+  --footer-text: #fff;
+}
+
+* { box-sizing: border-box; }
+
 body {
-  font-family: Arial, sans-serif;
-  background-color: #111;
-  color: white;
   margin: 0;
-  display: flex;
-  flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text);
+  background: var(--bg);
   min-height: 100vh;
-  text-align: center;
-}
-
-h1 {
-  font-size: 3em;
-  margin-top: 50px;
-}
-
-.buttons {
-  margin-top: 30px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+}
+
+/* Título */
+.site-title {
+  text-align: center;
+  padding: 40px 16px 20px;
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 800;
+}
+
+.center-stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
 }
 
 .btn {
+  display: inline-block;
+  min-width: 200px;
+  text-align: center;
   text-decoration: none;
-  background-color: #444;
-  color: white;
-  padding: 12px 25px;
+  padding: 12px 24px;
   border-radius: 8px;
-  font-size: 1.2em;
-  transition: background-color 0.25s ease;
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: background 0.25s ease, transform 0.05s ease;
 }
 
-.btn:hover {
-  background-color: #666;
-}
+.btn:hover { background: var(--btn-bg-hover); }
+.btn:active { transform: scale(0.99); }
 
-.btn-primary {
-  background-color: #5a46ff;
-}
-.btn-primary:hover {
-  background-color: #7566ff;
-}
-
-/* Footer fijo como en el juego */
-footer {
-  background-color: #222;
-  padding: 15px;
-  font-size: 0.9em;
-  margin-top: auto;    
+.site-footer {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  background: var(--footer-bg);
+  color: var(--footer-text);
   display: flex;
-  justify-content: center;
+  gap: 16px;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  padding: 12px 16px;
   flex-wrap: wrap;
-  box-shadow: 0 -1px 0 rgba(255,255,255,0.06) inset;
+  border-top: 1px solid rgba(255,255,255,0.08);
 }
 
-.lang-switch {
+.footer-actions {
   display: inline-flex;
   gap: 8px;
 }
 
-.lang-switch a {
-  color: #ccc;
-  text-decoration: none;
+.lang-btn {
+  background: #444;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.05s ease;
 }
-.lang-switch a:hover {
-  color: white;
-}
-
-/* Responsive pequeño ajuste */
-@media (min-width: 520px) {
-  .buttons { flex-direction: row; }
-}
+.lang-btn:hover { background: #666; }
+.lang-btn:active { transform: scale(0.98); }
