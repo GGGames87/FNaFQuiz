@@ -4,109 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GGGam.es</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #111;
-      color: white;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 3em;
-      margin-top: 50px;
-    }
-
-    .buttons {
-      margin-top: 30px;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      align-items: center;
-    }
-
-    .buttons a {
-      text-decoration: none;
-      background-color: #444;
-      color: white;
-      padding: 12px 25px;
-      border-radius: 8px;
-      font-size: 1.2em;
-      transition: background-color 0.3s;
-    }
-
-    .buttons a:hover {
-      background-color: #666;
-    }
-
-    footer {
-      background-color: #222;
-      padding: 15px;
-      text-align: center;
-      font-size: 0.9em;
-      margin-top: auto;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .lang-switch {
-      display: inline-flex;
-      gap: 8px;
-    }
-
-    .lang-switch a {
-      color: #ccc;
-      text-decoration: none;
-    }
-
-    .lang-switch a:hover {
-      color: white;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <h1>GGGam.es</h1>
 
   <div class="buttons">
-    <a href="fnafquiz/">FNaF Quiz</a>
-    <a href="https://bio.link/gggames" target="_blank">Enlaces y Redes</a>
+    <a class="btn btn-primary" href="fnafquiz/">FNaF Quiz</a>
+    <a class="btn" href="https://bio.link/gggames" target="_blank" rel="noopener">Enlaces y Redes</a>
   </div>
 
   <footer>
     <span id="footer-text">Web oficial de GG Games</span>
     <div class="lang-switch">
-      <a href="#" onclick="setLang('es')">ES</a> | 
-      <a href="#" onclick="setLang('en')">EN</a>
+      <a href="#" data-lang="es">ES</a> |
+      <a href="#" data-lang="en">EN</a>
     </div>
   </footer>
 
-  <script>
-    function setLang(lang) {
-      if (lang === "en") {
-        document.getElementById("footer-text").textContent = "Official website of GG Games";
-        document.querySelector(".buttons a[href='fnafquiz/']").textContent = "FNaF Quiz";
-        document.querySelector(".buttons a[href='https://bio.link/gggames']").textContent = "Links & Socials";
-      } else {
-        document.getElementById("footer-text").textContent = "Web oficial de GG Games";
-        document.querySelector(".buttons a[href='fnafquiz/']").textContent = "FNaF Quiz";
-        document.querySelector(".buttons a[href='https://bio.link/gggames']").textContent = "Enlaces y Redes";
-      }
-    }
-
-    // Detectar idioma del navegador al cargar
-    const userLang = navigator.language || navigator.userLanguage;
-    if (userLang.startsWith("en")) {
-      setLang("en");
-    } else {
-      setLang("es");
-    }
-  </script>
+  <script src="main.js"></script>
 </body>
 </html>
