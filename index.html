@@ -1,157 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>GG Games</title>
-  <meta name="description" content="Fan projects by GG Games. Play the FNaF Quiz and more." />
-  <link rel="icon" type="image/png" href="img/favicon.png" />
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GGGam.es</title>
   <style>
-    :root {
-      --bg:#0f0f10; --card:#1a1b1e; --text:#fff; --muted:#b7b8bd; --accent:#ffd54a;
-      --btn:#2a2c31; --btn-h:#343741; --ring:#3b82f6;
-    }
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
     body {
-      margin: 0; background: var(--bg); color: var(--text);
-      font: 16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial;
-      display: flex; flex-direction: column; min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: white;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      text-align: center;
     }
-    header {
-      padding: 16px;
-      display: flex; align-items: center; justify-content: space-between;
-      max-width: 960px; margin: 0 auto; width: 100%;
+
+    h1 {
+      font-size: 3em;
+      margin-top: 50px;
     }
-    .brand { font-weight: 800; letter-spacing: .3px; }
-    .lang {
-      display: inline-flex; gap: 6px; align-items: center;
-      background: var(--btn); border: 1px solid #2f3137; border-radius: 10px; padding: 6px 10px;
+
+    .buttons {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
     }
-    .lang button {
-      background: transparent; color: var(--muted); border: none; padding: 4px 8px; cursor: pointer;
-      border-radius: 8px; font-weight: 700;
+
+    .buttons a {
+      text-decoration: none;
+      background-color: #444;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-size: 1.2em;
+      transition: background-color 0.3s;
     }
-    .lang button.active { color: var(--text); background: var(--btn-h); }
-    main {
-      flex: 1;
-      display: grid; place-items: center; padding: 24px;
+
+    .buttons a:hover {
+      background-color: #666;
     }
-    .card {
-      width: min(960px, 92vw);
-      background: radial-gradient(120% 120% at 0% 0%, #1c1e23 0%, var(--card) 60%);
-      border: 1px solid #2b2d33; border-radius: 16px; padding: 28px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
-    }
-    h1 { margin: 0 0 8px; font-size: clamp(24px, 4vw, 36px); }
-    p.lead { margin: 0 0 18px; color: var(--muted); }
-    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
-    .btn {
-      appearance: none; border: 1px solid #30323a; background: var(--btn);
-      color: var(--text); padding: 10px 14px; border-radius: 12px; font-weight: 700;
-      cursor: pointer; transition: transform .06s ease, background .18s ease, border-color .18s ease;
-    }
-    .btn:hover { background: var(--btn-h); transform: translateY(-1px); }
-    .btn:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
-    .btn.primary {
-      background: linear-gradient(0deg, #3b3f4a, #2d313a); border-color: #3a3d46;
-    }
-    .row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 8px; }
-    .small { color: var(--muted); font-size: 14px; }
+
     footer {
-      background: #121317; border-top: 1px solid #23252b; color: var(--muted);
-      padding: 18px; text-align: center; margin-top: auto;
+      background-color: #222;
+      padding: 15px;
+      text-align: center;
+      font-size: 0.9em;
+      margin-top: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
     }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+
+    .lang-switch {
+      display: inline-flex;
+      gap: 8px;
+    }
+
+    .lang-switch a {
+      color: #ccc;
+      text-decoration: none;
+    }
+
+    .lang-switch a:hover {
+      color: white;
+    }
   </style>
 </head>
 <body>
-  <header>
-    <div class="brand">GG Games</div>
-    <div class="lang" aria-label="Language switcher">
-      <button id="btn-es" type="button">ES</button>
-      <button id="btn-en" type="button" class="active">EN</button>
+  <h1>GGGam.es</h1>
+
+  <div class="buttons">
+    <a href="fnafquiz/">FNaF Quiz</a>
+    <a href="https://bio.link/gggames" target="_blank">Enlaces y Redes</a>
+  </div>
+
+  <footer>
+    <span id="footer-text">Web oficial de GG Games</span>
+    <div class="lang-switch">
+      <a href="#" onclick="setLang('es')">ES</a> | 
+      <a href="#" onclick="setLang('en')">EN</a>
     </div>
-  </header>
-
-  <main>
-    <section class="card">
-      <h1 id="title">Welcome to GG Games</h1>
-      <p id="tagline" class="lead">Fan projects, games, and more!</p>
-
-      <div class="actions">
-        <a id="play-link" class="btn primary" href="/FNaFQuiz/fnafquiz/">▶ Open FNaF Quiz</a>
-        <a id="bio-link" class="btn" href="https://bio.link/gggames" target="_blank" rel="noopener">🌐 Social links</a>
-      </div>
-
-      <div class="row small">
-        <span id="note">Tip: share the online-room URL with a friend to play together.</span>
-      </div>
-    </section>
-  </main>
-
-  <footer id="footer">© 2025 GG Games — This is a fan project</footer>
+  </footer>
 
   <script>
-    // --- i18n strings ---
-    const STR = {
-      en: {
-        title: "Welcome to GG Games",
-        tagline: "Fan projects, games, and more!",
-        play: "▶ Open FNaF Quiz",
-        bio: "🌐 Social links",
-        note: "Tip: share the online-room URL with a friend to play together.",
-        footer: "© 2025 GG Games — This is a fan project"
-      },
-      es: {
-        title: "Bienvenido a GG Games",
-        tagline: "Proyectos de fans, juegos y mucho más.",
-        play: "▶ Abrir FNaF Quiz",
-        bio: "🌐 Enlaces y redes",
-        note: "Consejo: comparte la URL de la sala online con un amigo para jugar juntos.",
-        footer: "© 2025 GG Games — Este es un proyecto de fans"
+    function setLang(lang) {
+      if (lang === "en") {
+        document.getElementById("footer-text").textContent = "Official website of GG Games";
+        document.querySelector(".buttons a[href='fnafquiz/']").textContent = "FNaF Quiz";
+        document.querySelector(".buttons a[href='https://bio.link/gggames']").textContent = "Links & Socials";
+      } else {
+        document.getElementById("footer-text").textContent = "Web oficial de GG Games";
+        document.querySelector(".buttons a[href='fnafquiz/']").textContent = "FNaF Quiz";
+        document.querySelector(".buttons a[href='https://bio.link/gggames']").textContent = "Enlaces y Redes";
       }
-    };
-
-    const el = {
-      title: document.getElementById('title'),
-      tagline: document.getElementById('tagline'),
-      play: document.getElementById('play-link'),
-      bio: document.getElementById('bio-link'),
-      note: document.getElementById('note'),
-      footer: document.getElementById('footer'),
-      btnES: document.getElementById('btn-es'),
-      btnEN: document.getElementById('btn-en'),
-    };
-
-    function applyLang(lang) {
-      const dict = STR[lang] || STR.en;
-      document.documentElement.lang = lang;
-      el.title.textContent   = dict.title;
-      el.tagline.textContent = dict.tagline;
-      el.play.textContent    = dict.play;
-      el.bio.textContent     = dict.bio;
-      el.note.textContent    = dict.note;
-      el.footer.textContent  = dict.footer;
-
-      el.btnES.classList.toggle('active', lang === 'es');
-      el.btnEN.classList.toggle('active', lang === 'en');
-      localStorage.setItem('gg.lang', lang);
     }
 
-    function detectLang() {
-      const saved = localStorage.getItem('gg.lang');
-      if (saved) return saved;
-      const nav = (navigator.languages && navigator.languages[0]) || navigator.language || 'en';
-      return nav.toLowerCase().startsWith('es') ? 'es' : 'en';
+    // Detectar idioma del navegador al cargar
+    const userLang = navigator.language || navigator.userLanguage;
+    if (userLang.startsWith("en")) {
+      setLang("en");
+    } else {
+      setLang("es");
     }
-
-    el.btnES.addEventListener('click', () => applyLang('es'));
-    el.btnEN.addEventListener('click', () => applyLang('en'));
-
-    applyLang(detectLang());
   </script>
 </body>
 </html>
