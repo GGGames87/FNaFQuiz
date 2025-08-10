@@ -32,6 +32,12 @@ html, body {
   display: block;
 }
 
+.404-img {
+  max-width: min(620px, 92vw); 
+  height: auto;
+  display: block;
+}
+
 .callout {
   margin: 8px 0 0;
   line-height: 1.4;
