@@ -33,7 +33,7 @@ html, body {
 }
 
 .404-img {
-  max-width: min(620px, 92vw); 
+  max-width: min(420px, 92vw); 
   height: auto;
   display: block;
 }
