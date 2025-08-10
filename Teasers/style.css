@@ -31,9 +31,14 @@ html, body {
 }
 
 .img-404 {
-  max-width: min(880px, 75vw);
+  max-width: min(980px, 75vw);
   height: auto;
   display: block;
+  margin-top: 0;
+}
+
+.swap.closer {
+  margin-top: 8px; 
 }
 
 .callout {
