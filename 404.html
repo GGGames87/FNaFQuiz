@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>404 — GG Games</title>
+  <meta name="robots" content="noindex" />
+  <style>
+    :root { color-scheme: dark; }
+    html,body{margin:0;background:#000;color:#fff;font-family:Arial,system-ui,sans-serif}
+    .box{min-height:100vh;display:grid;place-items:center;text-align:center;padding:24px}
+    a{color:#8ab4ff}
+  </style>
+  <script>
+    (function () {
+      
+      var parts = window.location.pathname.split("/").filter(Boolean);
+     
+      var repo = parts.length ? "/" + parts[0] : "";
+      var teasersPrefix = repo + "/Teasers/";
+
+      if (window.location.pathname.startsWith(teasersPrefix)) {
+        window.location.replace(teasersPrefix + "404.html");
+      }
+    })();
+  </script>
+</head>
+<body>
+  <div class="box">
+    <main>
+      <h1>404 - Página no encontrada</h1>
+      <p>Este es el 404 global del proyecto.</p>
+      <p><a href="/">Volver al inicio</a></p>
+    </main>
+  </div>
+</body>
+</html>
