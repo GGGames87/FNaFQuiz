@@ -30,8 +30,8 @@ html, body {
   display: block;
 }
 
-.404-img {
-  max-width: min(280px, 75vw); /* más pequeña */
+.img-404 {
+  max-width: min(480px, 75vw);
   height: auto;
   display: block;
 }
