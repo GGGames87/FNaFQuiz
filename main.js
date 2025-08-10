@@ -1,6 +1,6 @@
 function setLang(lang) {
   const footer = document.getElementById("footer-text");
-  const linksBtn = document.querySelector('.center-stage a[href="https://bio.link/gggames"]');
+  const linksBtn = document.querySelector('.button-container a[href="https://bio.link/gggames"]');
 
   if (lang === "en") {
     footer.textContent = "Official website of GG Games";
