@@ -32,7 +32,6 @@ function setLang(lang, persist) {
 }
 
 function initLang() {
-
   const q = getLangFromQuery();
   if (q) return setLang(q, true);
 
