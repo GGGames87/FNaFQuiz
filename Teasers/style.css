@@ -21,13 +21,13 @@ html, body {
 
 
 .hero-img {
-  max-width: min(300px, 80vw); 
+  max-width: min(400px, 80vw); 
   height: auto;
   display: block;
 }
 
 .secondary-img {
-  max-width: min(820px, 92vw);
+  max-width: min(620px, 92vw); /* GG del futuro, este tamaño es el del main teaser loloolol*/
   height: auto;
   display: block;
 }
