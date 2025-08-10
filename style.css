@@ -35,16 +35,19 @@ main {
 .btn {
   background-color: #2a2a2a;
   color: white;
-  padding: 16px 90px;  
+  padding: 16px 32px;
   border-radius: 10px;
   text-decoration: none;
   transition: transform 0.12s ease, background 0.2s ease;
   font-size: clamp(16px, 2.4vw, 20px);
   font-weight: 600;
   box-shadow: 0 4px 12px rgba(0,0,0,0.35);
-  min-width: 220px;    
+  
+  min-width: 260px;   
+  white-space: nowrap;
   text-align: center;
 }
+
 
 
 .btn:hover {
