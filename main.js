@@ -15,38 +15,35 @@ function applyLang(lang) {
   const linksBtn = document.getElementById("links-btn");
 
   if (lang === "en") {
-    footer.textContent = "Official website of GG Games";
-    if (linksBtn) linksBtn.textContent = "Links & Socials";
+    footer && (footer.textContent = "Official website of GG Games");
+    linksBtn && (linksBtn.textContent = "Links & Socials");
   } else {
-    footer.textContent = "Web oficial de GG Games";
-    if (linksBtn) linksBtn.textContent = "Enlaces y Redes";
+    footer && (footer.textContent = "Web oficial de GG Games");
+    linksBtn && (linksBtn.textContent = "Enlaces y Redes");
   }
   document.documentElement.setAttribute("lang", lang);
 }
 
 function setLang(lang, persist) {
   applyLang(lang);
-  if (persist) localStorage.setItem("site_lang", lang);
+  try {
+    if (persist) localStorage.setItem("site_lang", lang);
+  } catch {}
 }
 
 function initLang() {
- 
-  const q = getLangFromQuery();
-  if (q) {
-    setLang(q, true);
-    return;
-  }
 
-  const saved = localStorage.getItem("site_lang");
-  if (saved === "en" || saved === "es") {
-    setLang(saved, false);
-    return;
-  }
+  const q = getLangFromQuery();
+  if (q) return setLang(q, true);
+
+  let saved = null;
+  try { saved = localStorage.getItem("site_lang"); } catch {}
+  if (saved === "en" || saved === "es") return setLang(saved, false);
 
   setLang(browserLang(), false);
 }
 
-window.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("lang-en")?.addEventListener("click", () => setLang("en", true));
   document.getElementById("lang-es")?.addEventListener("click", () => setLang("es", true));
   initLang();
