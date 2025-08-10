@@ -103,6 +103,15 @@ footer {
 }
 
 
+
+.site-title,
+.button-container .btn {
+  font-family: 'Press Start 2P', cursive;
+  letter-spacing: 1px;
+}
+
+
+
 @media (max-width: 360px) {
   .btn {
     width: 100%;
