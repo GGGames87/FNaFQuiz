@@ -647,13 +647,17 @@ function renderAllGrids() {
   updateResults();
   shrinkLabels();
 
- 
   window.scrollTo(x, y);
 
-  if (totalFound === totalAnimatronics) {
+
+  const totalFoundNow = Object.values(foundByGame).reduce((sum, arr) => sum + arr.length, 0);
+  const totalAnimatronicsNow = allAnimatronics.length;
+
+  if (totalFoundNow === totalAnimatronicsNow) {
     stopTimer();
   }
 }
+
 
 
 function updateResults() {
