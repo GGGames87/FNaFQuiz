@@ -683,6 +683,11 @@ function preloadAll() {
 
 
 document.getElementById("guess")?.addEventListener("input", (e) => {
+  
+  if (e.target.value.length > 0) {
+    startTimer();
+  }
+
   const input = normalize(e.target.value);
   if (!input) return;
 
@@ -709,6 +714,7 @@ document.getElementById("guess")?.addEventListener("input", (e) => {
     break;
   }
 });
+
 
 
 document.addEventListener("contextmenu", e => {
