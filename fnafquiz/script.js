@@ -426,44 +426,67 @@ High School Pigpatch / highPigpatch.png / High School Pigpatch, school Pigpatch
 
 
 function parseDataText(raw) {
-  const lines = raw.split("\n").map(l => l.trim());
-  const gamesOrdered = [];
+  const categories = [];  // [{ key, title, list }]
   let current = null;
 
-  for (const line of lines) {
-    if (!line || /^\.+$/.test(line)) continue;
+  const lines = raw.split("\n");
+
+  for (let rawLine of lines) {
+    const line = rawLine.trim();
+    if (!line) continue;
+    // ignora separadores tipo ".", "..."
+    if (/^\.+$/.test(line)) continue;
+    // ignora "(No añadir personajes)"
     if (/^\(no añadir personajes\)$/i.test(line)) continue;
-    const looksLikeItem = line.includes(" / ");
+
+    
+    const parts = line.split(" / ").map(s => s.trim());
+
+    
+    const looksLikeItem = (parts.length >= 3) && /\.png$/i.test(parts[1] || "");
+
     if (!looksLikeItem) {
+     
       const title = line;
       const key = slugifyGameTitle(title);
       current = { key, title, list: [] };
-      gamesOrdered.push(current);
+      categories.push(current);
       continue;
     }
 
-    const parts = line.split(" / ").map(s => s.trim());
+   
+    if (!current) {
+      
+      current = { key: "uncategorized", title: "Uncategorized", list: [] };
+      categories.push(current);
+    }
+
     const display = parts[0];
-    const img = parts[1];
-    const aliases = (parts[2] || "")
+    const imgFile = parts[1];
+    const rawAliases = (parts[2] || "")
       .split(",")
       .map(a => a.trim())
       .filter(Boolean);
 
+    
     const aliases = rawAliases.length ? rawAliases : [display];
 
     current.list.push({
-      name: normalizeAlias(display),  
-      img: `img/${img}`,
-      aliases,    
-      displayName: display
+      name: normalizeAlias(display),       
+      img: `img/${imgFile}`,
+      aliases,
+      displayName: display,
     });
   }
 
+ 
   const G = {};
-  for (const g of gamesOrdered) G[g.key] = { title: g.title, list: g.list };
+  for (const g of categories) {
+    G[g.key] = { title: g.title, list: g.list };
+  }
   return G;
 }
+
 
 const PARSED_GAMES = parseDataText(DATA_TEXT);
 
@@ -576,25 +599,23 @@ function shrinkLabels() {
   }, 0);
 }
 
-function renderGrids() {
-  const x = window.scrollX;
-  const y = window.scrollY;
 
-  renderGrid(animatronics, foundFnaf1, "grid");
-  renderGrid(fnaf2Animatronics, foundFnaf2, "grid-fnaf2");
-  renderGrid(fnaf3Animatronics, foundFnaf3, "grid-fnaf3");
-
-  window.scrollTo(x, y);
-}
 
 
 function renderAllGrids() {
+  const x = window.scrollX;
+  const y = window.scrollY;
+
   for (const [key, cfg] of Object.entries(GAMES)) {
     renderGrid(cfg.list, foundByGame[key], `grid-${key}`);
   }
   updateResults();
   shrinkLabels();
+
+ 
+  window.scrollTo(x, y);
 }
+
 
 function updateResults() {
   const total = Object.values(GAMES).reduce((sum, cfg) => sum + cfg.list.length, 0);
