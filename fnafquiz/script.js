@@ -730,24 +730,34 @@ document.addEventListener("contextmenu", e => {
 
 
 const pressedKeys = new Set();
+
 document.addEventListener("keydown", (e) => {
   pressedKeys.add(e.key.toLowerCase());
-  if (pressedKeys.has("s") && pressedKeys.has("c") && pressedKeys.has("o") && pressedKeys.has("t")) {
-    allAnimatronics.forEach(anim => {
+
+
+  if (pressedKeys.has("c") && pressedKeys.has("a") && pressedKeys.has("w")) {
+    allAnimatronics.forEach((anim, index) => {
+      // Saltar el primero (Freddy)
+      if (index === 0) return;
+
       const n = normalizeKey(anim.displayName || anim.name);
       const arr = foundByGame[anim.game];
       if (!arr.includes(n)) arr.push(n);
+
       if (isMultiplayer) {
         update(ref(db, `rooms/${roomId}/found`), { [`${anim.game}-${n}`]: username });
       }
     });
+
     renderAllGrids();
-    console.log("SCOTT ACCESS");
+    console.log("CAW ACCESS");
   }
 });
+
 document.addEventListener("keyup", (e) => {
   pressedKeys.delete(e.key.toLowerCase());
 });
+
 
 
 if (isMultiplayer) {
