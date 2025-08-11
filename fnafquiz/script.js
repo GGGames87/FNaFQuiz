@@ -242,11 +242,11 @@ Adventure Mendo / mendo.png / mendo, endo mendo, adventure mendo, adv mendo
 Adventure Dee Dee / dd.png / deedee, dd, advdd, adventure deedee
 8-bit Fredbear / 8bitfredbear.png / 8-bit Fredbear
 Old Man Consequences / omc.png / omc, Old Man Consequences
-Desk Man / DeskMan.png / Desk Man, scott cawthon
+Desk Man / deskman.png / Desk Man, scott cawthon
 Bouncepot / Bouncepot.png / Bouncepot
 Gearrat / Gearrat.png / Gearrat
 Mechrab / Mechrab.png / Mechrab
-Chop 'N Roll / chopnroll.png / Chop 'N Roll, chop n roll
+Chop 'N Roll / chopnroll1.png / Chop 'N Roll, chop n roll
 Totemole / Totemole.png / Totemole
 Boxbyte / Boxbyte.png / Boxbyte
 Chillax / Chillax.png / Chillax
@@ -270,8 +270,8 @@ Redbear / Redbear.png / Redbear
 Tangle (FW) / Tangle.png / Tangle
 White Rabbit / White Rabbit.png / White Rabbit
 >>>>>> / x6mayorque.png / >>>>>>
-_!2222 / _!2222.png / _!2222
-%__^^&( / %__^^&(.png / %__^^&(
+_!2222 / glitch2.png / _!2222
+%__^^&( / glitch3.png / %__^^&(
 Unused Browboy Enemy / unusedbrowboy.png / browboy enemy, enemy browboy, unused browboy
 Auto Chipper / Auto Chipper.png / Auto Chipper
 Bouncer / Bouncer.png / Bouncer
