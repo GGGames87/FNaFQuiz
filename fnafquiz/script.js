@@ -3,6 +3,38 @@ let showSilhouettes = false;
 let lastCorrect = null;
 
 
+
+
+
+let timerInterval;
+let startTime;
+let running = false;
+
+function startTimer() {
+  if (running) return;
+  running = true;
+  startTime = Date.now();
+  timerInterval = setInterval(updateTimer, 10);
+}
+
+function updateTimer() {
+  const elapsed = Date.now() - startTime;
+  const hours = Math.floor(elapsed / 3600000);
+  if (hours >= 24) {
+    clearInterval(timerInterval);
+    return;
+  }
+  const minutes = Math.floor((elapsed % 3600000) / 60000);
+  const seconds = Math.floor((elapsed % 60000) / 1000);
+  const ms = Math.floor(elapsed % 1000);
+  document.getElementById("timer").textContent =
+    `${String(hours).padStart(2,'0')}:${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')}.${String(ms).padStart(3,'0')}`;
+}
+
+
+
+
+
 function normalizeKey(text) {
   return text.toLowerCase().replace(/[\s.\-_'"]/g, "");
 }
