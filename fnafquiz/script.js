@@ -432,6 +432,7 @@ function parseDataText(raw) {
 
   for (const line of lines) {
     if (!line || /^\.+$/.test(line)) continue;
+    if (/^\(no añadir personajes\)$/i.test(line)) continue;
     const looksLikeItem = line.includes(" / ");
     if (!looksLikeItem) {
       const title = line;
@@ -440,7 +441,6 @@ function parseDataText(raw) {
       gamesOrdered.push(current);
       continue;
     }
-    if (line.toLowerCase().includes("(no añadir personajes)")) continue;
 
     const parts = line.split(" / ").map(s => s.trim());
     const display = parts[0];
@@ -450,11 +450,12 @@ function parseDataText(raw) {
       .map(a => a.trim())
       .filter(Boolean);
 
-    if (!current) continue;
+    const aliases = rawAliases.length ? rawAliases : [display];
+
     current.list.push({
-      name: normalizeAlias(display),
+      name: normalizeAlias(display),  
       img: `img/${img}`,
-      aliases: [display, ...aliases],
+      aliases,    
       displayName: display
     });
   }
@@ -574,6 +575,18 @@ function shrinkLabels() {
     });
   }, 0);
 }
+
+function renderGrids() {
+  const x = window.scrollX;
+  const y = window.scrollY;
+
+  renderGrid(animatronics, foundFnaf1, "grid");
+  renderGrid(fnaf2Animatronics, foundFnaf2, "grid-fnaf2");
+  renderGrid(fnaf3Animatronics, foundFnaf3, "grid-fnaf3");
+
+  window.scrollTo(x, y);
+}
+
 
 function renderAllGrids() {
   for (const [key, cfg] of Object.entries(GAMES)) {
