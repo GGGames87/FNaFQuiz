@@ -271,7 +271,7 @@ Pop-Pop / Pop-Pop.png / Pop-Pop
 BOOM / BOOM.png / BOOM
 KABOOM / KABOOM.png / KABOOM
 BossDrain01 / BossDrain01.png / BossDrain01
-BossDrain02 / BossDrain02.png / BossDrain01
+BossDrain02 / BossDrain02.png / BossDrain02
 BossDrain-X / BossDrain-X.png / BossDrain-X
 Adventure Mendo / mendo.png / mendo, endo mendo, adventure mendo, adv mendo
 Adventure Dee Dee / dd.png / deedee, dd, advdd, adventure deedee
