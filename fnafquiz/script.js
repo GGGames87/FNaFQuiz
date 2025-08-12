@@ -600,36 +600,27 @@ function shrinkLabels() {
 }
 
 function renderAllGrids() {
-  
   const x = window.scrollX;
   const y = window.scrollY;
-  const html = document.documentElement;
-  const body = document.body;
-  const prevOverflowHtml = html.style.overflow;
-  const prevOverflowBody = body.style.overflow;
-  html.style.overflow = "hidden";
-  body.style.overflow = "hidden";
 
   for (const [key, cfg] of Object.entries(GAMES)) {
     renderGrid(cfg.list, foundByGame[key], `grid-${key}`);
   }
+
   updateResults();
   shrinkLabels();
 
-  
+  // Restaurar posición de scroll después del reflow
   requestAnimationFrame(() => {
     window.scrollTo(x, y);
-    html.style.overflow = prevOverflowHtml;
-    body.style.overflow = prevOverflowBody;
   });
 
-  
   const totalFoundNow = Object.values(foundByGame).reduce((sum, arr) => sum + arr.length, 0);
-  const totalAnimatronicsNow = allAnimatronics.length;
-  if (totalFoundNow === totalAnimatronicsNow) {
+  if (totalFoundNow === allAnimatronics.length) {
     stopTimer();
   }
 }
+
 
 function updateResults() {
   const total = Object.values(GAMES).reduce((sum, cfg) => sum + cfg.list.length, 0);
