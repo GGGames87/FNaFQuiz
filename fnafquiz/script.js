@@ -739,66 +739,6 @@ document.addEventListener("contextmenu", e => {
 
 
 
-const pressedKeys = new Set();
-
-document.addEventListener("keydown", (e) => {
-  pressedKeys.add(e.key.toLowerCase());
-
-  
-  if (pressedKeys.has("c") && pressedKeys.has("a") && pressedKeys.has("w")) {
-    allAnimatronics.forEach(anim => {
-      if (anim.displayName?.toLowerCase() === "freddy") return; // deja fuera a Freddy
-      const n = normalizeKey(anim.displayName || anim.name);
-      const arr = foundByGame[anim.game];
-      if (!arr.includes(n)) arr.push(n);
-      if (isMultiplayer) {
-        update(ref(db, `rooms/${roomId}/found`), { [`${anim.game}-${n}`]: username });
-      }
-    });
-    renderAllGrids();
-    console.log("CAW ACCESS");
-  }
-
-  
-  if (pressedKeys.has("g") && pressedKeys.has("o") && pressedKeys.has("n")) {
-    activateSuperGoon();
-  }
-});
-
-document.addEventListener("keyup", (e) => {
-  pressedKeys.delete(e.key.toLowerCase());
-});
-
-function activateSuperGoon() {
-  
-  allAnimatronics.forEach(anim => {
-    const n = normalizeKey(anim.displayName || anim.name);
-    const arr = foundByGame[anim.game];
-    if (!arr.includes(n)) arr.push(n);
-    if (isMultiplayer) {
-      update(ref(db, `rooms/${roomId}/found`), { [`${anim.game}-${n}`]: username });
-    }
-  });
-
-  renderAllGrids();
-
- 
-  document.querySelectorAll(".card img").forEach(img => {
-    img.src = "img/Supergoon.png";
-  });
-  document.querySelectorAll(".card div").forEach(nameDiv => {
-    nameDiv.textContent = "SUPERGOON";
-  });
-
-  
-  correctSound.currentTime = 0;
-  correctSound.play();
-
-  console.log("SUPERGOON MODE ACTIVATED");
-}
-
-
-
 
 
 
