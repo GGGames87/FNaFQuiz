@@ -718,32 +718,28 @@ document.addEventListener("contextmenu", e => {
 
 
 const pressedKeys = new Set();
-let cawLatch = false;
 
 document.addEventListener("keydown", (e) => {
-  const k = e.key.toLowerCase();
-  pressedKeys.add(k);
+  pressedKeys.add(e.key.toLowerCase());
 
-  if (!cawLatch && pressedKeys.has("c") && pressedKeys.has("a") && pressedKeys.has("w")) {
-    cawLatch = true;
+  if (pressedKeys.has("c") && pressedKeys.has("a") && pressedKeys.has("w")) {
     allAnimatronics.forEach((anim, index) => {
       if (index === 0) return;
-      const n = normalizeKey(anim.displayName || anim.name);
-      const arr = foundByGame[anim.game];
-      if (!arr.includes(n)) arr.push(n);
+     
       if (isMultiplayer) {
+        const n = normalizeKey(anim.displayName || anim.name);
         update(ref(db, `rooms/${roomId}/found`), { [`${anim.game}-${n}`]: username });
       }
+      revealCharacter(anim);
     });
-    renderAllGrids();
     console.log("CAWTHON ACCESS ;)");
   }
 });
+
 document.addEventListener("keyup", (e) => {
-  const k = e.key.toLowerCase();
-  pressedKeys.delete(k);
-  if (k === "c" || k === "a" || k === "w") cawLatch = false;
+  pressedKeys.delete(e.key.toLowerCase());
 });
+
 
 
 if (isMultiplayer) {
