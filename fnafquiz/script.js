@@ -248,8 +248,8 @@ Adventure Spring Bonnie / advspringbonnie.png / adv spring bonnie, adventure spr
 Adventure Mr. Cupcake / advmrcupcakeotoy.png / Adventure mr cupcake, adv mr cupcake, Adventure cupcake, Adventure toy cupcake
 Adventure Nightmare Cupcake / advncupcake.png / Adventure nightmare cupcake, adv nightmare cupcake, adv n cupcake, adventure n cupcake
 Adventure Freddles / advfreddles.png / Adventure Freddles, adv freddles
-Adventure Ghost Freddy / advghostfreddy.png / Adventure ghost freddy, adv ghost freddy
-Adventure Virtua-Freddy / advvirtual.png / Adventure virtua freddy, adv virtua freddy
+Adventure Ghost Freddy / advghostfreddy.png / Adventure ghost freddy, adv ghost freddy, ghost freddy
+Adventure Virtua-Freddy / advvirtual.png / Adventure virtua freddy, adv virtua freddy, virtua freddy
 Mimic Ball / mimicball.png / mimic ball
 Adventure Lolbit / advlolbit.png / Adv lolbit, adventure lolbit
 Gnat / Gnat.png / Gnat
