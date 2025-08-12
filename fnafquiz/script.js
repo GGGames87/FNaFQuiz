@@ -74,7 +74,7 @@ document.getElementById("create-room")?.addEventListener("click", () => {
 
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-import { getDatabase, ref, update, onValue } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
+import { getDatabase, ref, update, onValue, get } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
 
 function getRoomIdFromURL() {
   return window.location.hash ? window.location.hash.substring(1).toUpperCase() : null;
@@ -86,71 +86,41 @@ let username = "Jugador";
 let db, foundRef, playersRef;
 
 
-// FNaF 1
-const FNAF1_BASE = [
-  { name: "freddy", img: "img/freddy.png" },
-  { name: "bonnie", img: "img/bonnie.png" },
-  { name: "chica", img: "img/chica.png" },
-  { name: "foxy", img: "img/foxy.png" },
-  { name: "golden freddy", img: "img/goldenfreddy.png" },
-  { name: "endo-01", img: "img/endo01.png", aliases: ["endo-01", "endo 01", "endo1", "endo-1"], displayName: "Endo-01" },
-  { name: "mr. cupcake", img: "img/mrcupcake.png", aliases: ["cupcake", "mr. cupcake", "mr cupcake", "mrcupcake"], displayName: "Mr. Cupcake" },
-  { name: "phone guy", img: "img/phoneguy.png", aliases: ["ralph", "phone guy"], displayName: "Phone Guy" },
-  { name: "mike schmidt", img: "img/mikeschmidt.png", aliases: ["mike schmidt"], displayName: "\"Mike Schmidt\"" },
-];
 
-// FNaF 2
-const FNAF2_BASE = [
-  { name: "jj", img: "img/jj.png", aliases: ["jj", "balloon girl"], displayName: "JJ" },
-  { name: "bb", img: "img/bb.png", aliases: ["bb", "balloon boy"], displayName: "Balloon Boy" },
-  { name: "puppet", img: "img/puppet.png", aliases: ["puppet", "marionette", "the puppet", "the marionette"], displayName: "The Puppet" },
-  { name: "toy freddy", img: "img/toyfreddy.png", aliases: ["toy freddy"], displayName: "Toy Freddy" },
-  { name: "toy bonnie", img: "img/toybonnie.png", aliases: ["toy bonnie"], displayName: "Toy Bonnie" },
-  { name: "toy chica", img: "img/toychica.png", aliases: ["toy chica"], displayName: "Toy Chica" },
-  { name: "mangle", img: "img/mangle.png", aliases: ["mangle"], displayName: "Mangle" },
-  { name: "Toy Cupcake", img: "img/toycupcake.png", aliases: ["toy cupcake", "toy mr cupcake"] },
-  { name: "endo-02", img: "img/endo02.png", aliases: ["endo-02", "endo 02", "endo2", "endo-2"], displayName: "Endo-02" },
-  { name: "Withered Freddy", img: "img/wfreddy.png", aliases: ["withered freddy", "w freddy"] },
-  { name: "Withered Bonnie", img: "img/wbonnie.png", aliases: ["withered bonnie", "w bonnie"] },
-  { name: "Withered Chica", img: "img/wchica.png", aliases: ["withered chica", "w chica"] },
-  { name: "Withered Foxy", img: "img/wfoxy.png", aliases: ["withered foxy", "w foxy"] },
-  { name: "Withered Golden Freddy", img: "img/wgolden.png", aliases: ["withered golden freddy", "w golden freddy", "w g freddy"] },
-  { name: "RWQFSFASXC", img: "img/shadowbonnie.png", aliases: ["rwqfsfasxc", "shadow bonnie", "rxq"] },
-  { name: "Shadow Freddy", img: "img/shadowfreddy.png", aliases: ["shadow freddy", "purple freddy"] },
-  { name: "Paperpals", img: "img/paperpals.png", aliases: ["paperpals"] },
-  { name: "Fritz Smith", img: "img/FritzSmith.png", aliases: ["fritz smith"] },
-  { name: "Jeremy Fitzgerald", img: "img/JeremyFitzgerald.png", aliases: ["jeremy fitzgerald"] },
-  { name: "William Afton", img: "img/william.png", aliases: ["william", "purple guy", "vincent"] },
-];
-
-// FNaF 3
-const FNAF3_BASE = [
-  { name: "springtrap", img: "img/springtrap.png", aliases: ["springtrap"], displayName: "Springtrap" },
-  { name: "phantom freddy", img: "img/pfreddy.png", aliases: ["phantom freddy", "pfreddy"], displayName: "Phantom Freddy" },
-  { name: "phantom chica", img: "img/pchica.png", aliases: ["pchica", "phantom chica"], displayName: "Phantom Chica" },
-  { name: "phantom foxy", img: "img/pfoxy.png", aliases: ["pfoxy", "phantom foxy"], displayName: "Phantom Foxy" },
-  { name: "phantom mangle", img: "img/pmangle.png", aliases: ["pmangle", "phantom mangle"], displayName: "Phantom Mangle" },
-  { name: "phantom balloon boy", img: "img/pbb.png", aliases: ["pbb", "pballoonboy", "phantom bb", "phantom balloon boy"], displayName: "Phantom Balloon Boy" },
-  { name: "phantom puppet", img: "img/ppuppet.png", aliases: ["ppuppet", "phantom puppet", "phantom marionette"], displayName: "Phantom Puppet" },
-  { name: "shadow cupcake", img: "img/shadowcupcake.png", aliases: ["phantom cupcake", "pcupcake", "shadow cupcake"], displayName: "Shadow Cupcake" },
-  { name: "golden cupcake", img: "img/goldencupcake.png", aliases: ["golden cupcake"], displayName: "Golden Cupcake" },
-  { name: "phone dude", img: "img/phonedude.png", aliases: ["phone dude", "duane", "fnaf 3 phone guy"], displayName: "Phone Dude" },
-  { name: "shadow balloon boy", img: "img/shadowbb.png", aliases: ["shadowbb", "shadow balloon boy"], displayName: "Shadow Balloon Boy" },
-  { name: "shadow puppet", img: "img/shadowpuppet.png", aliases: ["shadow puppet", "shadow marionette"], displayName: "Shadow Puppet" },
-  { name: "gabriel", img: "img/gabriel.png", aliases: ["gabriel", "freddy soul"], displayName: "Gabriel" },
-  { name: "jeremy", img: "img/jeremy.png", aliases: ["jeremy", "bonnie soul"], displayName: "Jeremy" },
-  { name: "susie", img: "img/susie.png", aliases: ["susie", "chica soul"], displayName: "Susie" },
-  { name: "fritz", img: "img/fritz.png", aliases: ["fritz", "foxy soul"], displayName: "Fritz" },
-  { name: "cassidy", img: "img/cassidy.png", aliases: ["cassidy", "golden freddy soul"], displayName: "Cassidy" },
-];
-
-// textual lol
+// textual lol hola thanatos - No mires mi codigo cerdo
 const DATA_TEXT = `
 FNaF 1
-(No añadir personajes)
+Freddy / freddy.png / freddy
+Bonnie / bonnie.png / bonnie
+Chica / chica.png / chica
+Foxy / foxy.png / foxy
+Golden Freddy / goldenfreddy.png / golden freddy
+Endo-01 / endo01.png / endo-01, endo 01, endo1, endo-1
+Mr. Cupcake / mrcupcake.png / cupcake, mr. cupcake, mr cupcake, mrcupcake
+Phone Guy / phoneguy.png / ralph, phone guy
+Mike Schmidt / mikeschmidt.png / mike schmidt
 
 FNaF 2
-(No añadir personajes)
+JJ / jj.png / jj, balloon girl
+Balloon Boy / bb.png / bb, balloon boy
+The Puppet / puppet.png / puppet, marionette, the puppet, the marionette
+Toy Freddy / toyfreddy.png / toy freddy
+Toy Bonnie / toybonnie.png / toy bonnie
+Toy Chica / toychica.png / toy chica
+Mangle / mangle.png / mangle
+Toy Cupcake / toycupcake.png / toy cupcake, toy mr cupcake
+Endo-02 / endo02.png / endo-02, endo 02, endo2, endo-2
+Withered Freddy / wfreddy.png / withered freddy, w freddy
+Withered Bonnie / wbonnie.png / withered bonnie, w bonnie
+Withered Chica / wchica.png / withered chica, w chica
+Withered Foxy / wfoxy.png / withered foxy, w foxy
+Withered Golden Freddy / wgolden.png / withered golden freddy, w golden freddy, w g freddy
+RWQFSFASXC / shadowbonnie.png / rwqfsfasxc, shadow bonnie, rxq
+Shadow Freddy / shadowfreddy.png / shadow freddy, purple freddy
+Paperpals / paperpals.png / paperpals
+Fritz Smith / FritzSmith.png / fritz smith
+Jeremy Fitzgerald / JeremyFitzgerald.png / jeremy fitzgerald
+William Afton / william.png / william, purple guy, vincent
 
 FNaF 3 Troll Game
 Freddydude / Freddydude.png / freddydude, animdude freddy
@@ -158,7 +128,23 @@ Red Dragon / red.png / red dragon, red monster, red dinosaur
 Green Dragon / green.png / green dragon, green monster, green dinosaur
 
 FNaF 3
-(No añadir personajes)
+Springtrap / springtrap.png / springtrap
+Phantom Freddy / pfreddy.png / phantom freddy, pfreddy
+Phantom Chica / pchica.png / pchica, phantom chica
+Phantom Foxy / pfoxy.png / pfoxy, phantom foxy
+Phantom Mangle / pmangle.png / pmangle, phantom mangle
+Phantom Balloon Boy / pbb.png / pbb, pballoonboy, phantom bb, phantom balloon boy
+Phantom Puppet / ppuppet.png / ppuppet, phantom puppet, phantom marionette
+Shadow Cupcake / shadowcupcake.png / phantom cupcake, pcupcake, shadow cupcake
+Golden Cupcake / goldencupcake.png / golden cupcake
+Phone Dude / phonedude.png / phone dude, duane, fnaf 3 phone guy
+Shadow Balloon Boy / shadowbb.png / shadowbb, shadow balloon boy
+Shadow Puppet / shadowpuppet.png / shadow puppet, shadow marionette
+Gabriel / gabriel.png / gabriel, freddy soul
+Jeremy / jeremy.png / jeremy, bonnie soul
+Susie / susie.png / susie, chica soul
+Fritz / fritz.png / fritz, foxy soul
+Cassidy / cassidy.png / cassidy, golden freddy soul
 
 FNaF 4
 Nightmare Freddy / nfreddy.png / nightmare freddy, nfreddy
@@ -374,12 +360,12 @@ HandUnit / handunit.png / hand unit
 Magician / magician.png / magician
 Little Joe / littlejoe.png / Little Joe, lally's lollies
 Springlock Suit / springlocksuit.png / springlock suit, springlock, night 4 suit, springsuit
-Yenndo / yenndo.png / yenndo
+Yenndo / yenndo.png / yenndo, yendo
 Human Heads / humanheads.png / module heads, human heads, robotic heads, robot heads, control module heads
 Fortune Teller / fortuneteller.png / fortune teller
 Fredbear Plush / fredbearplush.png / fredbear plush, plush fredbear, remote fredbear, fredbear remote
 Elizabeth Afton / eliza.png / Elizabeth Afton, elisabeth afton, afton's daughter, ice cream girl
-Technicians / technicians.png / Technicians, workers, the Technicians
+Technicians / technicians.png / Technicians, workers, the Technicians, tecnics
 Vlad / vlad.png / vlad, vampire
 Clara / clara.png / clara, vlad's wife, vlad's mistress
 Vampire Child / vampirebaby.png / vampire baby, vampire child, the baby, vlad's baby, clara's baby
@@ -403,8 +389,8 @@ Mr. Hugs / mrhugs.png / Mr. Hugs
 No. 1 Crate / crate.png / No. 1 Crate, crate
 Pan Stan / panstan.png / Pan Stan
 Happy Frog / happyfrog.png / Happy Frog
-Mr. Hippo / mrhippo.png / Mr. Hippo
-Nedd Bear / neddbear.png / Nedd Bear
+Mr. Hippo / mrhippo.png / Mr. Hippo, hippo
+Nedd Bear / neddbear.png / Nedd Bear, nedbear
 Pigpatch / pigpatch.png / Pigpatch
 Orville Elephant / orville.png / Orville Elephant
 Rockstar Freddy / rfreddy.png / Rockstar Freddy, rfreddy
@@ -523,32 +509,8 @@ function parseDataText(raw) {
 }
 
 
-const PARSED_GAMES = parseDataText(DATA_TEXT);
+const GAMES = parseDataText(DATA_TEXT);
 
-
-function mapBaseList(list) {
-  return list.map(a => ({
-    name: normalizeAlias(a.displayName || a.name),
-    img: a.img,
-    aliases: [a.displayName || capitalize(a.name), ...(a.aliases || [])],
-    displayName: a.displayName || capitalize(a.name),
-  }));
-}
-
-const KEY_FNAF1 = slugifyGameTitle("FNaF 1"); // "fnaf1"
-const KEY_FNAF2 = slugifyGameTitle("FNaF 2"); // "fnaf2"
-const KEY_FNAF3 = slugifyGameTitle("FNaF 3"); // "fnaf3"
-
-if (!PARSED_GAMES[KEY_FNAF1]) PARSED_GAMES[KEY_FNAF1] = { title: "FNaF 1", list: [] };
-if (!PARSED_GAMES[KEY_FNAF2]) PARSED_GAMES[KEY_FNAF2] = { title: "FNaF 2", list: [] };
-if (!PARSED_GAMES[KEY_FNAF3]) PARSED_GAMES[KEY_FNAF3] = { title: "FNaF 3", list: [] };
-
-PARSED_GAMES[KEY_FNAF1].list = mapBaseList(FNAF1_BASE);
-PARSED_GAMES[KEY_FNAF2].list = mapBaseList(FNAF2_BASE);
-PARSED_GAMES[KEY_FNAF3].list = mapBaseList(FNAF3_BASE);
-
-
-const GAMES = PARSED_GAMES;
 
 
 const foundByGame = {};
@@ -736,6 +698,34 @@ document.addEventListener("contextmenu", e => {
 
 
 
+const pressedKeys = new Set();
+
+document.addEventListener("keydown", (e) => {
+  pressedKeys.add(e.key.toLowerCase());
+
+  
+  if (pressedKeys.has("c") && pressedKeys.has("a") && pressedKeys.has("w")) {
+    allAnimatronics.forEach((anim, index) => {
+     
+      if (index === 0) return;
+
+      const n = normalizeKey(anim.displayName || anim.name);
+      const arr = foundByGame[anim.game];
+      if (!arr.includes(n)) arr.push(n);
+
+      if (isMultiplayer) {
+        update(ref(db, `rooms/${roomId}/found`), { [`${anim.game}-${n}`]: username });
+      }
+    });
+
+    renderAllGrids();
+    console.log("CAW ACCESS ;)");
+  }
+});
+
+document.addEventListener("keyup", (e) => {
+  pressedKeys.delete(e.key.toLowerCase());
+});
 
 
 
