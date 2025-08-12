@@ -538,8 +538,15 @@ function createSections() {
   }
   host.addEventListener("click", (e) => {
     const header = e.target.closest(".game-header");
-    if (header) header.classList.toggle("collapsed");
+    if (!header) return;
+
+    const grid = header.nextElementSibling;
+    if (grid) grid.querySelectorAll("img.revealed")
+      .forEach(img => img.classList.remove("revealed"));
+
+    header.classList.toggle("collapsed");
   });
+
 }
 
 function renderGrid(animList, foundList, containerId) {
@@ -557,6 +564,7 @@ function renderGrid(animList, foundList, containerId) {
     const keyName = normalizeKey(anim.displayName || anim.name);
     const isFound = foundList.includes(keyName);
 
+   
     img.classList.remove("silhouette");
     if (isFound) {
       img.src = anim.img;
@@ -567,13 +575,48 @@ function renderGrid(animList, foundList, containerId) {
       img.src = "img/question.png";
     }
 
+   
     if (isFound && (anim.displayName || anim.name) === lastCorrect) {
       if (!img.classList.contains("silhouette")) {
         img.classList.remove("revealed");
-        void img.offsetWidth;
+        void img.offsetWidth; // reflow
         img.classList.add("revealed");
+        const onEnd = (ev) => {
+          if (ev.animationName === "popin") {
+            img.classList.remove("revealed");
+            img.removeEventListener("animationend", onEnd);
+          }
+        };
+        img.addEventListener("animationend", onEnd);
       }
     }
+
+    
+    const label = document.createElement("div");
+    const display = anim.displayName || capitalize(anim.name);
+
+    label.innerHTML = "";
+    display.split(" ").forEach((w, i, arr) => {
+      const sp = document.createElement("span");
+      sp.className = "name-part";
+      sp.textContent = w;
+      sp.style.display = "inline-block";
+      sp.style.whiteSpace = "nowrap";
+      sp.style.fontSize = "14px";
+      label.appendChild(sp);
+      if (i < arr.length - 1) label.appendChild(document.createTextNode(" "));
+    });
+
+    label.className = isFound ? "name-visible" : "name-hidden";
+
+  
+    card.appendChild(img);
+    card.appendChild(label);
+    grid.appendChild(card);
+  });
+}
+
+
 
     const label = document.createElement("div");
     const display = anim.displayName || capitalize(anim.name);
