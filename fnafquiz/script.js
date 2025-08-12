@@ -416,7 +416,7 @@ El Chip / elchip.png / El Chip
 Funtime Chica / ftchica.png / Funtime Chica, ftchica
 Funtime Cupcake / ftcupcake.png / funtime cupcake, ft cupcake
 Helpy / helpy.png / helpy
-Paper Pals / paperpals2.png / simulator paperpals, paperpals 2, fnaf 6 paperpals, ffps paperpals, new paperpals
+Paper Pals / paperpals2.png / simulator paperpals, paperpals 2, fnaf 6 paperpals, ffps paperpals, new paperpals, paperpals fnaf 6, paperpals ffps
 Little Girl / littlegirl.png / little girl, fruity maze girl, fruity maze child, fruity maze player
 Yellow Bunny / rabbit.png / yellow bunny, yellow rabbit, fruity maze bunny, fruity maze rabbit
 JR's Bouncer / jrbouncer.png / jr's bouncer, jrs bouncer, jr bouncer, green man, Midnight Motorist bouncer, Midnight Motorist green guy, green guy, Midnight Motorist green man
