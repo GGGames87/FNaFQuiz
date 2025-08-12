@@ -221,7 +221,7 @@ Adventure Phantom Balloon Boy / advpbb.png / Adventure Phantom Balloon Boy, Adve
 Adventure Phantom Foxy / advpfoxy.png / Adventure Phantom Foxy, Adventure P foxy, adv p foxy
 Adventure Phantom Mangle / advpmangle.png / Adventure Phantom mangle, Adventure P mangle, adv p mangle
 Adventure Withered Bonnie / advwbonnie.png / Adventure Withered Bonnie, adv w bonnie, adv withered bonnie
-Adventure Withered Chica / advwchica.png / Adventure Withered Chcia, adv w chica, adv withered chica
+Adventure Withered Chica / advwchica.png / Adventure Withered Chica, adv w chica, adv withered chica
 Adventure Withered Freddy / advwfreddy.png / Adventure Withered Freddy, adv w freddy, adv withered freddy
 Adventure Withered Foxy / advwfoxy.png / Adventure Withered Foxy, adv w foxy, adv withered foxy
 Adventure Shadow Freddy / advshadowfreddy.png / Adventure Shadow Freddy, adv shadow freddy
@@ -231,7 +231,7 @@ Adventure Golden Freddy / advgolden.png / adventure golden freddy, adv godlen fr
 Adventure Paperpals / advpaperpals.png / adventure paperpals, adv paperpals
 Adventure Nightmare Freddy / advnfreddy.png / adventure Nightmare freddy, adv Nightmare freddy, adventure n freddy, advnfreddy
 Adventure Nightmare Bonnie / advnbonnie.png / adventure Nightmare bonnie, adv Nightmare bonnie, adventure n bonnie, advnbonnie
-Adventure Nightmare Chica / advnchica.png / adventure Nightmare chcia, adv Nightmare chcia, adventure n chica, advnchica
+Adventure Nightmare Chica / advnchica.png / adventure Nightmare chica, adv Nightmare chica, adventure n chica, advnchica
 Adventure Nightmare Foxy / advnfoxy.png / adventure Nightmare foxy, adv Nightmare foxy, adventure n foxy, advnfoxy
 Adventure Endo 01 / advendo1.png / adventure endo 1, adventure endo 01, adv endo 01, adv endo 1
 Adventure Endo 02 / advendo2.png / adventure endo 2, adventure endo 02, adv endo 02, adv endo 2
@@ -738,29 +738,41 @@ const pressedKeys = new Set();
 document.addEventListener("keydown", (e) => {
   pressedKeys.add(e.key.toLowerCase());
 
-
+  // CAW cheat → resuelve todo menos Freddy
   if (pressedKeys.has("c") && pressedKeys.has("a") && pressedKeys.has("w")) {
-    allAnimatronics.forEach((anim, index) => {
-      // Saltar el primero (Freddy)
-      if (index === 0) return;
-
+    allAnimatronics.forEach(anim => {
+      if (anim.displayName?.toLowerCase() === "freddy") return; // deja fuera a Freddy
       const n = normalizeKey(anim.displayName || anim.name);
       const arr = foundByGame[anim.game];
       if (!arr.includes(n)) arr.push(n);
-
       if (isMultiplayer) {
         update(ref(db, `rooms/${roomId}/found`), { [`${anim.game}-${n}`]: username });
       }
     });
-
     renderAllGrids();
     console.log("CAW ACCESS");
+  }
+
+  // GON cheat → modo SUPERGOON
+  if (pressedKeys.has("g") && pressedKeys.has("o") && pressedKeys.has("n")) {
+    activateSuperGoon();
   }
 });
 
 document.addEventListener("keyup", (e) => {
   pressedKeys.delete(e.key.toLowerCase());
 });
+
+function activateSuperGoon() {
+  document.querySelectorAll(".card img").forEach(img => {
+    img.src = "img/supergoon.png";
+  });
+  document.querySelectorAll(".card div").forEach(nameDiv => {
+    nameDiv.textContent = "SUPERGOON";
+  });
+  console.log("SUPERGOON MODE ACTIVATED");
+}
+
 
 
 
