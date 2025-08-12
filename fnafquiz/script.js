@@ -738,7 +738,7 @@ const pressedKeys = new Set();
 document.addEventListener("keydown", (e) => {
   pressedKeys.add(e.key.toLowerCase());
 
-  // CAW cheat → resuelve todo menos Freddy
+  
   if (pressedKeys.has("c") && pressedKeys.has("a") && pressedKeys.has("w")) {
     allAnimatronics.forEach(anim => {
       if (anim.displayName?.toLowerCase() === "freddy") return; // deja fuera a Freddy
@@ -753,7 +753,7 @@ document.addEventListener("keydown", (e) => {
     console.log("CAW ACCESS");
   }
 
-  // GON cheat → modo SUPERGOON
+  
   if (pressedKeys.has("g") && pressedKeys.has("o") && pressedKeys.has("n")) {
     activateSuperGoon();
   }
