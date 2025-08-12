@@ -733,6 +733,12 @@ document.addEventListener("contextmenu", e => {
 });
 
 
+
+
+
+
+
+
 const pressedKeys = new Set();
 
 document.addEventListener("keydown", (e) => {
@@ -764,14 +770,36 @@ document.addEventListener("keyup", (e) => {
 });
 
 function activateSuperGoon() {
+  
+  allAnimatronics.forEach(anim => {
+    const n = normalizeKey(anim.displayName || anim.name);
+    const arr = foundByGame[anim.game];
+    if (!arr.includes(n)) arr.push(n);
+    if (isMultiplayer) {
+      update(ref(db, `rooms/${roomId}/found`), { [`${anim.game}-${n}`]: username });
+    }
+  });
+
+  renderAllGrids();
+
+ 
   document.querySelectorAll(".card img").forEach(img => {
-    img.src = "img/supergoon.png";
+    img.src = "img/Supergoon.png";
   });
   document.querySelectorAll(".card div").forEach(nameDiv => {
     nameDiv.textContent = "SUPERGOON";
   });
+
+  
+  correctSound.currentTime = 0;
+  correctSound.play();
+
   console.log("SUPERGOON MODE ACTIVATED");
 }
+
+
+
+
 
 
 
