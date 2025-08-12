@@ -1,9 +1,10 @@
 
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import { getDatabase, ref, update, onValue, get } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
+
+
 let showSilhouettes = false;
 let lastCorrect = null;
-
-
-
 
 
 let timerInterval;
@@ -16,8 +17,9 @@ function startTimer() {
   startTime = Date.now();
   timerInterval = setInterval(updateTimer, 10);
 }
-
 function updateTimer() {
+  const el = document.getElementById("timer");
+  if (!el) return;
   const elapsed = Date.now() - startTime;
   const hours = Math.floor(elapsed / 3600000);
   if (hours >= 24) {
@@ -27,15 +29,12 @@ function updateTimer() {
   const minutes = Math.floor((elapsed % 3600000) / 60000);
   const seconds = Math.floor((elapsed % 60000) / 1000);
   const ms = Math.floor(elapsed % 1000);
-  document.getElementById("timer").textContent =
+  el.textContent =
     `${String(hours).padStart(2,'0')}:${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')}.${String(ms).padStart(3,'0')}`;
 }
-
 function stopTimer() {
   clearInterval(timerInterval);
 }
-
-
 
 
 function normalizeKey(text) {
@@ -50,13 +49,25 @@ function normalizeAlias(text) {
 function capitalize(text) {
   return text.split(" ").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
 }
-
-
 function slugifyGameTitle(title) {
   let s = title.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
   s = s.replace(/^fnaf_([0-9])(\b|_)/, (_, d) => `fnaf${d}${_ === "_" ? "_" : ""}`);
   return s;
 }
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyASXBFvzjCcp21g5NcI1PqYbX7rFN1UVIs",
+  authDomain: "fnafquiz1.firebaseapp.com",
+  databaseURL: "https://fnafquiz1-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "fnafquiz1",
+  storageBucket: "fnafquiz1.firebasestorage.app",
+  messagingSenderId: "812258358214",
+  appId: "1:812258358214:web:9466fc6efa4e0009d538c7",
+  measurementId: "G-9BHX9G7GT1"
+};
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
 
 
 function generateRoomId() {
@@ -65,16 +76,26 @@ function generateRoomId() {
   for (let i = 0; i < 6; i++) id += chars.charAt(Math.floor(Math.random() * chars.length));
   return id;
 }
-document.getElementById("create-room")?.addEventListener("click", () => {
-  const newRoomId = generateRoomId();
-  localStorage.setItem("justCreatedRoom", newRoomId);
-  window.location.hash = newRoomId;
-  window.location.reload();
+async function generateUniqueRoomId(maxTries = 10) {
+  for (let i = 0; i < maxTries; i++) {
+    const id = generateRoomId();
+    const snap = await get(ref(db, `rooms/${id}`));
+    if (!snap.exists()) return id;
+  }
+  throw new Error("No pude generar una sala única. Inténtalo de nuevo.");
+}
+document.getElementById("create-room")?.addEventListener("click", async () => {
+  try {
+    const newRoomId = await generateUniqueRoomId();
+    localStorage.setItem("justCreatedRoom", newRoomId);
+    window.location.hash = newRoomId;
+    window.location.reload();
+  } catch (err) {
+    alert("Error creando sala. Intenta otra vez.");
+    console.error(err);
+  }
 });
 
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-import { getDatabase, ref, update, onValue, get } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
 
 function getRoomIdFromURL() {
   return window.location.hash ? window.location.hash.substring(1).toUpperCase() : null;
@@ -82,12 +103,9 @@ function getRoomIdFromURL() {
 const roomId = getRoomIdFromURL();
 const isMultiplayer = !!roomId;
 let username = "Jugador";
-
-let db, foundRef, playersRef;
-
+let foundRef, playersRef;
 
 
-// textual lol hola thanatos - No mires mi codigo cerdo
 const DATA_TEXT = `
 FNaF 1
 Freddy / freddy.png / freddy
@@ -447,27 +465,20 @@ High School Pigpatch / highPigpatch.png / High School Pigpatch, school Pigpatch
 
 
 function parseDataText(raw) {
-  const categories = [];  // [{ key, title, list }]
+  const categories = [];
   let current = null;
-
   const lines = raw.split("\n");
 
   for (let rawLine of lines) {
     const line = rawLine.trim();
     if (!line) continue;
-    // ignora separadores tipo ".", "..."
     if (/^\.+$/.test(line)) continue;
-    // ignora "(No añadir personajes)"
     if (/^\(no añadir personajes\)$/i.test(line)) continue;
 
-    
     const parts = line.split(" / ").map(s => s.trim());
-
-    
     const looksLikeItem = (parts.length >= 3) && /\.png$/i.test(parts[1] || "");
 
     if (!looksLikeItem) {
-     
       const title = line;
       const key = slugifyGameTitle(title);
       current = { key, title, list: [] };
@@ -475,9 +486,7 @@ function parseDataText(raw) {
       continue;
     }
 
-   
     if (!current) {
-      
       current = { key: "uncategorized", title: "Uncategorized", list: [] };
       categories.push(current);
     }
@@ -489,28 +498,22 @@ function parseDataText(raw) {
       .map(a => a.trim())
       .filter(Boolean);
 
-    
     const aliases = rawAliases.length ? rawAliases : [display];
 
     current.list.push({
-      name: normalizeAlias(display),       
+      name: normalizeAlias(display),
       img: `img/${imgFile}`,
       aliases,
       displayName: display,
     });
   }
 
- 
   const G = {};
-  for (const g of categories) {
-    G[g.key] = { title: g.title, list: g.list };
-  }
+  for (const g of categories) G[g.key] = { title: g.title, list: g.list };
   return G;
 }
 
-
 const GAMES = parseDataText(DATA_TEXT);
-
 
 
 const foundByGame = {};
@@ -596,12 +599,16 @@ function shrinkLabels() {
   }, 0);
 }
 
-
-
-
 function renderAllGrids() {
+  
   const x = window.scrollX;
   const y = window.scrollY;
+  const html = document.documentElement;
+  const body = document.body;
+  const prevOverflowHtml = html.style.overflow;
+  const prevOverflowBody = body.style.overflow;
+  html.style.overflow = "hidden";
+  body.style.overflow = "hidden";
 
   for (const [key, cfg] of Object.entries(GAMES)) {
     renderGrid(cfg.list, foundByGame[key], `grid-${key}`);
@@ -609,18 +616,20 @@ function renderAllGrids() {
   updateResults();
   shrinkLabels();
 
-  window.scrollTo(x, y);
+  
+  requestAnimationFrame(() => {
+    window.scrollTo(x, y);
+    html.style.overflow = prevOverflowHtml;
+    body.style.overflow = prevOverflowBody;
+  });
 
-
+  
   const totalFoundNow = Object.values(foundByGame).reduce((sum, arr) => sum + arr.length, 0);
   const totalAnimatronicsNow = allAnimatronics.length;
-
   if (totalFoundNow === totalAnimatronicsNow) {
     stopTimer();
   }
 }
-
-
 
 function updateResults() {
   const total = Object.values(GAMES).reduce((sum, cfg) => sum + cfg.list.length, 0);
@@ -632,20 +641,17 @@ function updateResults() {
     : `${count} / ${total} found`;
 }
 
-
 const correctSound = new Audio("sounds/correct.mp3");
-
 
 document.getElementById("toggle-silhouettes")?.addEventListener("click", () => {
   showSilhouettes = !showSilhouettes;
   renderAllGrids();
 });
 
-
 const allAnimatronics = Object.entries(GAMES).flatMap(([game, cfg]) =>
   cfg.list.map(a => ({
     ...a,
-    game, // clave slug del juego
+    game,
     aliases: a.aliases || [a.displayName || a.name]
   }))
 );
@@ -656,10 +662,7 @@ function preloadAll() {
 
 
 document.getElementById("guess")?.addEventListener("input", (e) => {
-  
-  if (e.target.value.length > 0) {
-    startTimer();
-  }
+  if (e.target.value.length > 0) startTimer();
 
   const input = normalize(e.target.value);
   if (!input) return;
@@ -689,68 +692,43 @@ document.getElementById("guess")?.addEventListener("input", (e) => {
 });
 
 
-
 document.addEventListener("contextmenu", e => {
   if (e.target.tagName === "IMG") e.preventDefault();
 });
 
 
-
-
-
 const pressedKeys = new Set();
+let cawLatch = false;
 
 document.addEventListener("keydown", (e) => {
-  pressedKeys.add(e.key.toLowerCase());
+  const k = e.key.toLowerCase();
+  pressedKeys.add(k);
 
-  
-  if (pressedKeys.has("c") && pressedKeys.has("a") && pressedKeys.has("w")) {
+  if (!cawLatch && pressedKeys.has("c") && pressedKeys.has("a") && pressedKeys.has("w")) {
+    cawLatch = true;
     allAnimatronics.forEach((anim, index) => {
-     
       if (index === 0) return;
-
       const n = normalizeKey(anim.displayName || anim.name);
       const arr = foundByGame[anim.game];
       if (!arr.includes(n)) arr.push(n);
-
       if (isMultiplayer) {
         update(ref(db, `rooms/${roomId}/found`), { [`${anim.game}-${n}`]: username });
       }
     });
-
     renderAllGrids();
     console.log("CAWTHON ACCESS ;)");
   }
 });
-
 document.addEventListener("keyup", (e) => {
-  pressedKeys.delete(e.key.toLowerCase());
+  const k = e.key.toLowerCase();
+  pressedKeys.delete(k);
+  if (k === "c" || k === "a" || k === "w") cawLatch = false;
 });
-
-
-
-
-
-
 
 
 if (isMultiplayer) {
   document.getElementById("ranking").style.display = "block";
   username = prompt("Type your name to make a temporary room, then send the link to a friend!")?.trim().substring(0, 20) || "Anonym";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyASXBFvzjCcp21g5NcI1PqYbX7rFN1UVIs",
-    authDomain: "fnafquiz1.firebaseapp.com",
-    databaseURL: "https://fnafquiz1-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "fnafquiz1",
-    storageBucket: "fnafquiz1.firebasestorage.app",
-    messagingSenderId: "812258358214",
-    appId: "1:812258358214:web:9466fc6efa4e0009d538c7",
-    measurementId: "G-9BHX9G7GT1"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  db = getDatabase(app);
 
   const createdId = localStorage.getItem("justCreatedRoom");
   if (createdId && createdId === roomId) {
@@ -764,7 +742,6 @@ if (isMultiplayer) {
 
   onValue(foundRef, (snapshot) => {
     const data = snapshot.val() || {};
-    
     Object.keys(foundByGame).forEach(k => (foundByGame[k] = []));
     let personalCount = 0;
 
