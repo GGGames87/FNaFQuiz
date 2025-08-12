@@ -606,19 +606,51 @@ function renderAllGrids() {
   for (const [key, cfg] of Object.entries(GAMES)) {
     renderGrid(cfg.list, foundByGame[key], `grid-${key}`);
   }
-
   updateResults();
   shrinkLabels();
 
-  // Restaurar posición de scroll después del reflow
+ 
   requestAnimationFrame(() => {
     window.scrollTo(x, y);
   });
 
-  const totalFoundNow = Object.values(foundByGame).reduce((sum, arr) => sum + arr.length, 0);
+  
+  const totalFoundNow = Object.values(foundByGame).reduce((s, arr) => s + arr.length, 0);
   if (totalFoundNow === allAnimatronics.length) {
     stopTimer();
   }
+}
+
+function revealCharacter(anim) {
+  const key = normalizeKey(anim.displayName || anim.name);
+  const list = foundByGame[anim.game];
+  if (list.includes(key)) return;
+
+
+  list.push(key);
+  lastCorrect = anim.displayName || anim.name;
+
+ 
+  try {
+    correctSound.currentTime = 0;
+    correctSound.play();
+  } catch {}
+
+
+  renderGrid(GAMES[anim.game].list, list, `grid-${anim.game}`);
+
+ 
+  updateResults();
+  shrinkLabels();
+
+  
+  const totalFoundNow = Object.values(foundByGame).reduce((s, arr) => s + arr.length, 0);
+  if (totalFoundNow === allAnimatronics.length) {
+    stopTimer();
+  }
+
+ 
+  setTimeout(() => { lastCorrect = null; }, 100);
 }
 
 
@@ -653,6 +685,7 @@ function preloadAll() {
 
 
 document.getElementById("guess")?.addEventListener("input", (e) => {
+  
   if (e.target.value.length > 0) startTimer();
 
   const input = normalize(e.target.value);
@@ -662,25 +695,21 @@ document.getElementById("guess")?.addEventListener("input", (e) => {
     const normalizedAliases = (anim.aliases || []).map(a => normalize(a));
     if (!normalizedAliases.includes(input)) continue;
 
-    const n = normalizeKey(anim.displayName || anim.name);
-    const list = foundByGame[anim.game];
-    if (list.includes(n)) break;
-
-    list.push(n);
-    lastCorrect = anim.displayName || anim.name;
-    correctSound.currentTime = 0;
-    correctSound.play();
+   
     e.target.value = "";
 
+    
     if (isMultiplayer) {
+      const n = normalizeKey(anim.displayName || anim.name);
       update(ref(db, `rooms/${roomId}/found`), { [`${anim.game}-${n}`]: username });
     }
 
-    renderAllGrids();
-    setTimeout(() => { lastCorrect = null; }, 100);
+    
+    revealCharacter(anim);
     break;
   }
 });
+
 
 
 document.addEventListener("contextmenu", e => {
