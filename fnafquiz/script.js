@@ -575,7 +575,7 @@ function renderGrid(animList, foundList, containerId) {
       img.src = "img/question.png";
     }
 
-   
+    
     if (isFound && (anim.displayName || anim.name) === lastCorrect) {
       if (!img.classList.contains("silhouette")) {
         img.classList.remove("revealed");
@@ -609,7 +609,7 @@ function renderGrid(animList, foundList, containerId) {
 
     label.className = isFound ? "name-visible" : "name-hidden";
 
-  
+   
     card.appendChild(img);
     card.appendChild(label);
     grid.appendChild(card);
@@ -617,26 +617,6 @@ function renderGrid(animList, foundList, containerId) {
 }
 
 
-
-    const label = document.createElement("div");
-    const display = anim.displayName || capitalize(anim.name);
-
-    
-    label.innerHTML = "";
-    display.split(" ").forEach((w, i, arr) => {
-      const sp = document.createElement("span");
-      sp.className = "name-part";
-      sp.textContent = w;
-      sp.style.display = "inline-block";
-      sp.style.whiteSpace = "nowrap";
-      sp.style.fontSize = "14px";
-      label.appendChild(sp);
-      if (i < arr.length - 1) label.appendChild(document.createTextNode(" "));
-    });
-
-    label.className = isFound ? "name-visible" : "name-hidden";
-
-}
 
 function fitAllLabels() {
   
