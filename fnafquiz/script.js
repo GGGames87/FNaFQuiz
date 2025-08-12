@@ -576,28 +576,74 @@ function renderGrid(animList, foundList, containerId) {
     }
 
     const label = document.createElement("div");
-    label.textContent = anim.displayName || capitalize(anim.name);
+    const display = anim.displayName || capitalize(anim.name);
+
+    
+    label.innerHTML = "";
+    display.split(" ").forEach((w, i, arr) => {
+      const sp = document.createElement("span");
+      sp.className = "name-part";
+      sp.textContent = w;
+      sp.style.display = "inline-block";
+      sp.style.whiteSpace = "nowrap";
+      sp.style.fontSize = "14px";
+      label.appendChild(sp);
+      if (i < arr.length - 1) label.appendChild(document.createTextNode(" "));
+    });
+
     label.className = isFound ? "name-visible" : "name-hidden";
 
-    card.appendChild(img);
-    card.appendChild(label);
-    grid.appendChild(card);
+}
+
+function fitAllLabels() {
+  
+  requestAnimationFrame(() => {
+    document.querySelectorAll(".card .name-visible, .card .name-hidden").forEach(fitLabel);
   });
 }
 
-function shrinkLabels() {
-  setTimeout(() => {
-    document.querySelectorAll(".card div").forEach(label => {
-      let fontSize = 14;
-      label.style.fontSize = fontSize + "px";
-      const parent = label.parentElement;
-      while ((label.scrollWidth > parent.clientWidth || label.scrollHeight > 40) && fontSize > 6) {
-        fontSize--;
-        label.style.fontSize = fontSize + "px";
-      }
-    });
-  }, 0);
+function fitLabel(labelEl) {
+ 
+  if (labelEl.classList.contains("name-hidden")) return;
+
+  const parent = labelEl.parentElement; // .card
+  if (!parent) return;
+
+  const maxWidth = parent.clientWidth - 4; // margen de seguridad
+  const parts = Array.from(labelEl.querySelectorAll(".name-part"));
+  if (parts.length === 0) return;
+
+  
+  const widest = () => parts.reduce((a, b) =>
+    (a.getBoundingClientRect().width > b.getBoundingClientRect().width ? a : b)
+  );
+
+  
+  if (parts.length === 1) {
+    labelEl.style.whiteSpace = "nowrap"; // no romper la única palabra
+    let fs = getCurrentPxFont(parts[0]);
+    while ((labelEl.scrollWidth > maxWidth) && fs > 9) {
+      fs -= 1;
+      parts[0].style.fontSize = fs + "px";
+    }
+    return;
+  }
+
+  
+  let safety = 60; // corta bucles locos
+  while ((labelEl.scrollWidth > maxWidth) && safety-- > 0) {
+    const w = widest();
+    let fs = getCurrentPxFont(w);
+    if (fs <= 9) break;
+    w.style.fontSize = (fs - 1) + "px";
+  }
 }
+
+function getCurrentPxFont(el) {
+  const s = el.style.fontSize || window.getComputedStyle(el).fontSize || "14px";
+  return parseFloat(s);
+}
+
 
 function renderAllGrids() {
   const x = window.scrollX;
@@ -607,7 +653,7 @@ function renderAllGrids() {
     renderGrid(cfg.list, foundByGame[key], `grid-${key}`);
   }
   updateResults();
-  shrinkLabels();
+  fitAllLabels();
 
  
   requestAnimationFrame(() => {
@@ -641,7 +687,7 @@ function revealCharacter(anim) {
 
  
   updateResults();
-  shrinkLabels();
+  fitAllLabels();
 
   
   const totalFoundNow = Object.values(foundByGame).reduce((s, arr) => s + arr.length, 0);
