@@ -105,6 +105,72 @@ const isMultiplayer = !!roomId;
 let username = "Jugador";
 let foundRef, playersRef;
 
+(function setupLocalSaveLoadButtons() {
+  if (isMultiplayer) return;
+
+  const sticky = document.getElementById("sticky-header");
+  if (!sticky) return;
+
+  
+  const wrap = document.createElement("div");
+  wrap.style.display = "flex";
+  wrap.style.gap = "8px";
+  wrap.style.alignItems = "center";
+  wrap.style.marginRight = "10px";
+
+  
+  const btnSave = document.createElement("button");
+  btnSave.textContent = "Save";
+  btnSave.title = "Descargar save local";
+  btnSave.style.padding = "6px 10px";
+  btnSave.style.cursor = "pointer";
+
+ 
+  const btnLoad = document.createElement("button");
+  btnLoad.textContent = "Load";
+  btnLoad.title = "Cargar save local";
+  btnLoad.style.padding = "6px 10px";
+  btnLoad.style.cursor = "pointer";
+
+ 
+  const fileInput = document.createElement("input");
+  fileInput.type = "file";
+  fileInput.accept = "application/json";
+  fileInput.style.display = "none";
+
+  
+  const inputWrapper = document.getElementById("input-wrapper");
+  if (inputWrapper) {
+    sticky.insertBefore(wrap, inputWrapper);
+  } else {
+    sticky.prepend(wrap);
+  }
+  wrap.appendChild(btnSave);
+  wrap.appendChild(btnLoad);
+  document.body.appendChild(fileInput);
+
+  
+  btnSave.addEventListener("click", handleLocalSaveDownload);
+  btnLoad.addEventListener("click", () => fileInput.click());
+  fileInput.addEventListener("change", async (e) => {
+    const f = e.target.files?.[0];
+    if (!f) return;
+    try {
+      const text = await f.text();
+      const data = JSON.parse(text);
+      handleLocalLoadData(data);
+      alert("Save cargado con éxito.");
+    } catch (err) {
+      console.error(err);
+      alert("No se pudo cargar el save. ¿Es un JSON válido de este juego?");
+    } finally {
+      fileInput.value = ""; // reset
+    }
+  });
+})();
+
+
+
 
 const DATA_TEXT = `
 FNaF 1
@@ -518,6 +584,67 @@ const GAMES = parseDataText(DATA_TEXT);
 
 const foundByGame = {};
 Object.keys(GAMES).forEach(k => (foundByGame[k] = []));
+
+
+
+
+function getElapsedMsIfRunning() {
+  if (!running || typeof startTime !== "number") return 0;
+  return Date.now() - startTime;
+}
+
+function handleLocalSaveDownload() {
+  const payload = {
+    version: 1,
+    savedAt: new Date().toISOString(),
+    found: Object.fromEntries(
+      Object.keys(GAMES).map(k => [k, [...(foundByGame[k] || [])]])
+    ),
+    timerMs: getElapsedMsIfRunning()
+  };
+
+  const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  const now = new Date();
+  const stamp = now.toISOString().replace(/[:.]/g, "-");
+  a.href = url;
+  a.download = `fnaf-quiz-save-${stamp}.json`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+
+function handleLocalLoadData(data) {
+  if (!data || typeof data !== "object") throw new Error("Formato inválido");
+  if (typeof data.version !== "number") throw new Error("Versión faltante");
+  if (!data.found || typeof data.found !== "object") throw new Error("Campo 'found' inválido");
+
+  Object.keys(foundByGame).forEach(k => (foundByGame[k] = []));
+
+  for (const [gameKey, list] of Object.entries(data.found)) {
+    if (!GAMES[gameKey] || !Array.isArray(list)) continue;
+    const validNamesSet = new Set(
+      GAMES[gameKey].list.map(a => normalizeKey(a.displayName || a.name))
+    );
+    const unique = new Set(list.map(n => String(n)));
+    foundByGame[gameKey] = [...unique].filter(n => validNamesSet.has(n));
+  }
+
+  if (typeof data.timerMs === "number" && data.timerMs > 0) {
+    try {
+      stopTimer();
+      running = true;
+      startTime = Date.now() - Math.min(data.timerMs, 24 * 3600 * 1000);
+      timerInterval = setInterval(updateTimer, 10);
+    } catch {}
+  }
+
+  renderAllGrids();
+}
+
 
 
 function createSections() {
