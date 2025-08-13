@@ -119,13 +119,13 @@ Phone Guy / phoneguy.png / ralph, phone guy
 Mike Schmidt / mikeschmidt.png / mike schmidt
 
 FNaF 2
-JJ / jj.png / jj, balloon girl
-Balloon Boy / bb.png / bb, balloon boy
-The Puppet / puppet.png / puppet, marionette, the puppet, the marionette
 Toy Freddy / toyfreddy.png / toy freddy
 Toy Bonnie / toybonnie.png / toy bonnie
 Toy Chica / toychica.png / toy chica
 Mangle / mangle.png / mangle
+Balloon Boy / bb.png / bb, balloon boy
+JJ / jj.png / jj, balloon girl
+
 Toy Cupcake / toycupcake.png / toy cupcake, toy mr cupcake
 Endo-02 / endo02.png / endo-02, endo 02, endo2, endo-2
 Withered Freddy / wfreddy.png / withered freddy, w freddy
@@ -754,7 +754,6 @@ function preloadAll() {
 
 
 document.getElementById("guess")?.addEventListener("input", (e) => {
-  
   if (e.target.value.length > 0) startTimer();
 
   const input = normalize(e.target.value);
@@ -764,20 +763,26 @@ document.getElementById("guess")?.addEventListener("input", (e) => {
     const normalizedAliases = (anim.aliases || []).map(a => normalize(a));
     if (!normalizedAliases.includes(input)) continue;
 
-   
-    e.target.value = "";
-
     
-    if (isMultiplayer) {
-      const n = normalizeKey(anim.displayName || anim.name);
-      update(ref(db, `rooms/${roomId}/found`), { [`${anim.game}-${n}`]: username });
+    const n = normalizeKey(anim.displayName || anim.name);
+    const list = foundByGame[anim.game];
+    if (list.includes(n)) {
+      
+      break;
     }
 
     
+    e.target.value = "";
+
+    if (isMultiplayer) {
+      update(ref(db, `rooms/${roomId}/found`), { [`${anim.game}-${n}`]: username });
+    }
+
     revealCharacter(anim);
     break;
   }
 });
+
 
 
 
