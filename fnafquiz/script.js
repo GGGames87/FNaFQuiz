@@ -111,10 +111,10 @@ FNaF 1
 Freddy / freddy.png / freddy
 Bonnie / bonnie.png / bonnie
 Chica / chica.png / chica
+Mr. Cupcake / mrcupcake.png / cupcake, mr. cupcake, mr cupcake, mrcupcake
 Foxy / foxy.png / foxy
 Golden Freddy / goldenfreddy.png / golden freddy
 Endo-01 / endo01.png / endo-01, endo 01, endo1, endo-1
-Mr. Cupcake / mrcupcake.png / cupcake, mr. cupcake, mr cupcake, mrcupcake
 Phone Guy / phoneguy.png / ralph, phone guy
 Mike Schmidt / mikeschmidt.png / mike schmidt
 
@@ -122,17 +122,17 @@ FNaF 2
 Toy Freddy / toyfreddy.png / toy freddy
 Toy Bonnie / toybonnie.png / toy bonnie
 Toy Chica / toychica.png / toy chica
-Mangle / mangle.png / mangle
+Toy Cupcake / toycupcake.png / toy cupcake, toy mr cupcake
+Mangle / mangle.png / mangle, mango
+The Puppet / puppet.png / puppet, marionette, the puppet, the marionette
 Balloon Boy / bb.png / bb, balloon boy
 JJ / jj.png / jj, balloon girl
-
-Toy Cupcake / toycupcake.png / toy cupcake, toy mr cupcake
-Endo-02 / endo02.png / endo-02, endo 02, endo2, endo-2
 Withered Freddy / wfreddy.png / withered freddy, w freddy
 Withered Bonnie / wbonnie.png / withered bonnie, w bonnie
 Withered Chica / wchica.png / withered chica, w chica
 Withered Foxy / wfoxy.png / withered foxy, w foxy
 Withered Golden Freddy / wgolden.png / withered golden freddy, w golden freddy, w g freddy
+Endo-02 / endo02.png / endo-02, endo 02, endo2, endo-2
 RWQFSFASXC / shadowbonnie.png / rwqfsfasxc, shadow bonnie, rxq
 Shadow Freddy / shadowfreddy.png / shadow freddy, purple freddy
 Paperpals / paperpals.png / paperpals
@@ -382,7 +382,7 @@ Yenndo / yenndo.png / yenndo, yendo
 Human Heads / humanheads.png / module heads, human heads, robotic heads, robot heads, control module heads
 Fortune Teller / fortuneteller.png / fortune teller
 Fredbear Plush / fredbearplush.png / fredbear plush, plush fredbear, remote fredbear, fredbear remote
-Elizabeth Afton / eliza.png / Elizabeth Afton, elisabeth afton, afton's daughter, ice cream girl
+Elizabeth Afton / eliza.png / Elizabeth Afton, elisabeth afton, afton's daughter, ice cream girl, Elizabeth
 Technicians / technicians.png / Technicians, workers, the Technicians, tecnics
 Vlad / vlad.png / vlad, vampire
 Clara / clara.png / clara, vlad's wife, vlad's mistress
