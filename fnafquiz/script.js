@@ -181,12 +181,14 @@ Golden Freddy / goldenfreddy.png / golden freddy
 Endo-01 / endo01.png / endo-01, endo 01, endo1, endo-1, bare endo
 Phone Guy / phoneguy.png / ralph, phone guy
 Mike Schmidt / mikeschmidt.png / mike schmidt
+Unused Lives Guy / livesguy.png / unused lives, lives, sprite lives, 8bit lives
 
 FNaF 2
-Toy Freddy / toyfreddy.png / toy freddy
-Toy Bonnie / toybonnie.png / toy bonnie
-Toy Chica / toychica.png / toy chica
-Toy Cupcake / toycupcake.png / toy cupcake, toy mr cupcake
+Toy Freddy / toyfreddy.png / toy freddy, t freddy
+Toy Bonnie / toybonnie.png / toy bonnie, tbonnie
+Toy Chica / toychica.png / toy chica, tchica
+Toy Cupcake / toycupcake.png / toy cupcake, toy mr cupcake, tcupcake, tmrcucpake
+Toy Funtime Foxy / tftfoxy.png / toy foxy, toy funtime foxy, toy ft foxy, tftfoxy, t funtime foxy, fixed mangle, mangle fixed, unbroken mangle, fnaf 2 funtime foxy, fnaf 2 ft foxy, repaired mangle
 Mangle / mangle.png / mangle, mango, the mangle
 The Puppet / puppet.png / puppet, marionette, the puppet, the marionette
 Balloon Boy / bb.png / bb, balloon boy
@@ -203,6 +205,7 @@ Paperpals / paperpals.png / paperpals
 Fritz Smith / FritzSmith.png / fritz smith
 Jeremy Fitzgerald / JeremyFitzgerald.png / jeremy fitzgerald
 William Afton / william.png / william, purple guy, vincent
+Cakebear / cakebear.png / TCTTC freddy, take cake to the children freddy, cakebear, cake freddy, pie freddy, caked up freddy
 
 FNaF 3 Troll Game
 Freddydude / Freddydude.png / freddydude, animdude freddy, There is no Pause Button Freddy, TINPB Freddy
@@ -217,6 +220,7 @@ Phantom Foxy / pfoxy.png / pfoxy, phantom foxy
 Phantom Mangle / pmangle.png / pmangle, phantom mangle
 Phantom Balloon Boy / pbb.png / pbb, pballoonboy, phantom bb, phantom balloon boy
 Phantom Puppet / ppuppet.png / ppuppet, phantom puppet, phantom marionette
+Crumpled Freddy / crumpledsuit.png / crumpled suit, crumpled freddy, crumpled shadow freddy, fnaf 3 shadow freddy, shadow freddy fnaf 3, phantom shadow freddy, phantom golden freddy, phantom withered golden freddy
 Shadow Cupcake / shadowcupcake.png / phantom cupcake, pcupcake, shadow cupcake
 Golden Cupcake / goldencupcake.png / golden cupcake
 Phone Dude / phonedude.png / phone dude, duane, fnaf 3 phone guy
@@ -238,19 +242,30 @@ Nightmare Foxy / nfoxy.png / nightmare foxy, nfoxy
 Nightmare Fredbear / nfredbear.png / nightmare fredbear, nfredbear, nightmare golden freddy, ngolden freddy
 Nightmare / nightmare.png / nightmare, nshadowfreddy, nightmare shadow freddy
 Plushtrap / plushtrap.png / plushtrap, nightmare springtrap, nspringtrap, nspring bonnie, nightmare spring bonnie
+Toy Caterpillar \/ Fish / toyfish.png / toy worm, worm, toy caterpillar, Caterpillar
+Toy Phone / toyphone.png / toy phone, purple telephone, telephone, blue phone, blue telephone, purple phone
+Toy Robot / toyrobot.png / purple robot, toy robot, toy purple robot, purple tuy robot, robot toy
 Freddy Bully / freddybully.png / freddy bully, bully freddy, oswald's father, oswald father, mr renner, kelsey
 Bonnie Bully / bonniebully.png / bonnie bully, bully bonnie, help wanted jeremy, cassie's father, cassie father
 Chica Bully / chicabully.png / chica bully, bully chica
+Foxy Bully (Young Mike) / foxybro.png / young mike, younger mike, young michael, younger michael, foxybro, ccs brother, foxy bully, bully foxy, brother foxy, brofoxy
 Crying Child / cc.png / cc, crying child, bv, bite victim, sobbing child, little man, evan afton, dave afton
+Spring Bonnie Plush Kid / plushgirl.png / springbonnie plush kid, spring bonnie girl, plush girl, plush kid, fingertrap girl, fingertrap kid, plushtrap kid, plushtrap girl
+Pigtailed Girl / pigtailgirl.png / pigatail girl, pigtailed girl, pigtail child, pigtailed child, baby girl, baby child, green eyed kid, skit girl
+Toy Collector Girl / toygirl.png / toy girl, toy collector, collection girl, toy collector, collector girl, toys girl
+Balloon Kid / balloonkid.png / Balloon Kid, chubby kid, minigame balloon boy, balloon child
 
 FNaF World: Halloween Edition
-Ball Boy (HE) / ballboyhe.png / Halloween Ball Boy, Ball boy halloween, he ball boy, ball boy he
+Adventure Freddy (HE) / hefreddy.png / Adventure Freddy halloween, Adventure Freddy he, he Adventure Freddy, halloween Adventure Freddy, adv Freddy halloween, adv Freddy he, he adv Freddy, halloween adv Freddy
+Adventure Bonnie (HE) / hebonnie.png / Adventure Bonnie halloween, Adventure Bonnie he, he Adventure Bonnie, halloween Adventure Bonnie, adv Bonnie halloween, adv Bonnie he, he adv Bonnie, halloween adv Bonnie
+Adventure Chica (HE) / hechica.png / Adventure Chica halloween, Adventure Chica he, he Adventure Chica, halloween Adventure Chica, adv Chica halloween, adv Chica he, he adv Chica, halloween adv Chica
+Ballboy (HE) / ballboyhe.png / Halloween Ball Boy, Ball boy halloween, he ball boy, ball boy he
 Mad Endo (HE) / madendohe.png / halloween mad endo, he mad endo, mad endo halloween, mad endo he
 Cheesehead / Cheesehead.png / Cheesehead
 Tangle (HE) / Tanglehe.png / halloween Tangle, he tangle, Tangle halloween, Tangle he
-Prototype (HE) / Prototypehe.png / Prototype haloween, Prototype he, he Prototype, halloween Prototype
+Prototype (HE) / Prototypehe.png / Prototype halloween, Prototype he, he Prototype, halloween Prototype
 Half-Bake / halfbake.png / Half-Bake
-Brow Boy (HE) / browboyhe.png / Brow Boy haloween, Brow Boy he, he Brow Boy, halloween Brow Boy
+Brow Boy (HE) / browboyhe.png / Brow Boy halloween, Brow Boy he, he Brow Boy, halloween Brow Boy
 Anchovy / Anchovy.png / Anchovy
 Madjack / Madjack.png / Madjack
 Quad Endo / QuadEndo.png / Quad Endo
@@ -277,9 +292,9 @@ Adventure Freddy / advfreddy.png / adventure freddy, adv freddy
 Adventure Bonnie / advbonnie.png / adventure bonnie, adv bonnie
 Adventure Chica / advchica.png / adventure chica, adv chica
 Adventure Foxy / advfoxy.png / adventure foxy, adv foxy
-Adventure Toy Bonnie / advtbonnie.png / adventure Toy Bonnie, adv t bonnie, adv toy bonnie
-Adventure Toy Chica / advtchica.png / adventure Toy Chica, adv t chica, adv toy chica
-Adventure Toy Freddy / advtfreddy.png / adventure Toy freddy, adv t freddy, adv toy freddy
+Adventure Toy Bonnie / advtbonnie.png / adventure Toy Bonnie, adv t bonnie, adv toy bonnie, adv tbonnie
+Adventure Toy Chica / advtchica.png / adventure Toy Chica, adv t chica, adv toy chica, advtchica
+Adventure Toy Freddy / advtfreddy.png / adventure Toy freddy, adv t freddy, adv toy freddy, advtfreddy
 Adventure Mangle / advmangle.png / Adventure Mangle, adv mangle
 Adventure Balloon Boy / advbb.png / Adventure Balloon Boy, adventure bb, advbb
 Adventure JJ / advjj.png / Adventure JJ, Adventure Balloon Girl, adv jj, adv jayjay, adventure jayjay
@@ -319,6 +334,10 @@ Adventure Freddles / advfreddles.png / Adventure Freddles, adv freddles
 Adventure Ghost Freddy / advghostfreddy.png / Adventure ghost freddy, adv ghost freddy, ghost freddy
 Adventure Virtua-Freddy / advvirtual.png / Adventure virtua freddy, adv virtua freddy, virtua freddy
 Mimic Ball / mimicball.png / mimic ball
+The Dancing One / dancingshadow.png / dancing freddy, dancing shadow freddy, dancing one, the dancing one, dancing shadow, shadow dancing
+White Seagulls / whitebird.png / birds, white seagulls, seagulls, fnaf world birds
+Stump Segull / seagull.png / stump seagull, seagull, seagull stump, stump bird
+Dusting Fields Bird / worldblackbirds.png / bird, dusting bird, adventure blackbird, fnaf world blackbird, dusting fields bird
 Adventure Lolbit / advlolbit.png / Adv lolbit, adventure lolbit
 Gnat / Gnat.png / Gnat
 Neon Bee / Neon Bee.png / Neon Bee
@@ -341,8 +360,17 @@ KABOOM / KABOOM.png / KABOOM
 BossDrain01 / BossDrain01.png / BossDrain01
 BossDrain02 / BossDrain02.png / BossDrain02
 BossDrain-X / BossDrain-X.png / BossDrain-X
+Adventure Fan / advfan.png / adventure fan, advfan, byte fan, fan
 Adventure Mendo / mendo.png / mendo, endo mendo, adventure mendo, adv mendo
 Adventure Dee Dee / dd.png / deedee, dd, advdd, adventure deedee
+Orange Robot Fish / fish1.png / orange fish, fish 1, orange robot fish, robot fish 1
+Green Robot Fish / fish2.png / Green fish, fish 2, Green robot fish, robot fish 2
+Purple Robot Fish / fish3.png / Purple fish, fish 3, Purple robot fish, robot fish 3
+Blue Robot Fish / fish4.png / Blue fish, fish 4, Blue robot fish, robot fish 4, indigo fish
+Pink Robot Fish / fish5.png / Pink fish, fish 5, Pink robot fish, robot fish 5
+Yellow Robot Fish / fish6.png / Yellow fish, fish 6, Yellow robot fish, robot fish 6
+Unused Turtle / fish7.png / turtle, unused turtle, fish 7, robot fish 7, tortoise, unused tortoise
+Pearl / pearl.png / pearl, byte pearl
 8-bit Fredbear / 8bitfredbear.png / 8-bit Fredbear, glitchbear, glitched fredbear, sprite fredbear
 Old Man Consequences / omc.png / omc, Old Man Consequences
 Desk Man / deskman.png / Desk Man, scott cawthon, sad man, sad desk man
@@ -376,6 +404,8 @@ White Rabbit / White Rabbit.png / White Rabbit
 _!2222 / glitch2.png / _!2222
 %__^^&( / glitch3.png / %__^^&(
 Unused Browboy Enemy / unusedbrowboy.png / browboy enemy, enemy browboy, unused browboy
+Unused Prototype / betaproto.png / beta Prototype, alpha Prototype, old Prototype, unused Prototype, trailer Prototype, teaser Prototype, purple Prototype
+Unused Mechrab / goldencrab.png / Gold Mechrab, golden Mechrab, unused Mechrab, trailer Mechrab, teaser Mechrab, old Mechrab
 Auto Chipper / Auto Chipper.png / Auto Chipper
 Bouncer / Bouncer.png / Bouncer
 Eyesore / Eyesore.png / Eyesore
@@ -401,16 +431,23 @@ Adventure Nightmarionne / advnpuppet.png / Adventure npuppet, Adventure nightmar
 Coffee / coffee.png / Coffee, cofe, coffe, cofee, adventure coffee, adv coffee
 Adventure Purpleguy / advpurpleguy.png / Adventure purpleguy, purpleguy, adv purpleguy, Adventure william afton
 Adventure Jack-O'-Lantern / advlantern.png / Adventure jack-o-lantern, Adventure jack-o'-lantern, Adventure mr pumpkin, Adventure pumpkin, adv punpkin, adv jack-o-lantern
-Kitty / kitty.png / Kitty, cat, Kitty in the Crowd cat, the kitty, fis kitty, freddy in space kitty, fis cat, freddy in space cat
+Scarecrow / scarecrow.png / scarecrow, adventure scarecrow, adv scarecrow
 P. Goon / P. Goon.png / p.goon
 Neon / Neon.png / Neon
 Jangle / Jangle.png / Jangle
+Foxy.EXE / foxyexe.png / foxy exe, creepypasta foxy, exe foxy, foxy creepypasta, big foxy, giant foxy, colossal foxy, Withered foxy exe, creepypasta Withered foxy, exe Withered foxy, Withered foxy creepypasta, big Withered foxy, giant Withered foxy, colossal Withered foxy
+Kitty / kitty.png / Kitty, cat, Kitty in the Crowd cat, the kitty, fis kitty, freddy in space kitty, fis cat, freddy in space cat
+FiS Freddy / fisfreddy.png / fis freddy, freddy in space freddy, space freddy, fnaf57 freddy
+Fis Mr. Cupcake / fiscupcake.png /  fis Cupcake, freddy in space Cupcake, space Cupcake, fnaf57 Cupcake, fis mr Cupcake, freddy in space mr Cupcake, space mr Cupcake, fnaf57 mr Cupcake
 Wind-up Enemy / Windup.png / Wind-up Mouse, windup enemy, Sawspin, Cogcut, fnaf 57 enemy 1, freddy in space enemy 1, fis enemy 1, fis windup enemy, freddy in space wind up enemy, fis small robot, freddy in space small robot, fis windup robot, freddy in space wind up robot, windup robot, small space robot, small alien robot, fis small robot, freddy in space small robot
 Large Robot / larg.png / robot, Large Robot, fnaf 57 enemy 2, freddy in space enemy 2, fis enemy 2, fis large robot, freddy in space large robot, fis robot, freddy in space robot, Blorgus, large space robot, space robot, large alien robot, alien robot
 Alien Enemy / alien.png / alien, blue rot, blue flan, blue seaweed, fnaf 57 enemy 3, freddy in space enemy 3, fis enemy 3, fis flan, freddy in space flan, space flan
 Tentacle / tentacle.png / tentacle, fnaf 57 enemy 4, freddy in space enemy 4, fis enemy 4, fis tentacle, freddy in space tentacle, space tentacle, alien tentacle
 Laser UFO / laser.png / laser ufo, laser, fnaf 57 enemy 5, freddy in space enemy 5, fis enemy 5, fis ufo, freddy in space ufo, alien ufo, space ufo
 Giant Metalman / metal2.png / Giant Metalman, metalman 2, fnaf 57 enemy 6, freddy in space enemy 6, fis enemy 6, fis metalman, freddy in space metalman, massive metalman, big metalman, laser metalman, gigantic metalman, huge metalman, colossal metalman, space metalman, alien metalman
+Camera Enemy / fiscamera.png / fis camera, freddy in space camera, alien camera, shooting camera, camera enemy, enemy camera, fis enemy 7, fnaf 57 enemy 7, freddy in space enemy 7
+Bubble Enemy / thing.png / thing, fis Bubble, freddy in space Bubble, alien Bubble, fis blob, Bubble enemy, enemy Bubble, fis enemy 8, fnaf 57 enemy 8, freddy in space enemy 8
+Drop-Down Laser / laserbeam.png / laser shooter, fis dropdownlaser, freddy in space dropdownlaser, alien dropdownlaser, fis dropdown laser, enemy laser, fis enemy 9, fnaf 57 enemy 9, freddy in space enemy 9, laser 2, drop down laser
 Scott's Head / scotthead.png / scott cawthon head, scott's head, scotts head, scott head, fnaf 57 boss, freddy in space boss, fis boss
 Souldozer / Souldozer.png / Souldozer, foxy fighters boss
 PurpleGeist / PurpleGeist.png / PurpleGeist
@@ -422,7 +459,7 @@ Bug / Bug.png / bug, insect, slma character 1, slma bug, sit n survive bug, sit 
 Bunny / Bunny.png / bunny, rabbit, slma character 2, slma Bunny, sit n survive Bunny, sit and survive Bunny
 Snake / Snake.png / snake, serpent, slma character 3, slma Snake, sit n survive Snake, sit and survive Snake
 Bat / Bat.png / bat, slma character 4, slma Bat, sit n survive Bat, sit and survive Bat
-Decoy / Decoy.png / decoy, scarecrow, dummy, slma character 5, slma Decoy, sit n survive Decoy, sit and survive Decoy
+Decoy / Decoy.png / decoy, slma scarecrow, dummy, slma character 5, slma Decoy, sit n survive Decoy, sit and survive Decoy, sit n survive scarecrow, sit and survive scarecrow
 Bear / Bear.png / bear, slma character 6, slma Bear, sit n survive Bear, sit and survive Bear
 Zombie / Zombie.png / zombie, slma character 7, slma Zombie, sit n survive Zombie, sit and survive Zombie
 Ghost / Ghost.png / Ghost, slma character 8, slma Ghost, sit n survive Ghost, sit and survive Ghost
@@ -440,12 +477,13 @@ Funtime Lolbit / lolbit.png / lolbit, funtime lolbit, ftlolbit
 Ennard / ennard.png / ennard
 HandUnit / handunit.png / hand unit
 Magician / magician.png / magician
-Little Joe / littlejoe.png / Little Joe, lally's lollies
+Little Joe / littlejoe.png / Little Joe, joe
 Springlock Suit / springlocksuit.png / springlock suit, springlock, night 4 suit, springsuit, funtime springlock
 Yenndo / yenndo.png / yenndo, yendo
 Human Heads / humanheads.png / module heads, human heads, robotic heads, robot heads, control module heads, SL bobble heads, sl doll heads, doll heads, animatronic heads
 Fortune Teller / fortuneteller.png / fortune teller
 Fredbear Plush / fredbearplush.png / fredbear plush, plush fredbear, remote fredbear, fredbear remote
+8-Bit Baby / 8bitbaby.png / 8bitbaby, turtle crusher baby, pixel baby, sprite baby, minigame baby
 Elizabeth Afton / eliza.png / Elizabeth Afton, elisabeth afton, afton's daughter, ice cream girl, Elizabeth
 Technicians / technicians.png / Technicians, workers, the Technicians, tecnics, Hanging Technicians, Dead Technicians, hanged men
 Vlad / vlad.png / vlad, vampire, Immortal and the Restless vampire
@@ -479,6 +517,7 @@ Rockstar Freddy / rfreddy.png / Rockstar Freddy, rfreddy
 Rockstar Bonnie / rbonnie.png / Rockstar Bonnie, rBonnie
 Rockstar Chica / rchica.png / Rockstar chica, rchica
 Rockstar Foxy / rfoxy.png / Rockstar Foxy, rfoxy
+Rockstar Parrot / parrot.png / parrot, rockstar parrot, robot parrot, ffps parrot, fnaf 6 parrot, foxy parrot, rockstar foxy parrot
 Music Man / musicman.png / Music Man
 El Chip / elchip.png / El Chip
 Funtime Chica / ftchica.png / Funtime Chica, ftchica
@@ -487,7 +526,10 @@ Helpy / helpy.png / helpy
 Paper Pals / paperpals2.png / simulator paperpals, paperpals 2, fnaf 6 paperpals, ffps paperpals, new paperpals, paperpals fnaf 6, paperpals ffps, Tycoon Paperpals
 Little Girl / littlegirl.png / little girl, fruity maze girl, fruity maze child, fruity maze player
 Yellow Bunny / rabbit.png / yellow bunny, yellow rabbit, fruity maze bunny, fruity maze rabbit, Fruity Maze Rabbit, Fruity Maze Bunny
+Susie's Dog / susiedog.png / Susie dog, susie puppy, susies dog, susies puppy, fruity maze dog, fruity maze puppy, minigame dog, maze dog
+Yellow Guy / yellowguy.png / yellow man, mustard man, yellow guy, mustard guy, ffps william, fnaf 6 william, mm william, mmman, mmguy, midnight motorist william
 JR's Bouncer / jrbouncer.png / jr's bouncer, jrs bouncer, jr bouncer, green man, Midnight Motorist bouncer, Midnight Motorist green guy, green guy, Midnight Motorist green man
+TV Guy / tvguy.png / tv guy, tv man, mmtvguy, mmtvman, midnight motorist tv guy, midnight motorist tv man, ffps mike, fnaf 6 mike, fnaf 6 michael, ffps michael, couch guy, couch man, michael fnaf 6, michael ffps, mike fnaf 6, mike ffps
 Gumball Swivelhands / gumball.png / Gumball Swivelhands, chewing gum machine, chewing gum vending machine
 Candy Cadet / candycadet.png / Candy Cadet
 Ballpit Tower / tower.png / Ballpit Tower
@@ -501,6 +543,7 @@ Fiztime PopSoda / soda.png / fiztime, popsoda, fiztime popsoda, soda
 Marty / marty.png / Marty, marty's plunger
 Flo / glossy.png / glossy, flo, flo's glossy floss
 Warthog / hog.png / wacky wart, wacky wart paste, hog, warthog, dr. wacky wart
+Lally / lallylollie.png / Lally, little joe ad, ad little joe, joe ad, ad joe, lally lollie, lallys lollies
 The Entrepreneur / entre.png / intro bear, bear intro, The Entrepreneur, Entrepreneur, fnaf 6 bear, bear fnaf 6, yellow bear, the player, ffps bear, bear ffps, michael bear, franchisee, the franchisee, mike bear, cutscene bear, ffps franchisee, fnaf 6 franchisee, bear michael
 Tutorial Unit / tutorialunit.png / Tutorial Unit, fnaf 6 hand unit, hand unit fnaf 6, ffps hand unit, hand unit ffps
 R.A.S.C. / rasc.png / rasc, remote activated simulated c
@@ -510,11 +553,14 @@ Spring Bonnie / springbonnie.png / Spring Bonnie, Golden Bonnie, Gold Bonnie, Th
 
 UCN Demo
 Doofas Freddy / doofasfreddy.png / Doofas Freddy, Doofred, Freddy Doofas, UCN Demo Doofas, UCN Demo Freddy
+Miaton Happy Frog / miatonfrog.png / miaton, monster happy frog, boss happy frog, happy frog boss, happy frog monster, doofas happy frog, happy frog doofas
+Lord Grok Withered Chica / miatonfrog.png / grok, lord grok, monster Withered Chica, boss Withered Chica, Withered Chica boss, Withered Chica monster, doofas Withered Chica, Withered Chica doofas
 
 UCN
 Fredbear / fredbear.png / fredbear
 XOR / xor.png / xor, shadow dd, shadow deedee
-TFC Funtime Freddy / ftfreddyucn.png / tfc funtime freddy, The Fourth Closet Funtime Freddy, fourth closet funtime freddy, ftcftfreddy, the fourth closet ft freddy, gray funtime freddy, gray ft freddy, ucn ft freddy, ucn funtime freddy, mono ft freddy, mono funtime freddy, monochrome ft freddy, monochrome funtime freddy
+TOYSNHK / kidface.png / kidface, TOYSNHK, the one you should not have killed, one you should not have killed, andrew, ucn face, ucn ghost, The One You Shouldn't Have Killed
+TFC Funtime Freddy / ftfreddyucn.png / tfc funtime freddy, The Fourth Closet Funtime Freddy, fourth closet funtime freddy, tfcftfreddy, the fourth closet ft freddy, gray funtime freddy, gray ft freddy, ucn ft freddy, ucn funtime freddy, mono ft freddy, mono funtime freddy, monochrome ft freddy, monochrome funtime freddy
 Japanese Freddy / japfreddy.png / anime freddy, japanese freddy, samurai freddy, the bear, Bear of Vengeance
 Japanese Foxy / japfoxy.png / anime foxy, japanese foxy, samurai fox, the fox
 Japanese Mangle / japmangle.png / anime mangle, japanese mangle, samurai mangle
@@ -568,7 +614,7 @@ function parseDataText(raw) {
       name: normalizeAlias(display),
       img: `img/${imgFile}`,
       aliases,
-      displayName: display,
+      displayName: display.replace(/\\\//g, "/"),
     });
   }
 
