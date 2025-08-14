@@ -15,6 +15,48 @@ let running = false;
 
 let usedSolveAll = false;
 
+
+const btnSolve = document.getElementById("btn-solve-all");
+const btnSave  = document.getElementById("btn-save");
+const btnLoad  = document.getElementById("btn-load");
+
+
+const fileInput = document.createElement("input");
+fileInput.type = "file";
+fileInput.accept = "application/json";
+fileInput.style.display = "none";
+document.body.appendChild(fileInput);
+
+
+btnSolve?.addEventListener("click", () => {
+  solveAllLocal();
+});
+
+btnSave?.addEventListener("click", () => {
+  handleLocalSaveDownload();
+});
+
+btnLoad?.addEventListener("click", () => {
+  fileInput.click();
+});
+
+fileInput.addEventListener("change", async (e) => {
+  const f = e.target.files?.[0];
+  if (!f) return;
+  try {
+    const text = await f.text();
+    const data = JSON.parse(text);
+    handleLocalLoadData(data);
+    alert("Save loaded successfully.");
+  } catch (err) {
+    console.error(err);
+    alert("Couldn't load the save. Is it a valid JSON from this game?");
+  } finally {
+    fileInput.value = "";
+  }
+});
+
+
 document.getElementById("guess")?.addEventListener("input", (e) => {
   if (e.target.value.length > 0 && !usedSolveAll) {
     startTimer();
@@ -160,82 +202,6 @@ const roomId = getRoomIdFromURL();
 const isMultiplayer = !!roomId;
 let username = "Jugador";
 let foundRef, playersRef;
-
-
-
-
-(function setupLocalSaveLoadButtons() {
-  if (isMultiplayer) return;
-
-  
-  const inputWrapper = document.getElementById("input-wrapper");
-  if (!inputWrapper) return;
-
- 
-  const timerEl = document.getElementById("timer");
-  if (timerEl) {
-    const btnSolve = document.createElement("button");
-    btnSolve.id = "btn-solve-all";
-    btnSolve.textContent = "SOLVE ALL";
-    btnSolve.className = "styled-btn";
-    btnSolve.title = "Reveal everything (local)";
-    btnSolve.addEventListener("click", () => {
-      solveAllLocal();
-    });
-   
-    timerEl.parentNode.insertBefore(btnSolve, timerEl);
-  }
-
- 
-  const saveLoadContainer = document.createElement("div");
-  saveLoadContainer.style.display = "flex";
-  saveLoadContainer.style.gap = "10px";
-
-  const btnSave = document.createElement("button");
-  btnSave.id = "btn-save";
-  btnSave.textContent = "Save";
-  btnSave.className = "styled-btn";
-
-  const btnLoad = document.createElement("button");
-  btnLoad.id = "btn-load";
-  btnLoad.textContent = "Load";
-  btnLoad.className = "styled-btn";
-
-  const fileInput = document.createElement("input");
-  fileInput.type = "file";
-  fileInput.accept = "application/json";
-  fileInput.style.display = "none";
-
-  saveLoadContainer.appendChild(btnSave);
-  saveLoadContainer.appendChild(btnLoad);
-  inputWrapper.appendChild(saveLoadContainer); 
-  document.body.appendChild(fileInput);
-
-  btnSave.addEventListener("click", handleLocalSaveDownload);
-  btnLoad.addEventListener("click", () => fileInput.click());
-
-  fileInput.addEventListener("change", async (e) => {
-    const f = e.target.files?.[0];
-    if (!f) return;
-    try {
-      const text = await f.text();
-      const data = JSON.parse(text);
-      handleLocalLoadData(data);
-      alert("Save loaded successfully.");
-    } catch (err) {
-      console.error(err);
-      alert("Couldn't load the save. Is it a valid JSON from this game?");
-    } finally {
-      fileInput.value = "";
-    }
-  });
-})();
-
-
-
-
-
-
 
 
 const DATA_TEXT = `
