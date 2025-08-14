@@ -50,6 +50,26 @@ body {
 
 
 
+#logo-link {
+  display: inline-block;
+  margin-top: 20px;
+}
+
+#logo-img {
+  max-width: 250px; 
+  height: auto;
+  display: block;
+  margin: 0 auto 20px auto;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+#logo-img:hover {
+  transform: scale(1.05);
+}
+
+
+
 input {
   padding: 10px;
   font-size: 16px;
