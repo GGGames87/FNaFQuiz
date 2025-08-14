@@ -327,10 +327,13 @@ body::before {
   z-index: 100;
   border-bottom: 1px solid #333;
   border-top: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  justify-content: center;
+}
 
+#sticky-header .top-row {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 8px;
 }
 
@@ -348,22 +351,13 @@ body::before {
     gap: 6px;
   }
 
-  #sticky-header .top-row,
-  #sticky-header .bottom-row {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    justify-content: center;
+  #sticky-header .top-row {
     flex-wrap: wrap;
+    justify-content: center;
   }
 
-  #sticky-header .middle-row #input-wrapper {
-    width: 100%;
-    display: flex;
-  }
-
-  #sticky-header button.styled-btn {
-    flex: 0 0 auto;
+  #sticky-header #guess {
+    flex: 1;
   }
 }
 
