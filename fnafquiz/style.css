@@ -363,10 +363,9 @@ body::before {
 
 
 #btn-solve-all {
-  text-color: #e11d48;
-  text-transform: uppercase; 
+  color: #e11d48;
+  text-transform: uppercase;
 }
-
 
 
 #input-wrapper {
