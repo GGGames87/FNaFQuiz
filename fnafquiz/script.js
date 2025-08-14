@@ -242,7 +242,7 @@ Nightmare Foxy / nfoxy.png / nightmare foxy, nfoxy
 Nightmare Fredbear / nfredbear.png / nightmare fredbear, nfredbear, nightmare golden freddy, ngolden freddy
 Nightmare / nightmare.png / nightmare, nshadowfreddy, nightmare shadow freddy
 Plushtrap / plushtrap.png / plushtrap, nightmare springtrap, nspringtrap, nspring bonnie, nightmare spring bonnie
-Toy Caterpillar \/ Fish / toyfish.png / toy worm, worm, toy caterpillar, Caterpillar
+Toy Caterpillar | Toy Fish / toyfish.png / toy worm, worm, toy caterpillar, Caterpillar, toy fish, fish toy, worm toy, caterpillar toy
 Toy Phone / toyphone.png / toy phone, purple telephone, telephone, blue phone, blue telephone, purple phone
 Toy Robot / toyrobot.png / purple robot, toy robot, toy purple robot, purple tuy robot, robot toy
 Freddy Bully / freddybully.png / freddy bully, bully freddy, oswald's father, oswald father, mr renner, kelsey
@@ -252,7 +252,7 @@ Foxy Bully (Young Mike) / foxybro.png / young mike, younger mike, young michael,
 Crying Child / cc.png / cc, crying child, bv, bite victim, sobbing child, little man, evan afton, dave afton
 Spring Bonnie Plush Kid / plushgirl.png / springbonnie plush kid, spring bonnie girl, plush girl, plush kid, fingertrap girl, fingertrap kid, plushtrap kid, plushtrap girl
 Pigtailed Girl / pigtailgirl.png / pigatail girl, pigtailed girl, pigtail child, pigtailed child, baby girl, baby child, green eyed kid, skit girl
-Toy Collector Girl / toygirl.png / toy girl, toy collector, collection girl, toy collector, collector girl, toys girl
+Toy Collector Girl / toysgirl.png / toy girl, toy collector, collection girl, toy collector, collector girl, toys girl
 Balloon Kid / balloonkid.png / Balloon Kid, chubby kid, minigame balloon boy, balloon child
 
 FNaF World: Halloween Edition
@@ -614,7 +614,7 @@ function parseDataText(raw) {
       name: normalizeAlias(display),
       img: `img/${imgFile}`,
       aliases,
-      displayName: display.replace(/\\\//g, "/"),
+      displayName: display,
     });
   }
 
