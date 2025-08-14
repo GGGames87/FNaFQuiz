@@ -378,15 +378,14 @@ body::before {
   width: fit-content;
 }
 
-@media (max-width: 600px) {
+@media (min-width: 900px) {
   #input-wrapper {
-    flex-direction: column;
-    gap: 8px;
+    display: flex;
+    align-items: center;
+    gap: 16px;            
   }
-
-  #input-wrapper input {
-    width: 90vw;
-  }
+  #btn-solve-all { margin-right: 8px; }
+  #timer { margin-right: 8px; }
 }
 
 
