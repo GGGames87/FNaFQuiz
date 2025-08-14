@@ -3,6 +3,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebas
 import { getDatabase, ref, update, onValue, get } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
 
 
+let revealedAll = false;
 let showSilhouettes = false;
 let lastCorrect = null;
 
@@ -118,6 +119,24 @@ let foundRef, playersRef;
   const saveLoadContainer = document.createElement("div");
   saveLoadContainer.style.display = "flex";
   saveLoadContainer.style.gap = "10px";
+
+
+  
+  
+  const btnSolve = document.createElement("button");
+  btnSolve.id = "btn-solve-all";
+  btnSolve.textContent = "SOLVE ALL";
+  btnSolve.className = "styled-btn";
+  btnSolve.style.color = "#e11d48"; 
+  btnSolve.title = "Reveal everything (local)";
+
+ 
+  saveLoadContainer.prepend(btnSolve);
+
+  btnSolve.addEventListener("click", () => {
+    solveAllLocal();
+  });
+
 
   
   const btnSave = document.createElement("button");
@@ -691,6 +710,21 @@ function handleLocalLoadData(data) {
 }
 
 
+function solveAllLocal() {
+  
+  for (const [gameKey, cfg] of Object.entries(GAMES)) {
+    const allNames = cfg.list.map(a => normalizeKey(a.displayName || a.name));
+    const unique = new Set(allNames);
+    foundByGame[gameKey] = [...unique];
+  }
+
+  
+  revealedAll = true;
+  stopTimer();
+  renderAllGrids();
+}
+
+
 
 function createSections() {
   const host = document.getElementById("games");
@@ -903,10 +937,16 @@ function updateResults() {
   const count = Object.values(foundByGame).reduce((sum, arr) => sum + arr.length, 0);
   const results = document.getElementById("results");
   if (!results) return;
-  results.textContent = count === total
-    ? `${count} de ${total} — ¡Completed! 🎉`
-    : `${count} / ${total} found`;
+
+  if (count === total) {
+    results.textContent = revealedAll
+      ? `${count} de ${total} — REVEALED`
+      : `${count} de ${total} — ¡Completed! 🎉`;
+  } else {
+    results.textContent = `${count} / ${total} found`;
+  }
 }
+
 
 const correctSound = new Audio("sounds/correct.mp3");
 
