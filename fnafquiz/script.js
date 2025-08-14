@@ -554,7 +554,7 @@ Spring Bonnie / springbonnie.png / Spring Bonnie, Golden Bonnie, Gold Bonnie, Th
 UCN Demo
 Doofas Freddy / doofasfreddy.png / Doofas Freddy, Doofred, Freddy Doofas, UCN Demo Doofas, UCN Demo Freddy
 Miaton Happy Frog / miatonfrog.png / miaton, monster happy frog, boss happy frog, happy frog boss, happy frog monster, doofas happy frog, happy frog doofas
-Lord Grok Withered Chica / miatonfrog.png / grok, lord grok, monster Withered Chica, boss Withered Chica, Withered Chica boss, Withered Chica monster, doofas Withered Chica, Withered Chica doofas
+Lord Grok Withered Chica / lordgrok.png / grok, lord grok, monster Withered Chica, boss Withered Chica, Withered Chica boss, Withered Chica monster, doofas Withered Chica, Withered Chica doofas
 
 UCN
 Fredbear / fredbear.png / fredbear
