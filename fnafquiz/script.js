@@ -111,28 +111,36 @@ let foundRef, playersRef;
 (function setupLocalSaveLoadButtons() {
   if (isMultiplayer) return;
 
-  const sideButtons = document.getElementById("side-buttons");
-  if (!sideButtons) return;
+  const inputWrapper = document.getElementById("input-wrapper");
+  if (!inputWrapper) return;
 
+  
+  const saveLoadContainer = document.createElement("div");
+  saveLoadContainer.style.display = "flex";
+  saveLoadContainer.style.gap = "10px";
 
+  
   const btnSave = document.createElement("button");
   btnSave.id = "btn-save";
   btnSave.textContent = "Save";
+  btnSave.className = "styled-btn"; // para usar mismo estilo
 
- 
+  
   const btnLoad = document.createElement("button");
   btnLoad.id = "btn-load";
   btnLoad.textContent = "Load";
+  btnLoad.className = "styled-btn";
 
-
+ 
   const fileInput = document.createElement("input");
   fileInput.type = "file";
   fileInput.accept = "application/json";
   fileInput.style.display = "none";
 
-
-  sideButtons.appendChild(btnSave);
-  sideButtons.appendChild(btnLoad);
+ 
+  saveLoadContainer.appendChild(btnSave);
+  saveLoadContainer.appendChild(btnLoad);
+  inputWrapper.appendChild(saveLoadContainer);
   document.body.appendChild(fileInput);
 
  
@@ -155,6 +163,7 @@ let foundRef, playersRef;
     }
   });
 })();
+
 
 
 
