@@ -485,6 +485,7 @@ Fortune Teller / fortuneteller.png / fortune teller
 Fredbear Plush / fredbearplush.png / fredbear plush, plush fredbear, remote fredbear, fredbear remote
 8-Bit Baby / 8bitbaby.png / 8bitbaby, turtle crusher baby, pixel baby, sprite baby, minigame baby
 Elizabeth Afton / eliza.png / Elizabeth Afton, elisabeth afton, afton's daughter, ice cream girl, Elizabeth
+The Sun / sun.png / the sun, minigame sun, 8bit sun, sister location sun, sl sun, sprite sun, happy sun, turtle crusher sun
 Technicians / technicians.png / Technicians, workers, the Technicians, tecnics, Hanging Technicians, Dead Technicians, hanged men
 Vlad / vlad.png / vlad, vampire, Immortal and the Restless vampire
 Clara / clara.png / clara, vlad's wife, vlad's mistress, Immortal and the Restless woman
