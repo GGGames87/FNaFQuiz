@@ -335,6 +335,51 @@ body::before {
   }
 }
 
+
+
+#sticky-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+#sticky-header .top-row,
+#sticky-header .bottom-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center; 
+}
+
+
+#sticky-header .middle-row #input-wrapper {
+  display: flex;
+  flex: 1;
+}
+
+
+@media (max-width: 768px) {
+  #sticky-header {
+    gap: 6px;
+  }
+
+  #sticky-header .top-row,
+  #sticky-header .bottom-row {
+    gap: 6px;
+    flex-wrap: wrap; 
+  }
+
+  #sticky-header .middle-row #input-wrapper {
+    width: 100%;
+  }
+
+  #sticky-header button.styled-btn {
+    flex: 0 0 auto;
+  }
+}
+
+
 #input-wrapper {
   display: flex;
   justify-content: center;
