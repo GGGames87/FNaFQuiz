@@ -105,32 +105,46 @@ const isMultiplayer = !!roomId;
 let username = "Jugador";
 let foundRef, playersRef;
 
+
+
+
 (function setupLocalSaveLoadButtons() {
   if (isMultiplayer) return;
 
   const sticky = document.getElementById("sticky-header");
   if (!sticky) return;
 
-  
-  const wrap = document.createElement("div");
-  wrap.style.display = "flex";
-  wrap.style.gap = "8px";
-  wrap.style.alignItems = "center";
-  wrap.style.marginRight = "10px";
+
+  if (!getComputedStyle(sticky).display.includes("flex")) {
+    sticky.style.display = "flex";
+  }
+  sticky.style.alignItems = sticky.style.alignItems || "center";
+  sticky.style.gap = sticky.style.gap || "8px";
 
   
+  const refBtn = document.getElementById("toggle-silhouettes")
+              || document.getElementById("create-room");
+  const baseClass = refBtn ? refBtn.className : "";
+
+ 
+  const wrap = document.createElement("div");
+  wrap.id = "save-load-wrap";
+  wrap.style.display = "flex";
+  wrap.style.gap = "8px";
+
+ 
   const btnSave = document.createElement("button");
+  btnSave.type = "button";
+  btnSave.id = "btn-save";
   btnSave.textContent = "Save";
-  btnSave.title = "Descargar save local";
-  btnSave.style.padding = "6px 10px";
-  btnSave.style.cursor = "pointer";
+  if (baseClass) btnSave.className = baseClass;
 
  
   const btnLoad = document.createElement("button");
+  btnLoad.type = "button";
+  btnLoad.id = "btn-load";
   btnLoad.textContent = "Load";
-  btnLoad.title = "Cargar save local";
-  btnLoad.style.padding = "6px 10px";
-  btnLoad.style.cursor = "pointer";
+  if (baseClass) btnLoad.className = baseClass;
 
  
   const fileInput = document.createElement("input");
@@ -138,12 +152,12 @@ let foundRef, playersRef;
   fileInput.accept = "application/json";
   fileInput.style.display = "none";
 
-  
+
   const inputWrapper = document.getElementById("input-wrapper");
-  if (inputWrapper) {
+  if (inputWrapper && sticky.contains(inputWrapper)) {
     sticky.insertBefore(wrap, inputWrapper);
   } else {
-    sticky.prepend(wrap);
+    sticky.appendChild(wrap);
   }
   wrap.appendChild(btnSave);
   wrap.appendChild(btnLoad);
@@ -152,6 +166,7 @@ let foundRef, playersRef;
   
   btnSave.addEventListener("click", handleLocalSaveDownload);
   btnLoad.addEventListener("click", () => fileInput.click());
+
   fileInput.addEventListener("change", async (e) => {
     const f = e.target.files?.[0];
     if (!f) return;
@@ -159,15 +174,16 @@ let foundRef, playersRef;
       const text = await f.text();
       const data = JSON.parse(text);
       handleLocalLoadData(data);
-      alert("Save cargado con éxito.");
+      alert("Save loaded successfully."); // mensaje en inglés
     } catch (err) {
       console.error(err);
-      alert("No se pudo cargar el save. ¿Es un JSON válido de este juego?");
+      alert("Couldn't load the save. Is it a valid JSON from this game?");
     } finally {
-      fileInput.value = ""; // reset
+      fileInput.value = "";
     }
   });
 })();
+
 
 
 
