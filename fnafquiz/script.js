@@ -123,7 +123,7 @@ let foundRef, playersRef;
   const btnSave = document.createElement("button");
   btnSave.id = "btn-save";
   btnSave.textContent = "Save";
-  btnSave.className = "styled-btn"; // para usar mismo estilo
+  btnSave.className = "styled-btn"; 
 
   
   const btnLoad = document.createElement("button");
@@ -958,84 +958,81 @@ if (isMultiplayer) {
   foundRef = ref(db, `rooms/${roomId}/found`);
   playersRef = ref(db, `rooms/${roomId}/players`);
 
-
   
-onValue(foundRef, (snapshot) => {
-  const data = snapshot.val() || {};
+  onValue(foundRef, (snapshot) => {
+    const data = snapshot.val() || {};
 
-  
-  const prev = {};
-  for (const [g, arr] of Object.entries(foundByGame)) {
-    prev[g] = new Set(arr);
-  }
-
- 
-  Object.keys(foundByGame).forEach(k => (foundByGame[k] = []));
-  let personalCount = 0;
-
-  for (const key in data) {
-    const idx = key.indexOf("-");
-    if (idx <= 0) continue;
-    const gameKey = key.slice(0, idx);
-    const normalizedName = key.slice(idx + 1);
-    if (!GAMES[gameKey]) continue;
-
-    if (!foundByGame[gameKey].includes(normalizedName)) {
-      foundByGame[gameKey].push(normalizedName);
+    const prev = {};
+    for (const [g, arr] of Object.entries(foundByGame)) {
+      prev[g] = new Set(arr);
     }
-    if (data[key] === username) personalCount++;
-  }
 
-  
-  const newlyFound = [];
-  for (const [g, arr] of Object.entries(foundByGame)) {
-    for (const n of arr) {
-      if (!prev[g] || !prev[g].has(n)) {
-        newlyFound.push({ game: g, name: n });
+    Object.keys(foundByGame).forEach(k => (foundByGame[k] = []));
+    let personalCount = 0;
+
+    for (const key in data) {
+      const idx = key.indexOf("-");
+      if (idx <= 0) continue;
+      const gameKey = key.slice(0, idx);
+      const normalizedName = key.slice(idx + 1);
+      if (!GAMES[gameKey]) continue;
+
+      if (!foundByGame[gameKey].includes(normalizedName)) {
+        foundByGame[gameKey].push(normalizedName);
+      }
+      if (data[key] === username) personalCount++;
+    }
+
+    const newlyFound = [];
+    for (const [g, arr] of Object.entries(foundByGame)) {
+      for (const n of arr) {
+        if (!prev[g] || !prev[g].has(n)) {
+          newlyFound.push({ game: g, name: n });
+        }
       }
     }
-  }
 
-  
-  update(ref(db, `rooms/${roomId}/players/${username}`), { count: personalCount });
+    update(ref(db, `rooms/${roomId}/players/${username}`), { count: personalCount });
 
- 
-  renderAllGrids();
+    renderAllGrids();
 
-  
-  if (newlyFound.length > 0) {
-    try {
-      correctSound.currentTime = 0;
-      correctSound.play();
-    } catch {}
+    if (newlyFound.length > 0) {
+      try {
+        correctSound.currentTime = 0;
+        correctSound.play();
+      } catch {}
 
-    newlyFound.forEach(({ game, name }) => {
-      const img = document.querySelector(
-        `#grid-${game} .card[data-name="${name}"] img`
-      );
-      if (img && !img.classList.contains("silhouette")) {
-        img.classList.remove("revealed");
-        void img.offsetWidth;
-        img.classList.add("revealed");
+      newlyFound.forEach(({ game, name }) => {
+        const img = document.querySelector(
+          `#grid-${game} .card[data-name="${name}"] img`
+        );
+        if (img && !img.classList.contains("silhouette")) {
+          img.classList.remove("revealed");
+          void img.offsetWidth;
+          img.classList.add("revealed");
+          const onEnd = (ev) => {
+            if (ev.animationName === "popin") {
+              img.classList.remove("revealed");
+              img.removeEventListener("animationend", onEnd);
+            }
+          };
+          img.addEventListener("animationend", onEnd);
+        }
+      });
+    }
+  });
 
-        const onEnd = (ev) => {
-          if (ev.animationName === "popin") {
-            img.classList.remove("revealed");
-            img.removeEventListener("animationend", onEnd);
-          }
-        };
-        img.addEventListener("animationend", onEnd);
-      }
-    });
-  }
-});
+  onValue(playersRef, (snapshot) => {
+    const data = snapshot.val() || {};
+    const sorted = Object.entries(data).sort((a, b) => b[1].count - a[1].count);
+    const ranking = sorted.map(([name, val]) => `<div>${name}: ${val.count}</div>`).join("");
+    document.getElementById("ranking").innerHTML = `<h3>Ranking:</h3>${ranking}`;
+  });
 
-onValue(playersRef, (snapshot) => {
-  const data = snapshot.val() || {};
-  const sorted = Object.entries(data).sort((a, b) => b[1].count - a[1].count);
-  const ranking = sorted.map(([name, val]) => `<div>${name}: ${val.count}</div>`).join("");
-  document.getElementById("ranking").innerHTML = `<h3>Ranking:</h3>${ranking}`;
-});
+} else {
+  const r = document.getElementById("ranking");
+  if (r) r.style.display = "none";
+}
 
 
 createSections();
