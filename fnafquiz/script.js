@@ -111,59 +111,31 @@ let foundRef, playersRef;
 (function setupLocalSaveLoadButtons() {
   if (isMultiplayer) return;
 
-  const sticky = document.getElementById("sticky-header");
-  if (!sticky) return;
+  const sideButtons = document.getElementById("side-buttons");
+  if (!sideButtons) return;
 
 
-  if (!getComputedStyle(sticky).display.includes("flex")) {
-    sticky.style.display = "flex";
-  }
-  sticky.style.alignItems = sticky.style.alignItems || "center";
-  sticky.style.gap = sticky.style.gap || "8px";
-
-  
-  const refBtn = document.getElementById("toggle-silhouettes")
-              || document.getElementById("create-room");
-  const baseClass = refBtn ? refBtn.className : "";
-
- 
-  const wrap = document.createElement("div");
-  wrap.id = "save-load-wrap";
-  wrap.style.display = "flex";
-  wrap.style.gap = "8px";
-
- 
   const btnSave = document.createElement("button");
-  btnSave.type = "button";
   btnSave.id = "btn-save";
   btnSave.textContent = "Save";
-  if (baseClass) btnSave.className = baseClass;
 
  
   const btnLoad = document.createElement("button");
-  btnLoad.type = "button";
   btnLoad.id = "btn-load";
   btnLoad.textContent = "Load";
-  if (baseClass) btnLoad.className = baseClass;
 
- 
+
   const fileInput = document.createElement("input");
   fileInput.type = "file";
   fileInput.accept = "application/json";
   fileInput.style.display = "none";
 
 
-  const inputWrapper = document.getElementById("input-wrapper");
-  if (inputWrapper && sticky.contains(inputWrapper)) {
-    sticky.insertBefore(wrap, inputWrapper);
-  } else {
-    sticky.appendChild(wrap);
-  }
-  wrap.appendChild(btnSave);
-  wrap.appendChild(btnLoad);
+  sideButtons.appendChild(btnSave);
+  sideButtons.appendChild(btnLoad);
   document.body.appendChild(fileInput);
 
-  
+ 
   btnSave.addEventListener("click", handleLocalSaveDownload);
   btnLoad.addEventListener("click", () => fileInput.click());
 
@@ -174,7 +146,7 @@ let foundRef, playersRef;
       const text = await f.text();
       const data = JSON.parse(text);
       handleLocalLoadData(data);
-      alert("Save loaded successfully."); 
+      alert("Save loaded successfully.");
     } catch (err) {
       console.error(err);
       alert("Couldn't load the save. Is it a valid JSON from this game?");
@@ -183,6 +155,7 @@ let foundRef, playersRef;
     }
   });
 })();
+
 
 
 
