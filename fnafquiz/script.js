@@ -313,7 +313,7 @@ Adventure Nightmare Fredbear / advnfredbear.png / adventure nightmare fredbear, 
 Adventure Nightmare / advnightmare.png / adventure nightmare, adv nightmare
 Adventure Fredbear / advfredbear.png / adv fredbear, adventure fredbear
 Adventure Spring Bonnie / advspringbonnie.png / adv spring bonnie, adventure spring bonnie
-Adventure Mr. Cupcake / advmrcupcakeotoy.png / Adventure mr cupcake, adv mr cupcake, Adventure cupcake, Adventure toy cupcake
+Adventure Mr. Cupcake / advmrcupcakeotoy.png / Adventure mr cupcake, adv mr cupcake, Adventure cupcake, Adventure toy cupcake, adv cupcake, adv toy cupcake
 Adventure Nightmare Cupcake / advncupcake.png / Adventure nightmare cupcake, adv nightmare cupcake, adv n cupcake, adventure n cupcake
 Adventure Freddles / advfreddles.png / Adventure Freddles, adv freddles
 Adventure Ghost Freddy / advghostfreddy.png / Adventure ghost freddy, adv ghost freddy, ghost freddy
