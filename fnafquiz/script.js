@@ -6,6 +6,7 @@ import { getDatabase, ref, update, onValue, get } from "https://www.gstatic.com/
 let revealedAll = false;
 let showSilhouettes = false;
 let lastCorrect = null;
+let pausedElapsedMs = 0;
 
 
 let timerInterval;
@@ -46,20 +47,32 @@ document.getElementById("guess")?.addEventListener("input", (e) => {
   }
 });
 
+
+
+
+
+function getElapsedMs() {
+  
+  return running ? (Date.now() - startTime) : pausedElapsedMs;
+}
+
 function startTimer() {
-  if (running || usedSolveAll) return; 
+  if (running || usedSolveAll) return;
   running = true;
-  startTime = Date.now();
+ 
+  startTime = Date.now() - pausedElapsedMs;
   timerInterval = setInterval(updateTimer, 10);
 }
 
 function updateTimer() {
   const el = document.getElementById("timer");
   if (!el) return;
-  const elapsed = Date.now() - startTime;
+  const elapsed = getElapsedMs();
   const hours = Math.floor(elapsed / 3600000);
   if (hours >= 24) {
     clearInterval(timerInterval);
+    running = false;
+    pausedElapsedMs = 24 * 3600 * 1000;
     return;
   }
   const minutes = Math.floor((elapsed % 3600000) / 60000);
@@ -70,9 +83,13 @@ function updateTimer() {
 }
 
 function stopTimer() {
+  if (running) {
+    pausedElapsedMs = Date.now() - startTime; 
+  }
   running = false;
   clearInterval(timerInterval);
 }
+
 
 
 
@@ -151,24 +168,25 @@ let foundRef, playersRef;
   if (isMultiplayer) return;
 
   
-  const bottomRow = document.querySelector("#sticky-header .bottom-row");
-  if (!bottomRow) return;
+  const inputWrapper = document.getElementById("input-wrapper");
+  if (!inputWrapper) return;
 
+ 
   const timerEl = document.getElementById("timer");
   if (timerEl) {
     const btnSolve = document.createElement("button");
     btnSolve.id = "btn-solve-all";
     btnSolve.textContent = "SOLVE ALL";
     btnSolve.className = "styled-btn";
-    btnSolve.style.color = "#e11d48";
-    btnSolve.style.marginRight = "8px";
     btnSolve.title = "Reveal everything (local)";
     btnSolve.addEventListener("click", () => {
       solveAllLocal();
     });
+   
     timerEl.parentNode.insertBefore(btnSolve, timerEl);
   }
 
+ 
   const saveLoadContainer = document.createElement("div");
   saveLoadContainer.style.display = "flex";
   saveLoadContainer.style.gap = "10px";
@@ -190,10 +208,7 @@ let foundRef, playersRef;
 
   saveLoadContainer.appendChild(btnSave);
   saveLoadContainer.appendChild(btnLoad);
-
-  
-  bottomRow.appendChild(saveLoadContainer);
-
+  inputWrapper.appendChild(saveLoadContainer); 
   document.body.appendChild(fileInput);
 
   btnSave.addEventListener("click", handleLocalSaveDownload);
@@ -692,13 +707,16 @@ function getElapsedMsIfRunning() {
 }
 
 function handleLocalSaveDownload() {
+  const total = Object.values(GAMES).reduce((s, cfg) => s + cfg.list.length, 0);
+  const count = Object.values(foundByGame).reduce((s, arr) => s + arr.length, 0);
+
   const payload = {
     version: 1,
     savedAt: new Date().toISOString(),
-    found: Object.fromEntries(
-      Object.keys(GAMES).map(k => [k, [...(foundByGame[k] || [])]])
-    ),
-    timerMs: getElapsedMsIfRunning()
+    found: Object.fromEntries(Object.keys(GAMES).map(k => [k, [...(foundByGame[k] || [])]])),
+    timerMs: getElapsedMs(),
+    timerPaused: !running && (count === total),
+    usedSolveAll: revealedAll === true           
   };
 
   const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
@@ -720,28 +738,39 @@ function handleLocalLoadData(data) {
   if (typeof data.version !== "number") throw new Error("Versión faltante");
   if (!data.found || typeof data.found !== "object") throw new Error("Campo 'found' inválido");
 
+  
   Object.keys(foundByGame).forEach(k => (foundByGame[k] = []));
-
   for (const [gameKey, list] of Object.entries(data.found)) {
     if (!GAMES[gameKey] || !Array.isArray(list)) continue;
-    const validNamesSet = new Set(
-      GAMES[gameKey].list.map(a => normalizeKey(a.displayName || a.name))
-    );
+    const validNamesSet = new Set(GAMES[gameKey].list.map(a => normalizeKey(a.displayName || a.name)));
     const unique = new Set(list.map(n => String(n)));
     foundByGame[gameKey] = [...unique].filter(n => validNamesSet.has(n));
   }
 
+ 
+  revealedAll = !!data.usedSolveAll;
+  usedSolveAll = !!data.usedSolveAll;
+
+  
+  stopTimer();
+  pausedElapsedMs = 0;
   if (typeof data.timerMs === "number" && data.timerMs > 0) {
-    try {
-      stopTimer();
-      running = true;
-      startTime = Date.now() - Math.min(data.timerMs, 24 * 3600 * 1000);
-      timerInterval = setInterval(updateTimer, 10);
-    } catch {}
+    pausedElapsedMs = Math.min(data.timerMs, 24 * 3600 * 1000);
+    startTime = Date.now() - pausedElapsedMs;
+    updateTimer(); 
+
+    if (!data.timerPaused) {
+      startTimer(); 
+    }
+  } else {
+    
+    const el = document.getElementById("timer");
+    if (el) el.textContent = "00:00:00.000";
   }
 
   renderAllGrids();
 }
+
 
 
 function solveAllLocal() {
