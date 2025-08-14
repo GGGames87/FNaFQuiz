@@ -115,29 +115,26 @@ let foundRef, playersRef;
   const inputWrapper = document.getElementById("input-wrapper");
   if (!inputWrapper) return;
 
+  const timerEl = document.getElementById("timer");
+  if (timerEl) {
+    const btnSolve = document.createElement("button");
+    btnSolve.id = "btn-solve-all";
+    btnSolve.textContent = "SOLVE ALL";
+    btnSolve.className = "styled-btn";
+    btnSolve.style.color = "#e11d48";  
+    btnSolve.style.marginRight = "8px";  
+    btnSolve.title = "Reveal everything (local)";
+    btnSolve.addEventListener("click", () => {
+      solveAllLocal(); 
+    });
+    
+    timerEl.parentNode.insertBefore(btnSolve, timerEl);
+  }
+  
   
   const saveLoadContainer = document.createElement("div");
   saveLoadContainer.style.display = "flex";
   saveLoadContainer.style.gap = "10px";
-
-
-  
-  
-  const btnSolve = document.createElement("button");
-  btnSolve.id = "btn-solve-all";
-  btnSolve.textContent = "SOLVE ALL";
-  btnSolve.className = "styled-btn";
-  btnSolve.style.color = "#e11d48"; 
-  btnSolve.title = "Reveal everything (local)";
-
- 
-  saveLoadContainer.prepend(btnSolve);
-
-  btnSolve.addEventListener("click", () => {
-    solveAllLocal();
-  });
-
-
   
   const btnSave = document.createElement("button");
   btnSave.id = "btn-save";
