@@ -345,11 +345,15 @@ body::before {
 }
 
 
-@media (max-width: 768px) {
-  #sticky-header {
-    flex-direction: column;
-    gap: 6px;
+@media (min-width: 900px) {
+  #sticky-header .top-row {
+    gap: 18px;
   }
+  #btn-solve-all { margin-right: 8px; } 
+  #timer { margin-right: 12px; }  
+}
+
+
 
   #sticky-header .top-row {
     flex-wrap: wrap;
