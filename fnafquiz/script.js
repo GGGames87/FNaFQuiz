@@ -174,7 +174,7 @@ let foundRef, playersRef;
       const text = await f.text();
       const data = JSON.parse(text);
       handleLocalLoadData(data);
-      alert("Save loaded successfully."); // mensaje en inglés
+      alert("Save loaded successfully."); 
     } catch (err) {
       console.error(err);
       alert("Couldn't load the save. Is it a valid JSON from this game?");
@@ -722,7 +722,7 @@ function renderGrid(animList, foundList, containerId) {
     if (isFound && (anim.displayName || anim.name) === lastCorrect) {
       if (!img.classList.contains("silhouette")) {
         img.classList.remove("revealed");
-        void img.offsetWidth; // reflow
+        void img.offsetWidth;
         img.classList.add("revealed");
         const onEnd = (ev) => {
           if (ev.animationName === "popin") {
@@ -772,10 +772,10 @@ function fitLabel(labelEl) {
  
   if (labelEl.classList.contains("name-hidden")) return;
 
-  const parent = labelEl.parentElement; // .card
+  const parent = labelEl.parentElement; 
   if (!parent) return;
 
-  const maxWidth = parent.clientWidth - 4; // margen de seguridad
+  const maxWidth = parent.clientWidth - 4; 
   const parts = Array.from(labelEl.querySelectorAll(".name-part"));
   if (parts.length === 0) return;
 
@@ -786,7 +786,7 @@ function fitLabel(labelEl) {
 
   
   if (parts.length === 1) {
-    labelEl.style.whiteSpace = "nowrap"; // no romper la única palabra
+    labelEl.style.whiteSpace = "nowrap";
     let fs = getCurrentPxFont(parts[0]);
     while ((labelEl.scrollWidth > maxWidth) && fs > 9) {
       fs -= 1;
@@ -796,7 +796,7 @@ function fitLabel(labelEl) {
   }
 
   
-  let safety = 60; // corta bucles locos
+  let safety = 60;
   while ((labelEl.scrollWidth > maxWidth) && safety-- > 0) {
     const w = widest();
     let fs = getCurrentPxFont(w);
