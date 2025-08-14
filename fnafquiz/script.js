@@ -935,14 +935,20 @@ function updateResults() {
   const results = document.getElementById("results");
   if (!results) return;
 
+  const btnSolve = document.getElementById("btn-solve-all");
+
   if (count === total) {
     results.textContent = revealedAll
       ? `${count} de ${total} — REVEALED`
       : `${count} de ${total} — ¡Completed! 🎉`;
+
+    if (btnSolve) btnSolve.disabled = true; 
   } else {
     results.textContent = `${count} / ${total} found`;
+    if (btnSolve) btnSolve.disabled = false;
   }
 }
+
 
 
 const correctSound = new Audio("sounds/correct.mp3");
