@@ -14,11 +14,6 @@ let running = false;
 
 let usedSolveAll = false;
 
-document.getElementById("btn-solve-all")?.addEventListener("click", () => {
-  usedSolveAll = true;
-  stopTimer(); 
-});
-
 document.getElementById("guess")?.addEventListener("input", (e) => {
   if (e.target.value.length > 0 && !usedSolveAll) {
     startTimer();
@@ -168,8 +163,10 @@ let foundRef, playersRef;
     btnSolve.style.marginRight = "8px";  
     btnSolve.title = "Reveal everything (local)";
     btnSolve.addEventListener("click", () => {
-      solveAllLocal(); 
+      usedSolveAll = true;   // <- bloquea futuros arranques
+      solveAllLocal();
     });
+
     
     timerEl.parentNode.insertBefore(btnSolve, timerEl);
   }
@@ -751,15 +748,14 @@ function handleLocalLoadData(data) {
 
 
 function solveAllLocal() {
-  
   for (const [gameKey, cfg] of Object.entries(GAMES)) {
     const allNames = cfg.list.map(a => normalizeKey(a.displayName || a.name));
     const unique = new Set(allNames);
     foundByGame[gameKey] = [...unique];
   }
 
-  
   revealedAll = true;
+  usedSolveAll = true;   
   stopTimer();
   renderAllGrids();
 }
@@ -1012,37 +1008,6 @@ const allAnimatronics = Object.entries(GAMES).flatMap(([game, cfg]) =>
 function preloadAll() {
   allAnimatronics.forEach(anim => { const im = new Image(); im.src = anim.img; });
 }
-
-
-document.getElementById("guess")?.addEventListener("input", (e) => {
-  if (e.target.value.length > 0) startTimer();
-
-  const input = normalize(e.target.value);
-  if (!input) return;
-
-  for (const anim of allAnimatronics) {
-    const normalizedAliases = (anim.aliases || []).map(a => normalize(a));
-    if (!normalizedAliases.includes(input)) continue;
-
-    
-    const n = normalizeKey(anim.displayName || anim.name);
-    const list = foundByGame[anim.game];
-    if (list.includes(n)) {
-      
-      break;
-    }
-
-    
-    e.target.value = "";
-
-    if (isMultiplayer) {
-      update(ref(db, `rooms/${roomId}/found`), { [`${anim.game}-${n}`]: username });
-    }
-
-    revealCharacter(anim);
-    break;
-  }
-});
 
 
 
