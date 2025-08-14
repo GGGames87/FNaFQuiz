@@ -12,12 +12,52 @@ let timerInterval;
 let startTime;
 let running = false;
 
+let usedSolveAll = false;
+
+document.getElementById("btn-solve-all")?.addEventListener("click", () => {
+  usedSolveAll = true;
+  stopTimer(); 
+});
+
+document.getElementById("guess")?.addEventListener("input", (e) => {
+  if (e.target.value.length > 0 && !usedSolveAll) {
+    startTimer();
+  }
+
+  const input = normalize(e.target.value);
+  if (!input) return;
+
+  for (const anim of allAnimatronics) {
+    const normalizedAliases = (anim.aliases || []).map(a => normalize(a));
+    if (!normalizedAliases.includes(input)) continue;
+
+    const n = normalizeKey(anim.displayName || anim.name);
+    const list = foundByGame[anim.game];
+    if (list.includes(n)) break;
+
+    list.push(n);
+    lastCorrect = anim.displayName || anim.name;
+    correctSound.currentTime = 0;
+    correctSound.play();
+    e.target.value = "";
+
+    if (isMultiplayer) {
+      update(ref(db, `rooms/${roomId}/found`), { [`${anim.game}-${n}`]: username });
+    }
+
+    renderAllGrids();
+    setTimeout(() => { lastCorrect = null; }, 100);
+    break;
+  }
+});
+
 function startTimer() {
-  if (running) return;
+  if (running || usedSolveAll) return; 
   running = true;
   startTime = Date.now();
   timerInterval = setInterval(updateTimer, 10);
 }
+
 function updateTimer() {
   const el = document.getElementById("timer");
   if (!el) return;
@@ -33,9 +73,12 @@ function updateTimer() {
   el.textContent =
     `${String(hours).padStart(2,'0')}:${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')}.${String(ms).padStart(3,'0')}`;
 }
+
 function stopTimer() {
+  running = false;
   clearInterval(timerInterval);
 }
+
 
 
 function normalizeKey(text) {
