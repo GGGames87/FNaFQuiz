@@ -150,8 +150,9 @@ let foundRef, playersRef;
 (function setupLocalSaveLoadButtons() {
   if (isMultiplayer) return;
 
-  const inputWrapper = document.getElementById("input-wrapper");
-  if (!inputWrapper) return;
+  
+  const bottomRow = document.querySelector("#sticky-header .bottom-row");
+  if (!bottomRow) return;
 
   const timerEl = document.getElementById("timer");
   if (timerEl) {
@@ -159,47 +160,42 @@ let foundRef, playersRef;
     btnSolve.id = "btn-solve-all";
     btnSolve.textContent = "SOLVE ALL";
     btnSolve.className = "styled-btn";
-    btnSolve.style.color = "#e11d48";  
-    btnSolve.style.marginRight = "8px";  
+    btnSolve.style.color = "#e11d48";
+    btnSolve.style.marginRight = "8px";
     btnSolve.title = "Reveal everything (local)";
     btnSolve.addEventListener("click", () => {
-      usedSolveAll = true;   // <- bloquea futuros arranques
       solveAllLocal();
     });
-
-    
     timerEl.parentNode.insertBefore(btnSolve, timerEl);
   }
-  
-  
+
   const saveLoadContainer = document.createElement("div");
   saveLoadContainer.style.display = "flex";
   saveLoadContainer.style.gap = "10px";
-  
+
   const btnSave = document.createElement("button");
   btnSave.id = "btn-save";
   btnSave.textContent = "Save";
-  btnSave.className = "styled-btn"; 
+  btnSave.className = "styled-btn";
 
-  
   const btnLoad = document.createElement("button");
   btnLoad.id = "btn-load";
   btnLoad.textContent = "Load";
   btnLoad.className = "styled-btn";
 
- 
   const fileInput = document.createElement("input");
   fileInput.type = "file";
   fileInput.accept = "application/json";
   fileInput.style.display = "none";
 
- 
   saveLoadContainer.appendChild(btnSave);
   saveLoadContainer.appendChild(btnLoad);
-  inputWrapper.appendChild(saveLoadContainer);
+
+  
+  bottomRow.appendChild(saveLoadContainer);
+
   document.body.appendChild(fileInput);
 
- 
   btnSave.addEventListener("click", handleLocalSaveDownload);
   btnLoad.addEventListener("click", () => fileInput.click());
 
@@ -219,6 +215,7 @@ let foundRef, playersRef;
     }
   });
 })();
+
 
 
 
