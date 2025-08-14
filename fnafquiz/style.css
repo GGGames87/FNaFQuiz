@@ -362,6 +362,12 @@ body::before {
 }
 
 
+#btn-solve-all {
+  background-color: #b30000;
+  text-transform: uppercase; 
+}
+
+
 
 #input-wrapper {
   display: flex;
