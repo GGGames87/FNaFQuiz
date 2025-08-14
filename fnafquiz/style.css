@@ -129,6 +129,22 @@ input {
   text-align: center;
 }
 
+.styled-btn {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.styled-btn:hover {
+  background-color: #444;
+  transform: scale(1.03);
+}
 
 
 
