@@ -771,6 +771,7 @@ function solveAllLocal() {
 function createSections() {
   const host = document.getElementById("games");
   if (!host) return;
+
   host.innerHTML = "";
   for (const [key, cfg] of Object.entries(GAMES)) {
     const section = document.createElement("div");
@@ -784,18 +785,28 @@ function createSections() {
     `;
     host.appendChild(section);
   }
+
+
   host.addEventListener("click", (e) => {
     const header = e.target.closest(".game-header");
-    if (!header) return;
+    if (!header || !host.contains(header)) return;
 
+    const section = header.parentElement;
     const grid = header.nextElementSibling;
-    if (grid) grid.querySelectorAll("img.revealed")
-      .forEach(img => img.classList.remove("revealed"));
 
-    header.classList.toggle("collapsed");
+    const isCollapsed = section.classList.toggle("collapsed");
+    header.classList.toggle("collapsed", isCollapsed);
+
+    
+    if (grid) grid.style.display = isCollapsed ? "none" : "";
+
+    
+    if (grid) {
+      grid.querySelectorAll("img.revealed").forEach(img => img.classList.remove("revealed"));
+    }
   });
-
 }
+
 
 function renderGrid(animList, foundList, containerId) {
   const grid = document.getElementById(containerId);
