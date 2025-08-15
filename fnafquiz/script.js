@@ -210,6 +210,12 @@ const isMultiplayer = !!roomId;
 let username = "Jugador";
 let foundRef, playersRef;
 
+if (isMultiplayer) {
+  document.getElementById("btn-solve-all")?.remove();
+  document.getElementById("btn-save")?.remove();
+  document.getElementById("btn-load")?.remove();
+}
+
 
 const DATA_TEXT = `
 FNaF 1
