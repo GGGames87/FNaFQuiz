@@ -238,7 +238,7 @@ Withered Freddy / wfreddy.png / withered freddy, w freddy
 Withered Bonnie / wbonnie.png / withered bonnie, w bonnie
 Withered Chica / wchica.png / withered chica, w chica
 Withered Foxy / wfoxy.png / withered foxy, w foxy
-Withered Golden Freddy / wgolden.png / withered golden freddy, w golden freddy, w g freddy
+Withered Golden Freddy / wgolden.png / withered golden freddy, w golden freddy
 Endo-02 / endo02.png / endo-02, endo 02, endo2, endo-2
 RWQFSFASXC / shadowbonnie.png / rwqfsfasxc, shadow bonnie, rxq
 Shadow Freddy / shadowfreddy.png / shadow freddy, purple freddy
@@ -292,14 +292,14 @@ Chica Bully / chicabully.png / chica bully, bully chica
 Foxy Bully (Young Mike) / foxybro.png / young mike, younger mike, young michael, younger michael, foxybro, ccs brother, foxy bully, bully foxy, brother foxy, brofoxy
 Crying Child / cc.png / cc, crying child, bv, bite victim, sobbing child, little man, evan afton, dave afton
 Spring Bonnie Plush Kid / plushgirl.png / springbonnie plush kid, spring bonnie girl, plush girl, plush kid, fingertrap girl, fingertrap kid, plushtrap kid, plushtrap girl
-Pigtailed Girl / pigtailgirl.png / pigatail girl, pigtailed girl, pigtail child, pigtailed child, baby girl, baby child, green eyed kid, skit girl
+Pigtailed Girl / pigtailgirl.png / pigatail girl, pigtailed girl, pigtail child, pigtailed child, baby girl, baby child, green eyed kid, skit girl, pigtail girl, pigatils girl
 Toy Collector Girl / toysgirl.png / toy girl, toy collector, collection girl, toy collector, collector girl, toys girl
 Balloon Kid / balloonkid.png / Balloon Kid, chubby kid, minigame balloon boy, balloon child
 
 FNaF World: Halloween Edition
-Adventure Freddy (HE) / hefreddy.png / Adventure Freddy halloween, Adventure Freddy he, he Adventure Freddy, halloween Adventure Freddy, adv Freddy halloween, adv Freddy he, he adv Freddy, halloween adv Freddy
-Adventure Bonnie (HE) / hebonnie.png / Adventure Bonnie halloween, Adventure Bonnie he, he Adventure Bonnie, halloween Adventure Bonnie, adv Bonnie halloween, adv Bonnie he, he adv Bonnie, halloween adv Bonnie
-Adventure Chica (HE) / hechica.png / Adventure Chica halloween, Adventure Chica he, he Adventure Chica, halloween Adventure Chica, adv Chica halloween, adv Chica he, he adv Chica, halloween adv Chica
+Mage Freddy / hefreddy.png / Adventure Freddy halloween, Adventure Freddy he, he Adventure Freddy, halloween Adventure Freddy, adv Freddy halloween, adv Freddy he, he adv Freddy, halloween adv Freddy, Mage Freddy, Bard Freddy, Fighter Freddy
+Mage Bonnie / hebonnie.png / Adventure Bonnie halloween, Adventure Bonnie he, he Adventure Bonnie, halloween Adventure Bonnie, adv Bonnie halloween, adv Bonnie he, he adv Bonnie, halloween adv Bonnie, Mage Bonnie, Bard Bonnie, Fighter Bonnie
+Mage Chica / hechica.png / Adventure Chica halloween, Adventure Chica he, he Adventure Chica, halloween Adventure Chica, adv Chica halloween, adv Chica he, he adv Chica, halloween adv Chica, Mage Chica, Bard Chica, Fighter Chica
 Ballboy (HE) / ballboyhe.png / Halloween Ball Boy, Ball boy halloween, he ball boy, ball boy he
 Mad Endo (HE) / madendohe.png / halloween mad endo, he mad endo, mad endo halloween, mad endo he
 Cheesehead / Cheesehead.png / Cheesehead
@@ -342,7 +342,7 @@ Adventure JJ / advjj.png / Adventure JJ, Adventure Balloon Girl, adv jj, adv jay
 Adventure Phantom Freddy / advpfreddy.png / Adventure Phantom Freddy, Adventure P freddy, adv p freddy, adv phantom freddy
 Adventure Phantom Chica / advpchica.png / Adventure Phantom Chica, Adventure P chica, advpchica, adv phantom chica
 Adventure Phantom Balloon Boy / advpbb.png / Adventure Phantom Balloon Boy, Adventure P Balloon Boy, adventure p bb, advpbb, adv phantom bb, adventure phantom bb
-Adventure Phantom Foxy / advpfoxy.png / Adventure Phantom Foxy, Adventure P foxy, adv p foxy
+Adventure Phantom Foxy / advpfoxy.png / Adventure Phantom Foxy, Adventure P foxy, adv p foxy, adv phantom foxy
 Adventure Phantom Mangle / advpmangle.png / Adventure Phantom mangle, Adventure P mangle, adv p mangle
 Adventure Withered Bonnie / advwbonnie.png / Adventure Withered Bonnie, adv w bonnie, adv withered bonnie
 Adventure Withered Chica / advwchica.png / Adventure Withered Chica, adv w chica, adv withered chica
@@ -468,7 +468,7 @@ Adventure Jack-O-Bonnie / advjackobonnie.png / Adventure Jack-o-bonnie, adv Jack
 Adventure Jack-O-Chica / advjackochica.png / Adventure Jack-o-chica, adv Jack-o-chica
 Mr. Chipper / chipper.png / Mr. chipper, chipper, adventure chipper, adv chipper
 Adventure Nightmare Balloon Boy / advnbb.png / Adventure Nightmare Balloon Boy, adv nightmare balloon boy, adv n balloon boy, advnbb, Adventure Nightmare BB
-Adventure Nightmarionne / advnpuppet.png / Adventure npuppet, Adventure nightmare puppet, Adventure nightmare marionette, Adventure n marionette, Adventure nightmarionne
+Adventure Nightmarionne / advnpuppet.png / Adventure npuppet, Adventure nightmare puppet, Adventure nightmare marionette, Adventure n marionette, Adventure nightmarionne, adv n puppet, adv n marionette, asv nightmarionnie
 Coffee / coffee.png / Coffee, cofe, coffe, cofee, adventure coffee, adv coffee
 Adventure Purpleguy / advpurpleguy.png / Adventure purpleguy, purpleguy, adv purpleguy, Adventure william afton
 Adventure Jack-O'-Lantern / advlantern.png / Adventure jack-o-lantern, Adventure jack-o'-lantern, Adventure mr pumpkin, Adventure pumpkin, adv punpkin, adv jack-o-lantern
@@ -606,11 +606,11 @@ TFC Funtime Freddy / ftfreddyucn.png / tfc funtime freddy, The Fourth Closet Fun
 Japanese Freddy / japfreddy.png / anime freddy, japanese freddy, samurai freddy, the bear, Bear of Vengeance
 Japanese Foxy / japfoxy.png / anime foxy, japanese foxy, samurai fox, the fox
 Japanese Mangle / japmangle.png / anime mangle, japanese mangle, samurai mangle
-High School Toy Chica / hightoychica.png / High School toy chica, High School chica, yandere toy chica, yandere chica, school toy chica, Student Toy Chica
+High School Toy Chica / hightoychica.png / High School toy chica, High School chica, yandere toy chica, yandere chica, school toy chica, Student Toy Chica, school t chica
 High School Freddy / highfreddy.png / High School freddy, school freddy, Student freddy
 High School Wolf / highwolf.png / High School Wolf, school wolf, Student wolf
-High School Toy Bonnie / hightoybonnie.png / High School toy bonnie, school toy bonnie, Student toy bonnie
-High School Funtime Foxy / highftfoxy.png / High School Funtime Foxy, school Funtime Foxy, Student Funtime Foxy
+High School Toy Bonnie / hightoybonnie.png / High School toy bonnie, school toy bonnie, Student toy bonnie, school t bonnie
+High School Funtime Foxy / highftfoxy.png / High School Funtime Foxy, school Funtime Foxy, Student Funtime Foxy, school ft foxy
 High School Puppet / highpuppet.png / High School puppet, school puppet, High School marionette, school marionette, Student marionette, Student puppet
 High School Pigpatch / highPigpatch.png / High School Pigpatch, school Pigpatch, Student Pigpatch
 `;
