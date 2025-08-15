@@ -187,7 +187,7 @@ async function generateUniqueRoomId(maxTries = 10) {
     const snap = await get(ref(db, `rooms/${id}`));
     if (!snap.exists()) return id;
   }
-  throw new Error("No pude generar una sala única. Inténtalo de nuevo.");
+  throw new Error("Can't generate a unique room. Please try again.");
 }
 document.getElementById("create-room")?.addEventListener("click", async () => {
   try {
@@ -196,7 +196,7 @@ document.getElementById("create-room")?.addEventListener("click", async () => {
     window.location.hash = newRoomId;
     window.location.reload();
   } catch (err) {
-    alert("Error creando sala. Intenta otra vez.");
+    alert("Error creating room. Please try again.");
     console.error(err);
   }
 });
@@ -977,8 +977,8 @@ function updateResults() {
 
   if (count === total) {
     results.textContent = revealedAll
-      ? `${count} de ${total} — REVEALED`
-      : `${count} de ${total} — ¡Completed! 🎉`;
+      ? `${count} / ${total} — REVEALED`
+      : `${count} / ${total} — ¡Completed! 🎉`;
 
     if (btnSolve) btnSolve.disabled = true; 
   } else {
