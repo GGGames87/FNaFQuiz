@@ -475,7 +475,7 @@ Adventure Jack-O-Bonnie / advjackobonnie.png / Adventure Jack-o-bonnie, adv Jack
 Adventure Jack-O-Chica / advjackochica.png / Adventure Jack-o-chica, adv Jack-o-chica
 Mr. Chipper / chipper.png / Mr. chipper, chipper, adventure chipper, adv chipper
 Adventure Nightmare Balloon Boy / advnbb.png / Adventure Nightmare Balloon Boy, adv nightmare balloon boy, adv n balloon boy, advnbb, Adventure Nightmare BB
-Adventure Nightmarionne / advnpuppet.png / Adventure npuppet, Adventure nightmare puppet, Adventure nightmare marionette, Adventure n marionette, Adventure nightmarionne, adv n puppet, adv n marionette, asv nightmarionnie
+Adventure Nightmarionne / advnpuppet.png / Adventure npuppet, Adventure nightmare puppet, Adventure nightmare marionette, Adventure n marionette, Adventure nightmarionne, adv n puppet, adv n marionette, adv nightmarionne
 Coffee / coffee.png / Coffee, cofe, coffe, cofee, adventure coffee, adv coffee
 Adventure Purpleguy / advpurpleguy.png / Adventure purpleguy, purpleguy, adv purpleguy, Adventure william afton
 Adventure Jack-O'-Lantern / advlantern.png / Adventure jack-o-lantern, Adventure jack-o'-lantern, Adventure mr pumpkin, Adventure pumpkin, adv punpkin, adv jack-o-lantern
