@@ -16,41 +16,6 @@ let running = false;
 let usedSolveAll = false;
 
 
-const fileInput = document.createElement("input");
-fileInput.type = "file";
-fileInput.accept = "application/json";
-fileInput.style.display = "none";
-document.body.appendChild(fileInput);
-
-
-btnSolve?.addEventListener("click", () => {
-  solveAllLocal();
-});
-
-btnSave?.addEventListener("click", () => {
-  handleLocalSaveDownload();
-});
-
-btnLoad?.addEventListener("click", () => {
-  fileInput.click();
-});
-
-fileInput.addEventListener("change", async (e) => {
-  const f = e.target.files?.[0];
-  if (!f) return;
-  try {
-    const text = await f.text();
-    const data = JSON.parse(text);
-    handleLocalLoadData(data);
-    alert("Save loaded successfully.");
-  } catch (err) {
-    console.error(err);
-    alert("Couldn't load the save. Is it a valid JSON from this game?");
-  } finally {
-    fileInput.value = "";
-  }
-});
-
 
 function isAllFound() {
   const total = Object.values(GAMES).reduce((s, cfg) => s + cfg.list.length, 0);
@@ -169,7 +134,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-
 function generateRoomId() {
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   let id = "";
@@ -184,18 +148,6 @@ async function generateUniqueRoomId(maxTries = 10) {
   }
   throw new Error("Can't generate a unique room. Please try again.");
 }
-document.getElementById("create-room")?.addEventListener("click", async () => {
-  try {
-    const newRoomId = await generateUniqueRoomId();
-    localStorage.setItem("justCreatedRoom", newRoomId);
-    window.location.hash = newRoomId;
-    window.location.reload();
-  } catch (err) {
-    alert("Error creating room. Please try again.");
-    console.error(err);
-  }
-});
-
 
 function getRoomIdFromURL() {
   return window.location.hash ? window.location.hash.substring(1).toUpperCase() : null;
@@ -205,16 +157,65 @@ const isMultiplayer = !!roomId;
 let username = "Jugador";
 let foundRef, playersRef;
 
+window.addEventListener("DOMContentLoaded", () => {
+  
+  document.getElementById("create-room")?.addEventListener("click", async () => {
+    try {
+      const newRoomId = await generateUniqueRoomId();
+      localStorage.setItem("justCreatedRoom", newRoomId);
+      window.location.hash = newRoomId;
+      window.location.reload();
+    } catch (err) {
+      alert("Error creating room. Please try again.");
+      console.error(err);
+    }
+  });
 
-const btnSolve = document.getElementById("btn-solve-all");
-const btnSave  = document.getElementById("btn-save");
-const btnLoad  = document.getElementById("btn-load");
+  
+  const btnSolve = document.getElementById("btn-solve-all");
+  const btnSave  = document.getElementById("btn-save");
+  const btnLoad  = document.getElementById("btn-load");
 
+ 
+  if (isMultiplayer) {
+    btnSolve?.remove();
+    btnLoad?.remove();
+  }
 
-if (isMultiplayer) {
-  btnSolve?.remove();
-  btnLoad?.remove();
-}
+ 
+  const fileInput = document.createElement("input");
+  fileInput.type = "file";
+  fileInput.accept = "application/json";
+  fileInput.style.display = "none";
+  document.body.appendChild(fileInput);
+
+  
+  btnSolve?.addEventListener("click", solveAllLocal);
+  btnSave?.addEventListener("click", handleLocalSaveDownload);
+  btnLoad?.addEventListener("click", () => fileInput.click());
+
+  fileInput.addEventListener("change", async (e) => {
+    const f = e.target.files?.[0];
+    if (!f) return;
+    try {
+      const text = await f.text();
+      const data = JSON.parse(text);
+      handleLocalLoadData(data);
+      alert("Save loaded successfully.");
+    } catch (err) {
+      console.error(err);
+      alert("Couldn't load the save. Is it a valid JSON from this game?");
+    } finally {
+      fileInput.value = "";
+    }
+  });
+
+ 
+  createSections();
+  renderAllGrids();
+  preloadAll();
+});
+
 
 
 const DATA_TEXT = `
