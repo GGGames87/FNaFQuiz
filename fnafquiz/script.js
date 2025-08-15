@@ -343,7 +343,7 @@ Adventure Phantom Freddy / advpfreddy.png / Adventure Phantom Freddy, Adventure 
 Adventure Phantom Chica / advpchica.png / Adventure Phantom Chica, Adventure P chica, advpchica, adv phantom chica
 Adventure Phantom Balloon Boy / advpbb.png / Adventure Phantom Balloon Boy, Adventure P Balloon Boy, adventure p bb, advpbb, adv phantom bb, adventure phantom bb
 Adventure Phantom Foxy / advpfoxy.png / Adventure Phantom Foxy, Adventure P foxy, adv p foxy, adv phantom foxy
-Adventure Phantom Mangle / advpmangle.png / Adventure Phantom mangle, Adventure P mangle, adv p mangle
+Adventure Phantom Mangle / advpmangle.png / Adventure Phantom mangle, Adventure P mangle, adv p mangle, adv phantom mangle
 Adventure Withered Bonnie / advwbonnie.png / Adventure Withered Bonnie, adv w bonnie, adv withered bonnie
 Adventure Withered Chica / advwchica.png / Adventure Withered Chica, adv w chica, adv withered chica
 Adventure Withered Freddy / advwfreddy.png / Adventure Withered Freddy, adv w freddy, adv withered freddy
@@ -351,7 +351,7 @@ Adventure Withered Foxy / advwfoxy.png / Adventure Withered Foxy, adv w foxy, ad
 Adventure Shadow Freddy / advshadowfreddy.png / Adventure Shadow Freddy, adv shadow freddy
 Adventure Marionette / advpuppet.png / Adventure marionette, adventure puppet, adv marionette, adv puppet
 Adventure Phantom Marionette / advppuppet.png / Adventure Phantom marionette, adventure Phantom puppet, adv Phantom marionette, adv Phantom puppet, adventure p puppet, adventure p marionette, advppuppet, advpmarionette
-Adventure Golden Freddy / advgolden.png / adventure golden freddy, adv godlen freddy
+Adventure Golden Freddy / advgolden.png / adventure golden freddy, adv golden freddy
 Adventure Paperpals / advpaperpals.png / adventure paperpals, adv paperpals
 Adventure Nightmare Freddy / advnfreddy.png / adventure Nightmare freddy, adv Nightmare freddy, adventure n freddy, advnfreddy
 Adventure Nightmare Bonnie / advnbonnie.png / adventure Nightmare bonnie, adv Nightmare bonnie, adventure n bonnie, advnbonnie
