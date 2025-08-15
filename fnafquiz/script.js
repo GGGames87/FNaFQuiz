@@ -18,6 +18,7 @@ let usedSolveAll = false;
 
 const btnSolve = document.getElementById("btn-solve-all");
 const btnSave  = document.getElementById("btn-save");
+const btnLoad  = document.getElementById("btn-load");
 
 
 const fileInput = document.createElement("input");
