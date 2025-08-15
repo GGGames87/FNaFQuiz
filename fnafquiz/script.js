@@ -19,7 +19,7 @@ let usedSolveAll = false;
 if (isMultiplayer) {
   document.getElementById("btn-solve-all")?.remove();
   document.getElementById("btn-save")?.remove();
-  // document.getElementById("btn-load")?.remove();
+  document.getElementById("btn-load")?.remove();
 }
 
 
