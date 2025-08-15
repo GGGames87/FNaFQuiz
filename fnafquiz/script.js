@@ -57,8 +57,16 @@ fileInput.addEventListener("change", async (e) => {
 });
 
 
+function isAllFound() {
+  const total = Object.values(GAMES).reduce((s, cfg) => s + cfg.list.length, 0);
+  const count = Object.values(foundByGame).reduce((s, arr) => s + arr.length, 0);
+  return count === total;
+}
+
+
+
 document.getElementById("guess")?.addEventListener("input", (e) => {
-  if (e.target.value.length > 0 && !usedSolveAll) {
+  if (e.target.value.length > 0 && !usedSolveAll && !isAllFound()) {
     startTimer();
   }
 
@@ -99,9 +107,8 @@ function getElapsedMs() {
 }
 
 function startTimer() {
-  if (running || usedSolveAll) return;
+  if (running || usedSolveAll || isAllFound()) return;
   running = true;
- 
   startTime = Date.now() - pausedElapsedMs;
   timerInterval = setInterval(updateTimer, 10);
 }
