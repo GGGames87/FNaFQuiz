@@ -384,7 +384,7 @@ Adventure Virtua-Freddy / advvirtual.png / Adventure virtua freddy, adv virtua f
 Mimic Ball / mimicball.png / mimic ball
 The Dancing One / dancingshadow.png / dancing freddy, dancing shadow freddy, dancing one, the dancing one, dancing shadow, shadow dancing
 White Seagulls / whitebird.png / birds, white seagulls, seagulls, fnaf world birds
-Stump Segull / seagull.png / stump seagull, seagull, seagull stump, stump bird
+Stump Seagull / seagull.png / stump seagull, seagull, seagull stump, stump bird
 Dusting Fields Bird / worldblackbirds.png / bird, dusting bird, adventure blackbird, fnaf world blackbird, dusting fields bird
 Adventure Lolbit / advlolbit.png / Adv lolbit, adventure lolbit
 Gnat / Gnat.png / Gnat
