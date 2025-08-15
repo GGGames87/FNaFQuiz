@@ -16,13 +16,6 @@ let running = false;
 let usedSolveAll = false;
 
 
-if (isMultiplayer) {
-  document.getElementById("btn-solve-all")?.remove();
-  document.getElementById("btn-save")?.remove();
-  document.getElementById("btn-load")?.remove();
-}
-
-
 const fileInput = document.createElement("input");
 fileInput.type = "file";
 fileInput.accept = "application/json";
@@ -212,10 +205,15 @@ const isMultiplayer = !!roomId;
 let username = "Jugador";
 let foundRef, playersRef;
 
+
+const btnSolve = document.getElementById("btn-solve-all");
+const btnSave  = document.getElementById("btn-save");
+const btnLoad  = document.getElementById("btn-load");
+
+
 if (isMultiplayer) {
-  document.getElementById("btn-solve-all")?.remove();
-  document.getElementById("btn-save")?.remove();
-  document.getElementById("btn-load")?.remove();
+  btnSolve?.remove();
+  btnLoad?.remove();
 }
 
 
