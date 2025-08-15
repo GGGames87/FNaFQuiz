@@ -597,7 +597,7 @@ The Entrepreneur / entre.png / intro bear, bear intro, The Entrepreneur, Entrepr
 Tutorial Unit / tutorialunit.png / Tutorial Unit, fnaf 6 hand unit, hand unit fnaf 6, ffps hand unit, hand unit ffps
 R.A.S.C. / rasc.png / rasc, remote activated simulated c
 Henry Emily / henryemily.png / Henry, Henry Emily, Hen, Cassette Man
-Charlotte Emily / charlotte.png / Henry's Daughter, charlotte, puppet soul, puppet's soul, puppets soul, marionette soul, marionette's soul, marionettes soul, Charlie
+Charlotte Emily / charlotte.png / Henry's Daughter, charlotte, puppet soul, puppet's soul, puppets soul, marionette soul, marionette's soul, marionettes soul, Charlie, charlotte emily
 Spring Bonnie / springbonnie.png / Spring Bonnie, Golden Bonnie, Gold Bonnie, The Yellow Rabbit
 
 UCN Demo
