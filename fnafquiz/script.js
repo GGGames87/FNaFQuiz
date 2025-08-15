@@ -521,7 +521,7 @@ Funtime Freddy / ftfreddy.png / ftfreddy, funtime freddy
 Bon-Bon / bonbon.png / bonbon, bonnie hand puppet
 Funtime Foxy / ftfoxy.png / ftfoxy, funtime foxy
 Funtime Lolbit / lolbit.png / lolbit, funtime lolbit, ftlolbit
-Ennard / ennard.png / ennard
+Ennard / ennard.png / ennard, calamardo
 HandUnit / handunit.png / hand unit
 Magician / magician.png / magician
 Little Joe / littlejoe.png / Little Joe, joe
@@ -569,7 +569,7 @@ Rockstar Parrot / parrot.png / parrot, rockstar parrot, robot parrot, ffps parro
 Music Man / musicman.png / Music Man
 El Chip / elchip.png / El Chip
 Funtime Chica / ftchica.png / Funtime Chica, ftchica
-Funtime Cupcake / ftcupcake.png / funtime cupcake, ft cupcake
+Funtime Cupcake / ftcupcake.png / funtime cupcake, ft cupcake, rafa
 Helpy / helpy.png / helpy
 Paper Pals / paperpals2.png / simulator paperpals, paperpals 2, fnaf 6 paperpals, ffps paperpals, new paperpals, paperpals fnaf 6, paperpals ffps, Tycoon Paperpals
 Little Girl / littlegirl.png / little girl, fruity maze girl, fruity maze child, fruity maze player
