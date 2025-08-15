@@ -797,7 +797,7 @@ function createSections() {
     const isCollapsed = section.classList.toggle("collapsed");
     if (grid) grid.hidden = isCollapsed;           
   });
-
+}
 
 
 function renderGrid(animList, foundList, containerId) {
