@@ -791,19 +791,8 @@ function createSections() {
     const header = e.target.closest(".game-header");
     if (!header || !host.contains(header)) return;
 
-    const section = header.parentElement;
-    const grid = header.nextElementSibling;
-
-    const isCollapsed = section.classList.toggle("collapsed");
-    header.classList.toggle("collapsed", isCollapsed);
-
-    
-    if (grid) grid.style.display = isCollapsed ? "none" : "";
-
-    
-    if (grid) {
-      grid.querySelectorAll("img.revealed").forEach(img => img.classList.remove("revealed"));
-    }
+    const section = header.parentElement; 
+    section.classList.toggle("collapsed"); 
   });
 }
 
@@ -1148,8 +1137,3 @@ if (!isMultiplayer) {
   });
 }
 
-
-
-createSections();
-renderAllGrids();
-preloadAll();
