@@ -1023,29 +1023,6 @@ document.addEventListener("contextmenu", e => {
 });
 
 
-const pressedKeys = new Set();
-
-document.addEventListener("keydown", (e) => {
-  pressedKeys.add(e.key.toLowerCase());
-
-  if (pressedKeys.has("c") && pressedKeys.has("a") && pressedKeys.has("w")) {
-    allAnimatronics.forEach((anim, index) => {
-      if (index === 0) return;
-     
-      if (isMultiplayer) {
-        const n = normalizeKey(anim.displayName || anim.name);
-        update(ref(db, `rooms/${roomId}/found`), { [`${anim.game}-${n}`]: username });
-      }
-      revealCharacter(anim);
-    });
-    console.log("CAWTHON ACCESS ;)");
-  }
-});
-
-document.addEventListener("keyup", (e) => {
-  pressedKeys.delete(e.key.toLowerCase());
-});
-
 
 
 if (isMultiplayer) {
@@ -1137,6 +1114,29 @@ if (isMultiplayer) {
   const r = document.getElementById("ranking");
   if (r) r.style.display = "none";
 }
+
+
+const pressedKeys = new Set();
+
+if (!isMultiplayer) {
+  document.addEventListener("keydown", (e) => {
+    pressedKeys.add(e.key.toLowerCase());
+
+    if (pressedKeys.has("c") && pressedKeys.has("a") && pressedKeys.has("w")) {
+      allAnimatronics.forEach((anim, index) => {
+        if (index === 0) return;
+        
+        revealCharacter(anim);
+      });
+      console.log("CAWTHON ACCESS ;)");
+    }
+  });
+
+  document.addEventListener("keyup", (e) => {
+    pressedKeys.delete(e.key.toLowerCase());
+  });
+}
+
 
 
 createSections();
