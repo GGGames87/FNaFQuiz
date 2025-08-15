@@ -213,13 +213,18 @@ input {
   margin-bottom: 10px;
 }
 
+
 @media (max-width: 600px) {
   #side-buttons {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
+    flex-direction: row;
+    gap: 12px;
+    flex-wrap: nowrap;  
+  }
+  #side-buttons button {
+    flex: 1 1 auto;    
   }
 }
+
 
 
 #side-buttons button {
@@ -448,3 +453,10 @@ footer {
     transform: scale(1);
   }
 }
+
+
+#sticky-header .top-row #btn-solve-all.styled-btn {
+  color: #e11d48 !important;
+  text-transform: uppercase !important;
+}
+
