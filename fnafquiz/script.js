@@ -300,7 +300,7 @@ Foxy Bully (Young Mike) / foxybro.png / young mike, younger mike, young michael,
 Crying Child / cc.png / cc, crying child, bv, bite victim, sobbing child, little man, evan afton, dave afton
 Spring Bonnie Plush Kid / plushgirl.png / springbonnie plush kid, spring bonnie girl, plush girl, plush kid, fingertrap girl, fingertrap kid, plushtrap kid, plushtrap girl
 Pigtailed Girl / pigtailgirl.png / pigatail girl, pigtailed girl, pigtail child, pigtailed child, baby girl, baby child, green eyed kid, skit girl, pigtail girl, pigatils girl
-Toy Collector Girl / toysgirl.png / toy girl, toy collector, collection girl, toy collector, collector girl, toys girl
+Toy Collector Girl / toysgirl.png / toy girl, toy collector, collection girl, toy collector, collector girl, toys girl, toy collector girl
 Balloon Kid / balloonkid.png / Balloon Kid, chubby kid, minigame balloon boy, balloon child
 
 FNaF World: Halloween Edition
@@ -791,10 +791,13 @@ function createSections() {
     const header = e.target.closest(".game-header");
     if (!header || !host.contains(header)) return;
 
-    const section = header.parentElement; 
-    section.classList.toggle("collapsed"); 
+    const section = header.parentElement;      
+    const grid = header.nextElementSibling;   
+
+    const isCollapsed = section.classList.toggle("collapsed");
+    if (grid) grid.hidden = isCollapsed;           
   });
-}
+
 
 
 function renderGrid(animList, foundList, containerId) {
