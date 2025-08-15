@@ -454,6 +454,10 @@ footer {
   }
 }
 
+.game-section.collapsed > .grid {
+  display: none !important;
+}
+
 
 #sticky-header .top-row #btn-solve-all.styled-btn {
   color: #e11d48 !important;
