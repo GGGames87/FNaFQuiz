@@ -250,8 +250,8 @@ Endo-02 / endo02.png / endo-02, endo 02, endo2, endo-2
 RWQFSFASXC / shadowbonnie.png / rwqfsfasxc, shadow bonnie, rxq
 Shadow Freddy / shadowfreddy.png / shadow freddy, purple freddy
 Paperpals / paperpals.png / paperpals
-Fritz Smith / FritzSmith.png / fritz smith
 Jeremy Fitzgerald / JeremyFitzgerald.png / jeremy fitzgerald
+Fritz Smith / FritzSmith.png / fritz smith
 William Afton / william.png / william, purple guy, vincent
 Cakebear / cakebear.png / TCTTC freddy, take cake to the children freddy, cakebear, cake freddy, pie freddy, caked up freddy
 
