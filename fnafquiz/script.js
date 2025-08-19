@@ -582,8 +582,8 @@ TV Guy / tvguy.png / tv guy, tv man, mmtvguy, mmtvman, midnight motorist tv guy,
 Gumball Swivelhands / gumball.png / Gumball Swivelhands, chewing gum machine, chewing gum vending machine
 Candy Cadet / candycadet.png / Candy Cadet
 Ballpit Tower / tower.png / Ballpit Tower
-Lemonade Clown / lemonade.png / Lemonade Clown
-Fruit Punch Clown / fruit.png / Fruit Punch Clown
+Lemonade Clown / lemonade.png / Lemonade Clown, Lemonade
+Fruit Punch Clown / fruit.png / Fruit Punch Clown, Fruit Punch
 Neon Jukebox / juke.png / Neon Jukebox, jukebox
 Egg Baby / egg.png / Egg Baby, data archive
 Prize King / king.png / Prize King
