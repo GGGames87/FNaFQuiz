@@ -336,7 +336,7 @@ Nightmare Mangle / nmangle.png / nmangle, nightmare mangle
 Nightmarionne / npuppet.png / npuppet, nightmare puppet, nightmare marionette, n marionette, nightmarionne
 
 FNaF World
-Adventure Freddy / advfreddy.png / adventure freddy, adv freddy
+Adventure Freddy / advfreddy.png / adventure freddy, adv freddy, fnaf world freddy
 Adventure Bonnie / advbonnie.png / adventure bonnie, adv bonnie
 Adventure Chica / advchica.png / adventure chica, adv chica
 Adventure Foxy / advfoxy.png / adventure foxy, adv foxy
