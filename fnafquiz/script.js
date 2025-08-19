@@ -257,8 +257,8 @@ Cakebear / cakebear.png / TCTTC freddy, take cake to the children freddy, cakebe
 
 FNaF 3 Troll Game
 Freddydude / Freddydude.png / freddydude, animdude freddy, There is no Pause Button Freddy, TINPB Freddy
-Red Dragon / red.png / red dragon, red monster, red dinosaur, There is no Pause Button Final Boss, There is no Pause Button Red Boss, TINPB Red Boss, TINPB Final Boss, There is no Pause Button Final dragon, There is no Pause Button Red dragon, TINPB Red dragon, TINPB Final dragon
 Green Dragon / green.png / green dragon, green monster, green dinosaur, There is no Pause Button Boss, There is no Pause Button Green Boss, TINPB Boss, TINPS green boss, There is no Pause Button dragon, There is no Pause Button Green dragon, TINPB dragon, TINPS green dragon
+Red Dragon / red.png / red dragon, red monster, red dinosaur, There is no Pause Button Final Boss, There is no Pause Button Red Boss, TINPB Red Boss, TINPB Final Boss, There is no Pause Button Final dragon, There is no Pause Button Red dragon, TINPB Red dragon, TINPB Final dragon
 
 FNaF 3
 Springtrap / springtrap.png / springtrap
