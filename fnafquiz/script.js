@@ -228,7 +228,7 @@ Foxy / foxy.png / foxy
 Golden Freddy / goldenfreddy.png / golden freddy
 Endo-01 / endo01.png / endo-01, endo 01, endo1, endo-1, bare endo
 Phone Guy / phoneguy.png / ralph, phone guy
-Mike Schmidt / mikeschmidt.png / mike schmidt
+Mike Schmidt / mikeschmidt.png / mike schmidt, fnaf 1 guard
 Unused Lives Guy / livesguy.png / unused lives, lives, sprite lives, 8bit lives
 
 FNaF 2
@@ -543,7 +543,7 @@ FNaF: Sister Location - Custom Night DLC
 Bonnet / bonnet.png / bonnet
 Electrobab / electrobab.png / electrobab, electric bidybab
 Dark Springtrap / darkspringtrap.png / Dark Springtrap
-Michael Afton / mikeafton.png / mike afton, michael afton, eggs benedict
+Michael Afton / mikeafton.png / mike afton, michael, eggs benedict
 Neighbors / naigh.png / Neighbors, The Neighbors, minigame men,  waving man, waving men
 
 FNaF 6 / FFPS
