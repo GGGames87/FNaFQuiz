@@ -596,7 +596,7 @@ Lally / lallylollie.png / Lally, little joe ad, ad little joe, joe ad, ad joe, l
 The Entrepreneur / entre.png / intro bear, bear intro, The Entrepreneur, Entrepreneur, fnaf 6 bear, bear fnaf 6, yellow bear, the player, ffps bear, bear ffps, michael bear, franchisee, the franchisee, mike bear, cutscene bear, ffps franchisee, fnaf 6 franchisee, bear michael
 Tutorial Unit / tutorialunit.png / Tutorial Unit, fnaf 6 hand unit, hand unit fnaf 6, ffps hand unit, hand unit ffps
 R.A.S.C. / rasc.png / rasc, remote activated simulated c
-Henry Emily / henryemily.png / Henry, Henry Emily, Hen, Cassette Man
+Henry Emily / henryemily.png / Henry, Henry Emily, Cassette Man
 Charlotte Emily / charlotte.png / Henry's Daughter, charlotte, puppet soul, puppet's soul, puppets soul, marionette soul, marionette's soul, marionettes soul, Charlie, charlotte emily
 Spring Bonnie / springbonnie.png / Spring Bonnie, Golden Bonnie, Gold Bonnie, The Yellow Rabbit
 
