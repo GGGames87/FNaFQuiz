@@ -104,11 +104,17 @@ html, body {
 
 
 @media (max-width: 768px) {
+ 
+  .swap {
+    width: 120px;   
+  }
   .swap img {
-    width: auto;  
-    max-width: 80px; 
+    width: 100%;      
+    height: auto;
+    max-width: none;  
   }
 
+ 
   .img-404 {
     width: 100vw;
     max-width: none;
@@ -116,3 +122,4 @@ html, body {
     margin-right: calc(50% - 50vw);
   }
 }
+
