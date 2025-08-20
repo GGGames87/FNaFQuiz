@@ -73,13 +73,32 @@ html, body {
   position: relative;
   display: inline-block;
 }
+
 .swap img {
-  max-width: min(820px, 92vw);
-  transition: opacity .18s ease;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: opacity 0.3s ease;
 }
+
+
 .swap img.top {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
   opacity: 0;
 }
-.swap:hover img.top { opacity: 1; }
+
+
+.swap:hover img.top {
+  opacity: 1;
+}
+.swap:hover img:not(.top) {
+  opacity: 0;
+}
+
+@media (max-width: 768px) {
+  .swap img {
+    max-width: 200px;
+  }
+}
