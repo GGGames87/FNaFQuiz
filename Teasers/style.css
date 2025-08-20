@@ -70,27 +70,25 @@ html, body {
 .wip { color: #bbb; }
 
 
+
 .swap {
   position: relative;
   display: inline-block;
-
-  width: min(520px, 60vw);
 }
 
 .swap img {
   display: block;
+  max-width: 400px; 
   width: 100%;
   height: auto;
-  /* transition: opacity 0.0s ease; */
+  /* transition: opacity 0.25s ease; */
 }
-
 
 .swap img.top {
   position: absolute;
-  inset: 0;    
+  inset: 0;
   opacity: 0;
 }
-
 
 .swap:hover img.top { opacity: 1; }
 .swap:hover img:not(.top) { opacity: 0; }
@@ -105,19 +103,18 @@ html, body {
 }
 
 
+
 @media (max-width: 768px) {
-  
-  .swap {
-    width: min(220px, 65vw);
+ 
+  .swap img {
+    max-width: 180px;
   }
 
   
   .img-404 {
     width: 100vw;
     max-width: none;
-    
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
   }
 }
-
