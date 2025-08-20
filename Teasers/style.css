@@ -103,14 +103,12 @@ html, body {
 }
 
 
-
 @media (max-width: 768px) {
- 
   .swap img {
-    max-width: 80px;
+    width: auto;  
+    max-width: 180px; 
   }
 
-  
   .img-404 {
     width: 100vw;
     max-width: none;
