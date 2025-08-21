@@ -261,7 +261,7 @@ Green Dragon / green.png / green dragon, green monster, green dinosaur, There is
 Red Dragon / red.png / red dragon, red monster, red dinosaur, There is no Pause Button Final Boss, There is no Pause Button Red Boss, TINPB Red Boss, TINPB Final Boss, There is no Pause Button Final dragon, There is no Pause Button Red dragon, TINPB Red dragon, TINPB Final dragon
 
 FNaF 3
-Springtrap / springtrap.png / springtrap
+Springtrap / springtrap.png / springtrap, the fun one, fun one
 Phantom Freddy / pfreddy.png / phantom freddy, pfreddy
 Phantom Chica / pchica.png / pchica, phantom chica, watermelon
 Phantom Foxy / pfoxy.png / pfoxy, phantom foxy
