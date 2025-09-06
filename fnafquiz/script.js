@@ -451,7 +451,7 @@ White Rabbit / White Rabbit.png / White Rabbit
 >>>>>> / x6mayorque.png / >>>>>>
 _!2222 / glitch2.png / _!2222
 %__^^&( / glitch3.png / %__^^&(
-Unused Browboy Enemy / unusedbrowboy.png / browboy enemy, enemy browboy, unused browboy
+Unused Browboy Enemy / unusedbrowboy.png / browboy enemy, enemy browboy, unused browboy, minibrow
 Unused Prototype / betaproto.png / beta Prototype, alpha Prototype, old Prototype, unused Prototype, trailer Prototype, teaser Prototype, purple Prototype
 Unused Mechrab / goldencrab.png / Gold Mechrab, golden Mechrab, unused Mechrab, trailer Mechrab, teaser Mechrab, old Mechrab
 Auto Chipper / Auto Chipper.png / Auto Chipper
