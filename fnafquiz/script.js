@@ -252,7 +252,7 @@ Shadow Freddy / shadowfreddy.png / shadow freddy, purple freddy
 Paperpals / paperpals.png / paperpals
 Jeremy Fitzgerald / JeremyFitzgerald.png / jeremy fitzgerald
 Fritz Smith / FritzSmith.png / fritz smith
-William Afton / william.png / william, purple guy, vincent
+William Afton / william.png / william, vincent
 Cakebear / cakebear.png / TCTTC freddy, take cake to the children freddy, cakebear, cake freddy, pie freddy, caked up freddy
 
 FNaF 3 Troll Game
