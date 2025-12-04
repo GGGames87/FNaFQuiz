@@ -25,7 +25,7 @@ html, body {
 }
 
 .secondary-img {
-  max-width: min(620px, 92vw);
+  max-width: min(1620px, 92vw);
   height: auto;
   display: block;
 }
