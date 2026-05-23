@@ -574,7 +574,7 @@ Funtime Cupcake / ftcupcake.png / funtime cupcake, ft cupcake, rafa
 Helpy / helpy.png / helpy
 Paper Pals / paperpals2.png / simulator paperpals, paperpals 2, fnaf 6 paperpals, ffps paperpals, new paperpals, paperpals fnaf 6, paperpals ffps, Tycoon Paperpals
 Little Girl / littlegirl.png / little girl, fruity maze girl, fruity maze child, fruity maze player
-Yellow Bunny / rabbit.png / yellow bunny, yellow rabbit, fruity maze bunny, fruity maze rabbit, Fruity Maze Rabbit, Fruity Maze Bunny
+FunBun / rabbit.png / yellow bunny, yellow rabbit, fruity maze bunny, fruity maze rabbit, Fruity Maze Rabbit, Fruity Maze Bunny, funbun, fun bun
 Susie's Dog / susiedog.png / Susie dog, susie puppy, susies dog, susies puppy, fruity maze dog, fruity maze puppy, minigame dog, maze dog
 Yellow Guy / yellowguy.png / yellow man, mustard man, yellow guy, mustard guy, ffps william, fnaf 6 william, mm william, mmman, mmguy, midnight motorist william
 JR's Bouncer / jrbouncer.png / jr's bouncer, jrs bouncer, jr bouncer, green man, Midnight Motorist bouncer, Midnight Motorist green guy, green guy, Midnight Motorist green man
