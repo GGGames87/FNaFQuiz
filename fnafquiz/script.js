@@ -297,7 +297,7 @@ Freddy Bully / freddybully.png / freddy bully, bully freddy, oswald's father, os
 Bonnie Bully / bonniebully.png / bonnie bully, bully bonnie, help wanted jeremy, cassie's father, cassie father
 Chica Bully / chicabully.png / chica bully, bully chica
 Foxy Bully (Young Mike) / foxybro.png / young mike, younger mike, young michael, younger michael, foxybro, ccs brother, foxy bully, bully foxy, brother foxy, brofoxy
-Crying Child / cc.png / cc, crying child, bv, bite victim, sobbing child, little man, evan afton, dave afton
+Bite Victim / cc.png / cc, crying child, bv, bite victim, sobbing child, little man, evan afton, dave afton
 Spring Bonnie Plush Kid / plushgirl.png / springbonnie plush kid, spring bonnie girl, plush girl, plush kid, fingertrap girl, fingertrap kid, plushtrap kid, plushtrap girl
 Pigtailed Girl / pigtailgirl.png / pigatail girl, pigtailed girl, pigtail child, pigtailed child, baby girl, baby child, green eyed kid, skit girl, pigtail girl, pigatils girl
 Toy Collector Girl / toysgirl.png / toy girl, toy collector, collection girl, toy collector, collector girl, toys girl, toy collector girl
