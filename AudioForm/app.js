@@ -1,9 +1,7 @@
 const MAX_SELECTIONS = 10;
 
-// Sustituye TU_PROJECT_REF por el identificador de tu proyecto Supabase.
-// Ejemplo:
-// https://abcdefghijklm.supabase.co/functions/v1/submit-vote
-const SUBMIT_URL = "https://TU_PROJECT_REF.supabase.co/functions/v1/submit-vote";
+
+const SUBMIT_URL = "https://hsseihsjrihlcxdcgfyr.supabase.co/functions/v1/submit-vote";
 
 const audioFiles = [
   "01 hola a todos.mp3",
