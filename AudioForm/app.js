@@ -1,6 +1,8 @@
 const MAX_SELECTIONS = 10;
 
-// URL de tu Edge Function. Sustituye TU_PROJECT_REF.
+// Sustituye TU_PROJECT_REF por el identificador de tu proyecto Supabase.
+// Ejemplo:
+// https://abcdefghijklm.supabase.co/functions/v1/submit-vote
 const SUBMIT_URL = "https://TU_PROJECT_REF.supabase.co/functions/v1/submit-vote";
 
 const audioFiles = [
@@ -52,7 +54,6 @@ const audioFiles = [
 ];
 
 const selected = new Set();
-let turnstileToken = "";
 
 const audioList = document.getElementById("audioList");
 const selectedCount = document.getElementById("selectedCount");
@@ -60,7 +61,6 @@ const selectionMessage = document.getElementById("selectionMessage");
 const emailInput = document.getElementById("email");
 const submitBtn = document.getElementById("submitBtn");
 const statusEl = document.getElementById("status");
-const turnstileWrap = document.getElementById("turnstileWrap");
 const honeypot = document.getElementById("website");
 
 function escapeHtml(text) {
@@ -78,11 +78,12 @@ function titleFromFile(file) {
 }
 
 function renderAudios() {
-  audioFiles.forEach((file, i) => {
-    const id = i + 1;
+  audioFiles.forEach((file, index) => {
+    const id = index + 1;
     const item = document.createElement("article");
     item.className = "audio-item";
     item.dataset.id = String(id);
+
     item.innerHTML = `
       <input class="audio-check" id="audio-${id}" type="checkbox">
       <div>
@@ -93,19 +94,23 @@ function renderAudios() {
         </audio>
       </div>
     `;
-    const check = item.querySelector(".audio-check");
-    check.addEventListener("change", () => {
-      if (check.checked) {
+
+    const checkbox = item.querySelector(".audio-check");
+
+    checkbox.addEventListener("change", () => {
+      if (checkbox.checked) {
         if (selected.size >= MAX_SELECTIONS) {
-          check.checked = false;
+          checkbox.checked = false;
           return;
         }
         selected.add(id);
       } else {
         selected.delete(id);
       }
+
       updateUI();
     });
+
     audioList.appendChild(item);
   });
 }
@@ -116,56 +121,40 @@ function setStatus(message, type = "") {
 }
 
 function validEmail() {
-  return !emailInput.disabled && emailInput.value.trim() && emailInput.checkValidity();
+  return (
+    !emailInput.disabled &&
+    emailInput.value.trim() !== "" &&
+    emailInput.checkValidity()
+  );
+}
+
+function refreshSubmitState() {
+  submitBtn.disabled = !(selected.size === MAX_SELECTIONS && validEmail());
 }
 
 function updateUI() {
   const ready = selected.size === MAX_SELECTIONS;
   selectedCount.textContent = selected.size;
 
-  document.querySelectorAll(".audio-item").forEach(item => {
+  document.querySelectorAll(".audio-item").forEach((item) => {
     const id = Number(item.dataset.id);
-    const check = item.querySelector(".audio-check");
+    const checkbox = item.querySelector(".audio-check");
     const isSelected = selected.has(id);
     const locked = ready && !isSelected;
+
     item.classList.toggle("selected", isSelected);
     item.classList.toggle("locked", locked);
-    check.disabled = locked;
+    checkbox.disabled = locked;
   });
 
   emailInput.disabled = !ready;
-  turnstileWrap.classList.toggle("is-disabled", !ready);
 
   selectionMessage.textContent = ready
-    ? "Perfecto. Ahora introduce tu correo y completa la verificación."
+    ? "Perfecto. Introduce tu correo y envía tus votos."
     : `Te faltan ${MAX_SELECTIONS - selected.size} selecciones.`;
 
   refreshSubmitState();
 }
-
-function refreshSubmitState() {
-  submitBtn.disabled = !(
-    selected.size === MAX_SELECTIONS &&
-    validEmail() &&
-    turnstileToken
-  );
-}
-
-window.onTurnstileSuccess = token => {
-  turnstileToken = token;
-  refreshSubmitState();
-};
-
-window.onTurnstileExpired = () => {
-  turnstileToken = "";
-  refreshSubmitState();
-};
-
-window.onTurnstileError = () => {
-  turnstileToken = "";
-  setStatus("No se pudo cargar la verificación anti-spam.", "error");
-  refreshSubmitState();
-};
 
 emailInput.addEventListener("input", refreshSubmitState);
 
@@ -174,12 +163,9 @@ submitBtn.addEventListener("click", async () => {
     setStatus("Debes seleccionar exactamente 10 audios.", "error");
     return;
   }
+
   if (!validEmail()) {
     setStatus("Introduce un correo válido.", "error");
-    return;
-  }
-  if (!turnstileToken) {
-    setStatus("Completa la verificación anti-spam.", "error");
     return;
   }
 
@@ -189,43 +175,44 @@ submitBtn.addEventListener("click", async () => {
 
   const payload = {
     email: emailInput.value.trim().toLowerCase(),
-    choices: [...selected].sort((a,b) => a-b),
-    turnstileToken,
+    choices: [...selected].sort((a, b) => a - b),
     website: honeypot.value
   };
 
   try {
     const response = await fetch(SUBMIT_URL, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify(payload)
     });
 
     let data = {};
-    try { data = await response.json(); } catch (_) {}
+    try {
+      data = await response.json();
+    } catch (_) {}
 
     if (!response.ok) {
       if (response.status === 409) {
         throw new Error("Este correo ya ha enviado sus votos.");
       }
-      if (response.status === 429) {
-        throw new Error("Demasiados intentos. Espera un poco y vuelve a intentarlo.");
-      }
+
       throw new Error(data.error || "No se pudieron guardar los votos.");
     }
 
     setStatus("¡Votos enviados correctamente! Gracias.", "success");
-    document.querySelectorAll(".audio-check").forEach(el => el.disabled = true);
+
+    document.querySelectorAll(".audio-check").forEach((el) => {
+      el.disabled = true;
+    });
+
     emailInput.disabled = true;
     submitBtn.textContent = "Votos enviados";
     submitBtn.disabled = true;
-    turnstileWrap.classList.add("is-disabled");
-  } catch (err) {
-    setStatus(err.message || "Ha ocurrido un error.", "error");
+  } catch (error) {
+    setStatus(error.message || "Ha ocurrido un error.", "error");
     submitBtn.textContent = "Enviar mis 10 votos";
-    // Los tokens de Turnstile son de un solo uso: pide otro.
-    turnstileToken = "";
-    if (window.turnstile) window.turnstile.reset();
     refreshSubmitState();
   }
 });
