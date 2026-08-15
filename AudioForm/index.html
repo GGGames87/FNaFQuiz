@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Elige tus 10 audios</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <h1>Elige tus 10 audios favoritos</h1>
+      <p>Escucha los 45 audios y selecciona <strong>exactamente 10</strong>.</p>
+      <div class="counter" id="counter" aria-live="polite">
+        Seleccionados: <strong><span id="selectedCount">0</span>/10</strong>
+      </div>
+    </header>
+
+    <section id="audioList" class="audio-list" aria-label="Lista de audios"></section>
+
+    <section class="submit-panel" id="submitPanel">
+      <h2>Enviar tus respuestas</h2>
+      <p id="selectionMessage">Selecciona exactamente 10 audios para continuar.</p>
+
+      <div class="form-row">
+        <label for="email">Correo electrónico</label>
+        <input
+          id="email"
+          type="email"
+          autocomplete="email"
+          placeholder="tu@email.com"
+          disabled
+        >
+      </div>
+
+      <button id="sendCodeBtn" class="primary" type="button" disabled>
+        Enviar código de verificación
+      </button>
+
+      <div id="otpArea" class="otp-area hidden">
+        <div class="form-row">
+          <label for="otp">Código recibido por email</label>
+          <input
+            id="otp"
+            type="text"
+            inputmode="numeric"
+            autocomplete="one-time-code"
+            maxlength="8"
+            placeholder="Código"
+          >
+        </div>
+
+        <button id="verifyBtn" class="primary" type="button">
+          Verificar y enviar respuestas
+        </button>
+      </div>
+
+      <p id="status" class="status" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
