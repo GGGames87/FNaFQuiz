@@ -1,6 +1,5 @@
 const MAX_SELECTIONS = 10;
 
-
 const SUBMIT_URL = "https://hsseihsjrihlcxdcgfyr.supabase.co/functions/v1/submit-vote";
 
 const audioFiles = [
@@ -61,33 +60,94 @@ const submitBtn = document.getElementById("submitBtn");
 const statusEl = document.getElementById("status");
 const honeypot = document.getElementById("website");
 
+
 function escapeHtml(text) {
   const el = document.createElement("div");
   el.textContent = text;
   return el.innerHTML;
 }
 
+
 function audioUrl(file) {
   return "audios/" + encodeURIComponent(file);
 }
 
-function titleFromFile(file) {
-  return file.replace(/\.mp3$/i, "");
+
+// Obtiene el número real del archivo.
+// Ejemplo:
+// "17 nonono.mp3" -> 17
+function audioIdFromFile(file) {
+  const match = file.match(/^(\d+)/);
+  return match ? Number(match[1]) : null;
 }
 
+
+// Elimina ".mp3" y el número inicial del título.
+// Ejemplo:
+// "17 nonono.mp3" -> "nonono"
+function titleFromFile(file) {
+  return file
+    .replace(/\.mp3$/i, "")
+    .replace(/^\d+\s*/, "");
+}
+
+
+// Crea una copia de la lista y la mezcla.
+// Se ejecuta de nuevo en cada refresh de la página.
+function shuffledAudios() {
+  const files = [...audioFiles];
+
+  for (let i = files.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+
+    [files[i], files[j]] = [files[j], files[i]];
+  }
+
+  return files;
+}
+
+
 function renderAudios() {
-  audioFiles.forEach((file, index) => {
-    const id = index + 1;
+  // Randomizamos la lista antes de mostrarla
+  const randomizedFiles = shuffledAudios();
+
+  randomizedFiles.forEach((file) => {
+
+    // IMPORTANTE:
+    // el ID sale del nombre del archivo,
+    // NO de la posición que ocupa en la lista.
+    const id = audioIdFromFile(file);
+
+    if (id === null) {
+      console.warn("No se pudo obtener el ID del audio:", file);
+      return;
+    }
+
     const item = document.createElement("article");
+
     item.className = "audio-item";
+
+    // Guardamos el número real del MP3
     item.dataset.id = String(id);
 
     item.innerHTML = `
-      <input class="audio-check" id="audio-${id}" type="checkbox">
+      <input
+        class="audio-check"
+        id="audio-${id}"
+        type="checkbox"
+      >
+
       <div>
-        <p class="audio-title">${escapeHtml(titleFromFile(file))}</p>
+        <p class="audio-title">
+          ${escapeHtml(titleFromFile(file))}
+        </p>
+
         <audio controls preload="none">
-          <source src="${audioUrl(file)}" type="audio/mpeg">
+          <source
+            src="${audioUrl(file)}"
+            type="audio/mpeg"
+          >
+
           Tu navegador no soporta audio HTML5.
         </audio>
       </div>
@@ -96,14 +156,21 @@ function renderAudios() {
     const checkbox = item.querySelector(".audio-check");
 
     checkbox.addEventListener("change", () => {
+
       if (checkbox.checked) {
+
         if (selected.size >= MAX_SELECTIONS) {
           checkbox.checked = false;
           return;
         }
+
+        // Se guarda el número REAL del MP3
         selected.add(id);
+
       } else {
+
         selected.delete(id);
+
       }
 
       updateUI();
@@ -113,10 +180,13 @@ function renderAudios() {
   });
 }
 
+
 function setStatus(message, type = "") {
   statusEl.textContent = message;
-  statusEl.className = "status" + (type ? " " + type : "");
+  statusEl.className =
+    "status" + (type ? " " + type : "");
 }
+
 
 function validEmail() {
   return (
@@ -126,94 +196,235 @@ function validEmail() {
   );
 }
 
+
 function refreshSubmitState() {
-  submitBtn.disabled = !(selected.size === MAX_SELECTIONS && validEmail());
+  submitBtn.disabled = !(
+    selected.size === MAX_SELECTIONS &&
+    validEmail()
+  );
 }
 
+
 function updateUI() {
-  const ready = selected.size === MAX_SELECTIONS;
-  selectedCount.textContent = selected.size;
 
-  document.querySelectorAll(".audio-item").forEach((item) => {
-    const id = Number(item.dataset.id);
-    const checkbox = item.querySelector(".audio-check");
-    const isSelected = selected.has(id);
-    const locked = ready && !isSelected;
+  const ready =
+    selected.size === MAX_SELECTIONS;
 
-    item.classList.toggle("selected", isSelected);
-    item.classList.toggle("locked", locked);
-    checkbox.disabled = locked;
-  });
+  selectedCount.textContent =
+    selected.size;
 
-  emailInput.disabled = !ready;
 
-  selectionMessage.textContent = ready
-    ? "Perfecto. Introduce tu correo y envía tus votos."
-    : `Te faltan ${MAX_SELECTIONS - selected.size} selecciones.`;
+  document
+    .querySelectorAll(".audio-item")
+    .forEach((item) => {
+
+      const id =
+        Number(item.dataset.id);
+
+      const checkbox =
+        item.querySelector(".audio-check");
+
+      const isSelected =
+        selected.has(id);
+
+      const locked =
+        ready && !isSelected;
+
+
+      item.classList.toggle(
+        "selected",
+        isSelected
+      );
+
+      item.classList.toggle(
+        "locked",
+        locked
+      );
+
+      checkbox.disabled =
+        locked;
+    });
+
+
+  emailInput.disabled =
+    !ready;
+
+
+  selectionMessage.textContent =
+    ready
+      ? "Perfecto. Introduce tu correo y envía tus votos."
+      : `Te faltan ${
+          MAX_SELECTIONS - selected.size
+        } selecciones.`;
+
 
   refreshSubmitState();
 }
 
-emailInput.addEventListener("input", refreshSubmitState);
 
-submitBtn.addEventListener("click", async () => {
-  if (selected.size !== MAX_SELECTIONS) {
-    setStatus("Debes seleccionar exactamente 10 audios.", "error");
-    return;
-  }
+emailInput.addEventListener(
+  "input",
+  refreshSubmitState
+);
 
-  if (!validEmail()) {
-    setStatus("Introduce un correo válido.", "error");
-    return;
-  }
 
-  submitBtn.disabled = true;
-  submitBtn.textContent = "Enviando...";
-  setStatus("");
+submitBtn.addEventListener(
+  "click",
+  async () => {
 
-  const payload = {
-    email: emailInput.value.trim().toLowerCase(),
-    choices: [...selected].sort((a, b) => a - b),
-    website: honeypot.value
-  };
+    if (
+      selected.size !==
+      MAX_SELECTIONS
+    ) {
 
-  try {
-    const response = await fetch(SUBMIT_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(payload)
-    });
+      setStatus(
+        "Debes seleccionar exactamente 10 audios.",
+        "error"
+      );
 
-    let data = {};
-    try {
-      data = await response.json();
-    } catch (_) {}
-
-    if (!response.ok) {
-      if (response.status === 409) {
-        throw new Error("Este correo ya ha enviado sus votos.");
-      }
-
-      throw new Error(data.error || "No se pudieron guardar los votos.");
+      return;
     }
 
-    setStatus("¡Votos enviados correctamente! Gracias.", "success");
 
-    document.querySelectorAll(".audio-check").forEach((el) => {
-      el.disabled = true;
-    });
+    if (!validEmail()) {
 
-    emailInput.disabled = true;
-    submitBtn.textContent = "Votos enviados";
+      setStatus(
+        "Introduce un correo válido.",
+        "error"
+      );
+
+      return;
+    }
+
+
     submitBtn.disabled = true;
-  } catch (error) {
-    setStatus(error.message || "Ha ocurrido un error.", "error");
-    submitBtn.textContent = "Enviar mis 10 votos";
-    refreshSubmitState();
+
+    submitBtn.textContent =
+      "Enviando...";
+
+    setStatus("");
+
+
+    /*
+      Aquí se mandan a Supabase
+      LOS NÚMEROS DE LOS ARCHIVOS MP3.
+
+      Ejemplo:
+
+      03 que rabia.mp3
+      17 nonono.mp3
+      42 vamos.mp3
+
+      Se enviará:
+
+      choices: [3, 17, 42, ...]
+    */
+
+    const payload = {
+
+      email:
+        emailInput.value
+          .trim()
+          .toLowerCase(),
+
+      choices:
+        [...selected]
+          .sort((a, b) => a - b),
+
+      website:
+        honeypot.value
+    };
+
+
+    try {
+
+      const response =
+        await fetch(
+          SUBMIT_URL,
+          {
+            method: "POST",
+
+            headers: {
+              "Content-Type":
+                "application/json"
+            },
+
+            body:
+              JSON.stringify(payload)
+          }
+        );
+
+
+      let data = {};
+
+      try {
+        data =
+          await response.json();
+      } catch (_) {}
+
+
+      if (!response.ok) {
+
+        if (
+          response.status === 409
+        ) {
+
+          throw new Error(
+            "Este correo ya ha enviado sus votos."
+          );
+        }
+
+
+        throw new Error(
+          data.error ||
+          "No se pudieron guardar los votos."
+        );
+      }
+
+
+      setStatus(
+        "¡Votos enviados correctamente! Gracias.",
+        "success"
+      );
+
+
+      document
+        .querySelectorAll(
+          ".audio-check"
+        )
+        .forEach((el) => {
+
+          el.disabled = true;
+
+        });
+
+
+      emailInput.disabled =
+        true;
+
+      submitBtn.textContent =
+        "Votos enviados";
+
+      submitBtn.disabled =
+        true;
+
+
+    } catch (error) {
+
+      setStatus(
+        error.message ||
+        "Ha ocurrido un error.",
+        "error"
+      );
+
+      submitBtn.textContent =
+        "Enviar mis 10 votos";
+
+      refreshSubmitState();
+    }
   }
-});
+);
+
 
 renderAudios();
 updateUI();
