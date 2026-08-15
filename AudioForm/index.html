@@ -2,63 +2,55 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Elige tus 10 audios</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Votación de audios</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
   <main class="container">
     <header class="hero">
+      <p class="eyebrow">VOTACIÓN</p>
       <h1>Elige tus 10 audios favoritos</h1>
-      <p>Escucha los 45 audios y selecciona <strong>exactamente 10</strong>.</p>
-      <div class="counter" id="counter" aria-live="polite">
-        Seleccionados: <strong><span id="selectedCount">0</span>/10</strong>
-      </div>
+      <p>Escucha los 45 audios y marca <strong>exactamente 10</strong>.</p>
+      <div class="counter" id="counter"><span id="selectedCount">0</span> / 10 seleccionados</div>
     </header>
 
-    <section id="audioList" class="audio-list" aria-label="Lista de audios"></section>
+    <section id="audioList" class="audio-list" aria-label="Audios"></section>
 
-    <section class="submit-panel" id="submitPanel">
-      <h2>Enviar tus respuestas</h2>
-      <p id="selectionMessage">Selecciona exactamente 10 audios para continuar.</p>
+    <section class="submit-card" id="submitCard">
+      <h2>Enviar votos</h2>
+      <p id="selectionMessage">Te faltan 10 selecciones.</p>
 
-      <div class="form-row">
-        <label for="email">Correo electrónico</label>
-        <input
-          id="email"
-          type="email"
-          autocomplete="email"
-          placeholder="tu@email.com"
-          disabled
-        >
+      <label for="email">Correo electrónico</label>
+      <input id="email" type="email" autocomplete="email" placeholder="tu@email.com" disabled>
+
+      <!-- Honeypot: los humanos no deberían rellenarlo -->
+      <div class="hp" aria-hidden="true">
+        <label for="website">Página web</label>
+        <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
       </div>
 
-      <button id="sendCodeBtn" class="primary" type="button" disabled>
-        Enviar código de verificación
-      </button>
-
-      <div id="otpArea" class="otp-area hidden">
-        <div class="form-row">
-          <label for="otp">Código recibido por email</label>
-          <input
-            id="otp"
-            type="text"
-            inputmode="numeric"
-            autocomplete="one-time-code"
-            maxlength="8"
-            placeholder="Código"
-          >
+      <div id="turnstileWrap" class="turnstile-wrap is-disabled">
+        <div
+          class="cf-turnstile"
+          data-sitekey="PON_AQUI_TU_TURNSTILE_SITE_KEY"
+          data-theme="auto"
+          data-callback="onTurnstileSuccess"
+          data-expired-callback="onTurnstileExpired"
+          data-error-callback="onTurnstileError">
         </div>
-
-        <button id="verifyBtn" class="primary" type="button">
-          Verificar y enviar respuestas
-        </button>
       </div>
 
+      <button id="submitBtn" type="button" disabled>Enviar mis 10 votos</button>
       <p id="status" class="status" aria-live="polite"></p>
+
+      <p class="privacy">
+        El correo se utiliza para impedir votos repetidos. No se muestra públicamente.
+      </p>
     </section>
   </main>
 
-  <script type="module" src="app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>

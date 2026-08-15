@@ -1,12 +1,8 @@
-import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
-
-
-const SUPABASE_URL = "https://qcltnlutwedjbmufojeo.supabase.co/rest/v1/";
-const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_hOIhuoj8wk3jIIEQ0vqhaA_U1vlbyHC";
-
-const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
-
 const MAX_SELECTIONS = 10;
+
+// URL de tu Edge Function. Sustituye TU_PROJECT_REF.
+const SUBMIT_URL = "https://TU_PROJECT_REF.supabase.co/functions/v1/submit-vote";
+
 const audioFiles = [
   "01 hola a todos.mp3",
   "02 lemine.mp3",
@@ -55,231 +51,184 @@ const audioFiles = [
   "45 adeu.mp3"
 ];
 
+const selected = new Set();
+let turnstileToken = "";
+
 const audioList = document.getElementById("audioList");
 const selectedCount = document.getElementById("selectedCount");
-const emailInput = document.getElementById("email");
-const sendCodeBtn = document.getElementById("sendCodeBtn");
-const otpArea = document.getElementById("otpArea");
-const otpInput = document.getElementById("otp");
-const verifyBtn = document.getElementById("verifyBtn");
-const statusEl = document.getElementById("status");
 const selectionMessage = document.getElementById("selectionMessage");
-
-const selected = new Set();
-let verificationEmail = "";
+const emailInput = document.getElementById("email");
+const submitBtn = document.getElementById("submitBtn");
+const statusEl = document.getElementById("status");
+const turnstileWrap = document.getElementById("turnstileWrap");
+const honeypot = document.getElementById("website");
 
 function escapeHtml(text) {
-  const div = document.createElement("div");
-  div.textContent = text;
-  return div.innerHTML;
+  const el = document.createElement("div");
+  el.textContent = text;
+  return el.innerHTML;
 }
 
-function displayName(fileName) {
-  return fileName.replace(/\.mp3$/i, "");
+function audioUrl(file) {
+  return "audios/" + encodeURIComponent(file);
 }
 
-function audioUrl(fileName) {
-  return "audios/" + encodeURIComponent(fileName);
+function titleFromFile(file) {
+  return file.replace(/\.mp3$/i, "");
 }
 
 function renderAudios() {
-  audioList.innerHTML = "";
-
-  audioFiles.forEach((fileName, index) => {
-    const id = index + 1;
-    const article = document.createElement("article");
-    article.className = "audio-item";
-    article.dataset.id = id;
-
-    article.innerHTML = `
-      <input
-        class="audio-check"
-        type="checkbox"
-        id="audio-${id}"
-        aria-label="Seleccionar ${escapeHtml(displayName(fileName))}"
-      >
-      <div class="audio-content">
-        <p class="audio-title">${escapeHtml(displayName(fileName))}</p>
+  audioFiles.forEach((file, i) => {
+    const id = i + 1;
+    const item = document.createElement("article");
+    item.className = "audio-item";
+    item.dataset.id = String(id);
+    item.innerHTML = `
+      <input class="audio-check" id="audio-${id}" type="checkbox">
+      <div>
+        <p class="audio-title">${escapeHtml(titleFromFile(file))}</p>
         <audio controls preload="none">
-          <source src="${audioUrl(fileName)}" type="audio/mpeg">
+          <source src="${audioUrl(file)}" type="audio/mpeg">
           Tu navegador no soporta audio HTML5.
         </audio>
       </div>
     `;
-
-    const checkbox = article.querySelector(".audio-check");
-    checkbox.addEventListener("change", () => onSelectionChange(id, checkbox));
-
-    audioList.appendChild(article);
+    const check = item.querySelector(".audio-check");
+    check.addEventListener("change", () => {
+      if (check.checked) {
+        if (selected.size >= MAX_SELECTIONS) {
+          check.checked = false;
+          return;
+        }
+        selected.add(id);
+      } else {
+        selected.delete(id);
+      }
+      updateUI();
+    });
+    audioList.appendChild(item);
   });
-}
-
-function onSelectionChange(id, checkbox) {
-  if (checkbox.checked) {
-    if (selected.size >= MAX_SELECTIONS) {
-      checkbox.checked = false;
-      return;
-    }
-    selected.add(id);
-  } else {
-    selected.delete(id);
-  }
-
-  updateSelectionUI();
-}
-
-function updateSelectionUI() {
-  selectedCount.textContent = selected.size;
-
-  document.querySelectorAll(".audio-item").forEach((item) => {
-    const id = Number(item.dataset.id);
-    const checkbox = item.querySelector(".audio-check");
-    const isSelected = selected.has(id);
-    const lock = selected.size === MAX_SELECTIONS && !isSelected;
-
-    item.classList.toggle("selected", isSelected);
-    item.classList.toggle("locked", lock);
-    checkbox.disabled = lock;
-  });
-
-  const ready = selected.size === MAX_SELECTIONS;
-  emailInput.disabled = !ready;
-  sendCodeBtn.disabled = !ready;
-
-  selectionMessage.textContent = ready
-    ? "Perfecto: has seleccionado exactamente 10. Verifica tu correo para enviar."
-    : `Te faltan ${MAX_SELECTIONS - selected.size} selecciones.`;
-
-  if (!ready) {
-    otpArea.classList.add("hidden");
-    verificationEmail = "";
-  }
 }
 
 function setStatus(message, type = "") {
   statusEl.textContent = message;
-  statusEl.className = "status";
-  if (type) statusEl.classList.add(type);
+  statusEl.className = "status" + (type ? " " + type : "");
 }
 
-function normalizeEmail(email) {
-  return email.trim().toLowerCase();
+function validEmail() {
+  return !emailInput.disabled && emailInput.value.trim() && emailInput.checkValidity();
 }
 
-sendCodeBtn.addEventListener("click", async () => {
-  setStatus("");
+function updateUI() {
+  const ready = selected.size === MAX_SELECTIONS;
+  selectedCount.textContent = selected.size;
 
+  document.querySelectorAll(".audio-item").forEach(item => {
+    const id = Number(item.dataset.id);
+    const check = item.querySelector(".audio-check");
+    const isSelected = selected.has(id);
+    const locked = ready && !isSelected;
+    item.classList.toggle("selected", isSelected);
+    item.classList.toggle("locked", locked);
+    check.disabled = locked;
+  });
+
+  emailInput.disabled = !ready;
+  turnstileWrap.classList.toggle("is-disabled", !ready);
+
+  selectionMessage.textContent = ready
+    ? "Perfecto. Ahora introduce tu correo y completa la verificación."
+    : `Te faltan ${MAX_SELECTIONS - selected.size} selecciones.`;
+
+  refreshSubmitState();
+}
+
+function refreshSubmitState() {
+  submitBtn.disabled = !(
+    selected.size === MAX_SELECTIONS &&
+    validEmail() &&
+    turnstileToken
+  );
+}
+
+window.onTurnstileSuccess = token => {
+  turnstileToken = token;
+  refreshSubmitState();
+};
+
+window.onTurnstileExpired = () => {
+  turnstileToken = "";
+  refreshSubmitState();
+};
+
+window.onTurnstileError = () => {
+  turnstileToken = "";
+  setStatus("No se pudo cargar la verificación anti-spam.", "error");
+  refreshSubmitState();
+};
+
+emailInput.addEventListener("input", refreshSubmitState);
+
+submitBtn.addEventListener("click", async () => {
   if (selected.size !== MAX_SELECTIONS) {
     setStatus("Debes seleccionar exactamente 10 audios.", "error");
     return;
   }
-
-  const email = normalizeEmail(emailInput.value);
-
-  if (!email || !emailInput.checkValidity()) {
-    setStatus("Introduce un correo electrónico válido.", "error");
-    emailInput.focus();
+  if (!validEmail()) {
+    setStatus("Introduce un correo válido.", "error");
+    return;
+  }
+  if (!turnstileToken) {
+    setStatus("Completa la verificación anti-spam.", "error");
     return;
   }
 
-  sendCodeBtn.disabled = true;
-  sendCodeBtn.textContent = "Enviando código...";
-
-  const { error } = await supabase.auth.signInWithOtp({
-    email,
-    options: {
-      shouldCreateUser: true
-    }
-  });
-
-  sendCodeBtn.textContent = "Enviar código de verificación";
-  sendCodeBtn.disabled = false;
-
-  if (error) {
-    console.error(error);
-    setStatus("No se pudo enviar el código. Inténtalo de nuevo más tarde.", "error");
-    return;
-  }
-
-  verificationEmail = email;
-  otpArea.classList.remove("hidden");
-  setStatus("Código enviado. Revisa tu correo.", "success");
-  otpInput.focus();
-});
-
-verifyBtn.addEventListener("click", async () => {
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Enviando...";
   setStatus("");
 
-  if (selected.size !== MAX_SELECTIONS) {
-    setStatus("La selección ya no contiene exactamente 10 audios.", "error");
-    return;
-  }
+  const payload = {
+    email: emailInput.value.trim().toLowerCase(),
+    choices: [...selected].sort((a,b) => a-b),
+    turnstileToken,
+    website: honeypot.value
+  };
 
-  const token = otpInput.value.trim();
-
-  if (!verificationEmail || !token) {
-    setStatus("Introduce el código que has recibido.", "error");
-    return;
-  }
-
-  verifyBtn.disabled = true;
-  verifyBtn.textContent = "Verificando...";
-
-  const {
-    data: authData,
-    error: verifyError
-  } = await supabase.auth.verifyOtp({
-    email: verificationEmail,
-    token,
-    type: "email"
-  });
-
-  if (verifyError || !authData.user) {
-    console.error(verifyError);
-    verifyBtn.disabled = false;
-    verifyBtn.textContent = "Verificar y enviar respuestas";
-    setStatus("El código no es válido o ha caducado.", "error");
-    return;
-  }
-
-  const choices = Array.from(selected).sort((a, b) => a - b);
-
-  const { error: insertError } = await supabase
-    .from("submissions")
-    .insert({
-      user_id: authData.user.id,
-      email: authData.user.email,
-      choices
+  try {
+    const response = await fetch(SUBMIT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
     });
 
-  if (insertError) {
-    console.error(insertError);
+    let data = {};
+    try { data = await response.json(); } catch (_) {}
 
-    // PostgreSQL unique_violation
-    if (insertError.code === "23505") {
-      setStatus("Este correo ya ha enviado una respuesta.", "error");
-    } else {
-      setStatus("No se pudieron guardar las respuestas.", "error");
+    if (!response.ok) {
+      if (response.status === 409) {
+        throw new Error("Este correo ya ha enviado sus votos.");
+      }
+      if (response.status === 429) {
+        throw new Error("Demasiados intentos. Espera un poco y vuelve a intentarlo.");
+      }
+      throw new Error(data.error || "No se pudieron guardar los votos.");
     }
 
-    await supabase.auth.signOut();
-    verifyBtn.disabled = false;
-    verifyBtn.textContent = "Verificar y enviar respuestas";
-    return;
+    setStatus("¡Votos enviados correctamente! Gracias.", "success");
+    document.querySelectorAll(".audio-check").forEach(el => el.disabled = true);
+    emailInput.disabled = true;
+    submitBtn.textContent = "Votos enviados";
+    submitBtn.disabled = true;
+    turnstileWrap.classList.add("is-disabled");
+  } catch (err) {
+    setStatus(err.message || "Ha ocurrido un error.", "error");
+    submitBtn.textContent = "Enviar mis 10 votos";
+    // Los tokens de Turnstile son de un solo uso: pide otro.
+    turnstileToken = "";
+    if (window.turnstile) window.turnstile.reset();
+    refreshSubmitState();
   }
-
-  setStatus("¡Respuesta enviada correctamente! Gracias.", "success");
-
-  document.querySelectorAll(".audio-check").forEach((el) => {
-    el.disabled = true;
-  });
-  emailInput.disabled = true;
-  sendCodeBtn.disabled = true;
-  verifyBtn.disabled = true;
-  verifyBtn.textContent = "Enviado";
-
-  await supabase.auth.signOut();
 });
 
 renderAudios();
-updateSelectionUI();
+updateUI();
