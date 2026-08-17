@@ -1,4 +1,3 @@
-// Impide que varios clips suenen al mismo tiempo.
 const players = document.querySelectorAll("audio");
 
 players.forEach((player) => {
