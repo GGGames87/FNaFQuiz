@@ -112,6 +112,16 @@ body::after {
   font-size: 0.9rem;
 }
 
+.header h1 a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.header h1 a:hover {
+  text-decoration: underline;
+}
+
 .title {
   font-weight: 700;
   overflow-wrap: anywhere;
